@@ -15,12 +15,6 @@ run/main_scene="uid://cqus6f4yfq32x"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-DungeonGen="*res://Dungeon testing/dungeon_gen.gd"
-Room="*res://Dungeon testing/room.tscn"
-Roomgd="*res://Dungeon testing/room.gd"
-
 [editor]
 
 version_control/plugin_name="GitPlugin"

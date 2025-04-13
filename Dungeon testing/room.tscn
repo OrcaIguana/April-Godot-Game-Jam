@@ -1,3 +1,28 @@
 [gd_scene format=3 uid="uid://c5ys2ox3lsx67"]
+[gd_scene load_steps=4 format=3 uid="uid://cvnhcrcuvg482"]
 
+[ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://character_body_2d.gd" id="1_gf172"]
+[ext_resource type="Texture2D" uid="uid://2gb3le1ttacx" path="res://Sprites/circle.png" id="2_dl81w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
+radius = 6.36531
+
+<<<<<<< HEAD:Dungeon testing/room.tscn
 [node name="Room" type="Area2D"]
+=======
+[node name="Area2D" type="Area2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="Node2D"]
+motion_mode = 1
+floor_stop_on_slope = false
+script = ExtResource("1_gf172")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Player"]
+texture = ExtResource("2_dl81w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Player"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_dl81w")
+>>>>>>> 027595f92802ce8711d5f2e7fbf6b45cd48b0a6c:area_2d.tscn

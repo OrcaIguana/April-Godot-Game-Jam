@@ -1,5 +1,6 @@
 extends Node2D
 
+# Create Array for dungeon
 @export var _dimensions : Vector2i = Vector2i(6,6)
 @export var _start : Vector2i = Vector2i(-1,-1)
 @export var _boss_path_length : int = 9
@@ -23,7 +24,7 @@ func _place_entrance() -> void:
 		_start.x = randi_range(0 , _dimensions.x - 1)
 	if _start.y < 0 or _start.y >= _dimensions.y:
 		_start.y = randi_range(0 , _dimensions.y - 1)
-	dungeon[_start.x][_start.y] = "S"
+	dungeon[_start.x][_start.y] = "S" #Spawn room
 
 func _generate_boss_path(from : Vector2i, length : int) -> bool:
 	if length == 0:
@@ -54,13 +55,12 @@ func _generate_boss_path(from : Vector2i, length : int) -> bool:
 	return false
 
 
-
 func _print_dungeon() -> void:
 	var dungeon_as_string : String = ""
 	for y in range(_dimensions.y - 1 , -1 , -1):
 		for x in _dimensions.x:
 			if dungeon[x][y]:
-				dungeon_as_string += "[" + str(dungeon[x][y]) + "]"
+				dungeon_as_string += "[" + str(dungeon[x][y]) + "]" # Each dungeon room
 			else:
 				dungeon_as_string += "   "
 		dungeon_as_string += '\n'

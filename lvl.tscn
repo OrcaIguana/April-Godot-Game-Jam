@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d0puk1x4dyneq" path="res://User Interface/ui.tscn" id="1_xliyy"]
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="2_4iw1c"]
-[ext_resource type="PackedScene" uid="uid://5vwik7i6gfxq" path="res://Enemies/Basic/enemy_shooter.tscn" id="3_4iw1c"]
+[ext_resource type="PackedScene" uid="uid://begr7axrp6m8g" path="res://Dungeon Generation/dungeon_gen.tscn" id="3_4iw1c"]
 
 [node name="Lvl" type="Node2D"]
 
@@ -15,5 +15,4 @@ scale = Vector2(1.03975, 1.04668)
 
 [node name="Node2D" parent="." instance=ExtResource("2_4iw1c")]
 
-[node name="enemy_shooter" parent="." instance=ExtResource("3_4iw1c")]
-position = Vector2(219, 174)
+[node name="DungeonGen" parent="." instance=ExtResource("3_4iw1c")]

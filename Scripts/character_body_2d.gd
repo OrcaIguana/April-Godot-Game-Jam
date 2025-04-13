@@ -4,6 +4,9 @@ extends CharacterBody2D
 
 var wand_inventory = []
 
+func _ready():
+	add_to_group("player")
+
 func get_input():
 	var input = Input.get_vector("left", "right", "up", "down")
 	velocity = input * speed

@@ -10,5 +10,3 @@ script = ExtResource("1_mbmgk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture = ExtResource("2_5ljcc")
-
-[node name="Spawn_Pos" type="Marker2D" parent="CharacterBody2D"]

@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
 radius = 6.36531
 
-[node name="Node2D" type="Node2D"]
+[node name="Player" type="Node2D"]
 position = Vector2(649, 203)
 scale = Vector2(0.160001, 0.160001)
 
@@ -29,7 +29,6 @@ script = ExtResource("6_vtle1")
 
 [node name="Wand" parent="Player" instance=ExtResource("5_k53q1")]
 position = Vector2(-4056.22, -1268.74)
-scale = Vector2(6.24996, 6.24996)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(50, 50)

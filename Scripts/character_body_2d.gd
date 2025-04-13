@@ -6,6 +6,6 @@ func get_input():
 	var input = Input.get_vector("left", "right", "up", "down")
 	velocity = input * speed
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	move_and_slide()

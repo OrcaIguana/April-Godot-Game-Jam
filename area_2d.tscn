@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cvnhcrcuvg482"]
 
-[ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://character_body_2d.gd" id="1_gf172"]
-[ext_resource type="Script" uid="uid://exianqda4by6" path="res://active_wand.gd" id="2_c0nl8"]
+[ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_gf172"]
+[ext_resource type="Script" uid="uid://exianqda4by6" path="res://Scripts/active_wand.gd" id="2_c0nl8"]
 [ext_resource type="Texture2D" uid="uid://2gb3le1ttacx" path="res://Sprites/circle.png" id="2_dl81w"]
 [ext_resource type="Texture2D" uid="uid://1eqfptdyjntw" path="res://Sprites/Slot.png" id="3_5rgpn"]
-[ext_resource type="Script" uid="uid://diknkw5535sa6" path="res://button.gd" id="5_1dtnr"]
+[ext_resource type="Script" uid="uid://diknkw5535sa6" path="res://Scripts/button.gd" id="5_1dtnr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
 radius = 6.36531

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var direction
 
-@export var speed = 500
+var speed = 750
 var spawn_position
 var time_to_live = 1
 

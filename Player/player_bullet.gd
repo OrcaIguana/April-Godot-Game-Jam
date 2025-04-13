@@ -5,11 +5,10 @@ var direction
 @export var speed = 1000
 var spawn_position = Vector2()
 var time_to_live = 1
+var projectiles = 3
 
 func _ready():
 	self.global_position = spawn_position
-	var mouse_pos = get_viewport().get_mouse_position()
-	direction = global_position.direction_to(mouse_pos)
 	self.rotate(direction.angle())
 	velocity = direction * speed
 

@@ -10,8 +10,13 @@ config_version=5
 
 [application]
 
+<<<<<<< Updated upstream
 config/name="April Godot Game Jam"
 run/main_scene="uid://cvnhcrcuvg482"
+=======
+config/name="Game Jam Project"
+run/main_scene="uid://dsqn7j1p3a2d6"
+>>>>>>> Stashed changes
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

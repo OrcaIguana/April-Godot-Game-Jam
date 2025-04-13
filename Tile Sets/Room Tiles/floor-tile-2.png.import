@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://3b3wyu2cl26u"
+path="res://.godot/imported/floor-tile-2.png-54fc3d596c8fdc584387187dae59dfec.res"
+group_file="res://Tile Sets/Floor Tilemap/FloorTile.png"
+valid=true
+[deps]
+
+
+source_file="res://Tile Sets/Room Tiles/floor-tile-2.png"
+dest_files=["res://.godot/imported/floor-tile-2.png-54fc3d596c8fdc584387187dae59dfec.res"]
+
+[params]
+
+atlas_file="res://Tile Sets/Floor Tilemap/FloorTile.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true

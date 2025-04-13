@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://djlfcb8mad1pw" path="res://Player/eyes.gd" id="6_vtle1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
-radius = 0.600333
+radius = 6.36531
 
 [node name="Player" type="Node2D"]
+position = Vector2(649, 203)
+scale = Vector2(0.160001, 0.160001)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 motion_mode = 1
@@ -17,9 +19,11 @@ floor_stop_on_slope = false
 script = ExtResource("1_hqtel")
 
 [node name="Body" type="Sprite2D" parent="Player"]
+scale = Vector2(10.4999, 10.4999)
 texture = ExtResource("5_fhl08")
 
 [node name="Eyes" type="Sprite2D" parent="Player"]
+scale = Vector2(10.4999, 10.4999)
 texture = ExtResource("6_od3ui")
 script = ExtResource("6_vtle1")
 
@@ -27,5 +31,5 @@ script = ExtResource("6_vtle1")
 position = Vector2(-4056.22, -1268.74)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-scale = Vector2(51.0926, 50)
+scale = Vector2(50, 50)
 shape = SubResource("CircleShape2D_dl81w")

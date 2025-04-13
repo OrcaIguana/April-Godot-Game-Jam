@@ -4,8 +4,7 @@ var direction
 
 @export var speed = 1000
 var spawn_position = Vector2()
-var time_to_live = 1
-var projectiles = 3
+var time_to_live = 0
 
 func _ready():
 	self.global_position = spawn_position

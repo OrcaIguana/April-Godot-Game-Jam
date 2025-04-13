@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://n2iheivnklqf"]
 
-[ext_resource type="Script" uid="uid://u1rk5jp1u41t" path="res://player_bullet.gd" id="1_mbmgk"]
-[ext_resource type="Texture2D" uid="uid://snsabn61csa3" path="res://icon.svg" id="2_oxuh6"]
+[ext_resource type="Script" uid="uid://u1rk5jp1u41t" path="res://Player/player_bullet.gd" id="1_mbmgk"]
+[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_5ljcc"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,6 +9,6 @@
 script = ExtResource("1_mbmgk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_oxuh6")
+texture = ExtResource("2_5ljcc")
 
 [node name="Spawn_Pos" type="Marker2D" parent="CharacterBody2D"]

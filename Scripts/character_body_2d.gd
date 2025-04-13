@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var speed = 500
 
+var wand_inventory = []
+
 func get_input():
 	var input = Input.get_vector("left", "right", "up", "down")
 	velocity = input * speed

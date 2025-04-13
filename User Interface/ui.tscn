@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0puk1x4dyneq"]
+[gd_scene load_steps=2 format=3 uid="uid://d0puk1x4dyneq"]
 
 [ext_resource type="Texture2D" uid="uid://1eqfptdyjntw" path="res://Sprites/Slot.png" id="1_m6e0p"]
-[ext_resource type="Script" uid="uid://diknkw5535sa6" path="res://Scripts/button.gd" id="2_27fn8"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -12,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 401.0
 offset_top = 575.0
 offset_right = 1897.0
@@ -20,8 +20,8 @@ scale = Vector2(0.24, 0.24)
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+button_mask = 0
 icon = ExtResource("1_m6e0p")
-script = ExtResource("2_27fn8")
 
 [node name="Button2" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -38,5 +38,3 @@ icon = ExtResource("1_m6e0p")
 [node name="Button5" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 icon = ExtResource("1_m6e0p")
-
-[connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer/Button" method="send_signal"]

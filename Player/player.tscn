@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvnhcrcuvg482"]
+
+[ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
+[ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
+[ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="5_k53q1"]
+[ext_resource type="Texture2D" uid="uid://dgo2plj72j1br" path="res://Player/Sprites/player-eyes.png" id="6_od3ui"]
+[ext_resource type="Script" uid="uid://djlfcb8mad1pw" path="res://Player/eyes.gd" id="6_vtle1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
+radius = 6.36531
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(649, 203)
+scale = Vector2(0.160001, 0.160001)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+floor_stop_on_slope = false
+script = ExtResource("1_hqtel")
+
+[node name="Body" type="Sprite2D" parent="Player"]
+scale = Vector2(10.4999, 10.4999)
+texture = ExtResource("5_fhl08")
+
+[node name="Eyes" type="Sprite2D" parent="Player"]
+scale = Vector2(10.4999, 10.4999)
+texture = ExtResource("6_od3ui")
+script = ExtResource("6_vtle1")
+
+[node name="Wand" parent="Player" instance=ExtResource("5_k53q1")]
+position = Vector2(-4056.22, -1268.74)
+scale = Vector2(6.24996, 6.24996)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(50, 50)
+shape = SubResource("CircleShape2D_dl81w")

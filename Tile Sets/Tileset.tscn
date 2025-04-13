@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://b12yyyidee5ow"]
+[gd_scene load_steps=2 format=3 uid="uid://b12yyyidee5ow"]
 
-[node name="Tileset" type="TileMapLayer"]
+[ext_resource type="Script" uid="uid://dqgy2464u0d21" path="res://Dungeon testing/room.gd" id="1_14x6u"]
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_14x6u")

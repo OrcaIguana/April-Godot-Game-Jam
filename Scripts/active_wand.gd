@@ -4,10 +4,10 @@ const bullets = preload("res://Player/player_bullet.tscn")
 
 var max_cooldown = 0.5
 var time_to_kill = 0.5
-var projectiles = 1
-var burst = 100
+var projectiles = 3
+var burst = 3
 var burst_speed = 0.1
-var spread = 10
+var spread = 5
 
 var cooldown = 0
 
@@ -31,14 +31,14 @@ func shoot(time_to_kill, amount_of_projectiles, burst, spread):
 	while true:
 		var mouse_pos = get_viewport().get_mouse_position()
 		var direction = global_position.direction_to(mouse_pos)
-		for projectiles in range(spread):
+		for projectiles in range(amount_of_projectiles):
 			var instance = bullets.instantiate()
 			var bullet = instance.get_node("CharacterBody2D")
 			if negative:
-				bullet.direction = direction.rotated(deg_to_rad(-5*counter))
+				bullet.direction = direction.rotated(deg_to_rad((-1 * spread)*counter))
 				negative = false
 			else:
-				bullet.direction = direction.rotated(deg_to_rad(5*counter))
+				bullet.direction = direction.rotated(deg_to_rad(spread*counter))
 				negative = true
 				counter += 1
 			bullet.spawn_position = self.global_position

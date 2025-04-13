@@ -17,3 +17,5 @@ texture = ExtResource("3_g71gl")
 
 [node name="BulletSpawnpoint" type="Marker2D" parent="." index="3"]
 gizmo_extents = 0.0
+
+[node name="BurstTimer" type="Timer" parent="." index="4"]

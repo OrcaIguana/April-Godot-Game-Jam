@@ -14,12 +14,25 @@ var wand_inventory = []
 var active_wand
 
 var health = 6
+var invulnerable = false
+
+const dash_cooldown = 0.7
+var is_dashing = false
+var locked_direction
+var dash_duration = 0
 
 signal health_change(health)
 signal wand_change(id, want_texture)
 
 func health_changed(new_health):
 	health_change.emit(new_health)
+
+func hurt(amount):
+	if !invulnerable:
+		health_change.emit(health - amount)
+		print("Sent Signal")
+	else:
+		pass # Some dodge sfx or smth
 
 func load_wand(wand):
 		var loaded_wand = wand.instantiate()
@@ -30,6 +43,9 @@ func load_wand(wand):
 func do_cooldowns(delta):
 	for wands in wand_inventory:
 		wands.cooldown -= delta
+	dash_duration -= delta
+	get_node("Dash/Dash Cooldown Bar").adjust_dash_bar((dash_duration+(dash_cooldown))/.7)
+
 func _ready():
 	var wand
 	add_to_group("player")
@@ -44,7 +60,12 @@ func _ready():
 	await get_tree().create_timer(5).timeout
 	
 func get_input():
-	var input = Input.get_vector("left", "right", "up", "down")
+	var input
+	if is_dashing:
+		input = locked_direction
+		speed = 500 + 7000*max(dash_duration,0)
+	else:
+		input = Input.get_vector("left", "right", "up", "down")
 	velocity = input * speed
 
 func _process(delta: float) -> void:
@@ -82,6 +103,21 @@ func _process(delta: float) -> void:
 		wand_inventory[3].visible = true
 		active_wand = wand_inventory[3]
 		wand_change.emit(4, active_wand.get_node("Wand").texture)	
+	
+	if Input.is_action_just_pressed("dash") && (dash_duration <= -dash_cooldown):
+		get_node("Dash/Ghost Particles").set_emitting(true)
+		is_dashing = true
+		invulnerable = true
+		dash_duration = 0.2
+		locked_direction = Input.get_vector("left", "right", "up", "down")
+		if(locked_direction == Vector2(0,0)): 
+			locked_direction = Vector2(.8,0).rotated(round((get_local_mouse_position().angle()*(4/3.14)))*(3.14/4))
+	elif (dash_duration <= 0.05):
+		invulnerable = false
+		if (dash_duration <= 0):
+			speed = 500
+			is_dashing = false
+			get_node("Dash/Ghost Particles").set_emitting(false)
 	
 func _physics_process(_delta):
 	get_input()

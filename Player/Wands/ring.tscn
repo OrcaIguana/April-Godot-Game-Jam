@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://lhf8funpuand"]
+
+[ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="1_rblcu"]
+[ext_resource type="Texture2D" uid="uid://bp0qj3m4i83ur" path="res://Player/Sprites/wand-triangle.png" id="2_inar1"]
+[ext_resource type="Script" uid="uid://cwoqo66jgusj" path="res://Player/Wands/Scipts/ring.gd" id="2_wqior"]
+
+[node name="Wand" instance=ExtResource("1_rblcu")]
+script = ExtResource("2_wqior")
+
+[node name="Wand" parent="." index="0"]
+texture = ExtResource("2_inar1")

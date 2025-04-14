@@ -1,31 +1,7 @@
-extends Node2D
+extends "res://Scripts/active_wand.gd"
 
-const bullets = preload("res://Player/player_bullet.tscn")
-
-var max_cooldown = 0
-var time_to_kill = 0
-var projectiles = 0
-var burst = 0
-var burst_speed = 0
-var spread = 0
-var bullet_speed = 0
-
-var cooldown = 0
-
-func set_stats(cooldown: float, TTK: float, projectile_amount: int, burst_amount: int, burst_firerate: float, spread_amount: int, speed_of_bullet: float):
-	max_cooldown = cooldown
-	time_to_kill = TTK
-	projectiles = projectile_amount
-	burst = burst_amount
-	burst_speed = burst_firerate
-	spread = spread_amount
-	bullet_speed = speed_of_bullet
-	
-
-func _physics_process(delta):
-	var mouse_pos = get_viewport().get_mouse_position()
-	self.position = Vector2(0, 0)
-	self.position = self.global_position.direction_to(mouse_pos) * 50
+func _ready():
+	super.set_stats(2, 0.3, 12, 1, 0, 30, 200)
 
 func shoot(parent_pos: Vector2):
 	var counter = 0
@@ -45,7 +21,7 @@ func shoot(parent_pos: Vector2):
 				bullet.direction = direction.rotated(deg_to_rad(spread*counter))
 				negative = true
 				counter += 1
-			bullet.spawn_position = self.global_position
+			bullet.spawn_position = parent_pos + bullet.direction * 10
 			bullet.time_to_live = time_to_kill
 			bullet.speed = bullet_speed
 			get_tree().current_scene.add_child(instance)

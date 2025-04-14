@@ -16,10 +16,10 @@ var active_wand
 var health = 6
 
 signal health_change(health)
+signal wand_change(id, want_texture)
 
-func hurt(amount):
-	health_change.emit(health - amount)
-	print("Sent Signal")
+func health_changed(new_health):
+	health_change.emit(new_health)
 
 func load_wand(wand):
 		var loaded_wand = wand.instantiate()
@@ -30,7 +30,6 @@ func load_wand(wand):
 func do_cooldowns(delta):
 	for wands in wand_inventory:
 		wands.cooldown -= delta
-
 func _ready():
 	var wand
 	add_to_group("player")
@@ -40,10 +39,9 @@ func _ready():
 	active_wand = wand_inventory[0]
 	wand_inventory[1] = load_wand(ring)
 	wand_inventory[2] = load_wand(volley)
-	wand_inventory[3] = load_wand(launcher)
+	wand_inventory[3] = load_wand(fan)
 	
 	await get_tree().create_timer(5).timeout
-	hurt(1)
 	
 func get_input():
 	var input = Input.get_vector("left", "right", "up", "down")
@@ -62,24 +60,28 @@ func _process(delta: float) -> void:
 		wand_inventory[2].visible = false
 		wand_inventory[3].visible = false
 		active_wand = wand_inventory[0]
+		wand_change.emit(1, active_wand.get_node("Wand").texture)
 	if Input.is_action_just_released("slot2"):
 		wand_inventory[0].visible = false
 		wand_inventory[1].visible = true
 		wand_inventory[2].visible = false
 		wand_inventory[3].visible = false
-		active_wand = wand_inventory[1]		
+		active_wand = wand_inventory[1]
+		wand_change.emit(2, active_wand.get_node("Wand").texture)
 	if Input.is_action_just_released("slot3"):
 		wand_inventory[0].visible = false
 		wand_inventory[1].visible = false
 		wand_inventory[2].visible = true
 		wand_inventory[3].visible = false
-		active_wand = wand_inventory[2]		
+		active_wand = wand_inventory[2]	
+		wand_change.emit(3, active_wand.get_node("Wand").texture)
 	if Input.is_action_just_released("slot4"):
 		wand_inventory[0].visible = false
 		wand_inventory[1].visible = false
 		wand_inventory[2].visible = false
 		wand_inventory[3].visible = true
-		active_wand = wand_inventory[3]		
+		active_wand = wand_inventory[3]
+		wand_change.emit(4, active_wand.get_node("Wand").texture)	
 	
 func _physics_process(_delta):
 	get_input()

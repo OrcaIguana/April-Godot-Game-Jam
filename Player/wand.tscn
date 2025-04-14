@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4dn0r55je8b6"]
+[gd_scene load_steps=2 format=3 uid="uid://b4dn0r55je8b6"]
 
 [ext_resource type="Script" uid="uid://exianqda4by6" path="res://Scripts/active_wand.gd" id="1_gfv37"]
-[ext_resource type="Texture2D" uid="uid://djc6khf44idhe" path="res://Player/Sprites/wand-hexa.png" id="2_gy0md"]
-[ext_resource type="Script" uid="uid://drx2i3yh0o5t5" path="res://Player/Wand_Spite.gd" id="3_uai0h"]
 
 [node name="Wand" type="Node2D"]
 scale = Vector2(6.24996, 6.24996)
@@ -10,5 +8,3 @@ script = ExtResource("1_gfv37")
 
 [node name="Wand" type="Sprite2D" parent="."]
 scale = Vector2(0.160001, 0.160001)
-texture = ExtResource("2_gy0md")
-script = ExtResource("3_uai0h")

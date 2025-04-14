@@ -12,8 +12,6 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
-	print(time_to_live)
-	print(delta)
 	time_to_live -= delta
 	if time_to_live <= 0:
 		queue_free()

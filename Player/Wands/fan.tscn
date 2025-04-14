@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://jwgxpto8d6dr"]
 
 [ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="1_4t7q7"]
-[ext_resource type="Script" uid="uid://cf8dibqssmbh1" path="res://Player/Wands/Scipts/fan.gd" id="2_oh1wp"]
+[ext_resource type="Script" uid="uid://cf8dibqssmbh1" path="res://Player/Wands/Scripts/fan.gd" id="2_oh1wp"]
 [ext_resource type="Texture2D" uid="uid://djc6khf44idhe" path="res://Player/Sprites/wand-hexa.png" id="3_oh1wp"]
 
 [node name="Wand" instance=ExtResource("1_4t7q7")]

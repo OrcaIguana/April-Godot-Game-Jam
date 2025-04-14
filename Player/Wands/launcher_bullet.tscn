@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://blu5sxjeskquj"]
+
+[ext_resource type="PackedScene" uid="uid://n2iheivnklqf" path="res://Player/player_bullet.tscn" id="1_v840i"]
+[ext_resource type="Script" uid="uid://c5xpsigmvegnn" path="res://Player/Wands/launcher_bullet.gd" id="2_jas10"]
+
+[node name="Node2D" instance=ExtResource("1_v840i")]
+
+[node name="CharacterBody2D" parent="." index="0"]
+script = ExtResource("2_jas10")

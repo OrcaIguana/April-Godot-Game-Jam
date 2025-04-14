@@ -7,6 +7,8 @@ const focus = preload("res://Player/Wands/focus.tscn")
 const blaster = preload("res://Player/Wands/blaster.tscn")
 const fan = preload("res://Player/Wands/fan.tscn")
 const ring = preload("res://Player/Wands/ring.tscn")
+const volley = preload("res://Player/Wands/voley.tscn")
+const launcher = preload("res://Player/Wands/launcher.tscn")
 
 var wand_inventory = []
 var active_wand
@@ -30,7 +32,7 @@ func _ready():
 	active_wand = wand_inventory[0]
 	wand_inventory[1] = load_wand(blaster)
 	wand_inventory[2] = load_wand(fan)
-	wand_inventory[3] = load_wand(ring)
+	wand_inventory[3] = load_wand(launcher)
 	
 func get_input():
 	var input = Input.get_vector("left", "right", "up", "down")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://s0xy8g34gom4"]
+
+[ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="1_bka7e"]
+[ext_resource type="Script" uid="uid://c382yncqt814l" path="res://Player/Wands/Scripts/volley.gd" id="2_kwa3b"]
+[ext_resource type="Texture2D" uid="uid://djc6khf44idhe" path="res://Player/Sprites/wand-hexa.png" id="3_6b16m"]
+
+[node name="Wand" instance=ExtResource("1_bka7e")]
+script = ExtResource("2_kwa3b")
+
+[node name="Wand" parent="." index="0"]
+texture = ExtResource("3_6b16m")

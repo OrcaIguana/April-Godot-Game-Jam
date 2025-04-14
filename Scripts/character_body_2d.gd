@@ -13,6 +13,14 @@ const launcher = preload("res://Player/Wands/launcher.tscn")
 var wand_inventory = []
 var active_wand
 
+var health = 6
+
+signal health_change(health)
+
+func hurt(amount):
+	health_change.emit(health - amount)
+	print("Sent Signal")
+
 func load_wand(wand):
 		var loaded_wand = wand.instantiate()
 		loaded_wand.visible = false
@@ -30,9 +38,12 @@ func _ready():
 		wand_inventory.append(load_wand(default_wand))
 	wand_inventory[0] = load_wand(focus)
 	active_wand = wand_inventory[0]
-	wand_inventory[1] = load_wand(blaster)
-	wand_inventory[2] = load_wand(fan)
+	wand_inventory[1] = load_wand(ring)
+	wand_inventory[2] = load_wand(volley)
 	wand_inventory[3] = load_wand(launcher)
+	
+	await get_tree().create_timer(5).timeout
+	hurt(1)
 	
 func get_input():
 	var input = Input.get_vector("left", "right", "up", "down")
@@ -73,3 +84,7 @@ func _process(delta: float) -> void:
 func _physics_process(_delta):
 	get_input()
 	move_and_slide()
+
+
+func _on_health_change(health: Variant) -> void:
+	pass # Replace with function body.

@@ -6,6 +6,9 @@ var direction
 var spawn_position = Vector2()
 var time_to_live = 0
 
+func load_modifiers(modifiers: Array):
+	return
+
 func _ready():
 	self.global_position = spawn_position
 	self.rotate(direction.angle())

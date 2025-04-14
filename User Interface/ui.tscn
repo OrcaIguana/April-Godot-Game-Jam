@@ -1,40 +1,66 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0puk1x4dyneq"]
+[gd_scene load_steps=4 format=3 uid="uid://d0puk1x4dyneq"]
 
-[ext_resource type="Texture2D" uid="uid://1eqfptdyjntw" path="res://Sprites/Slot.png" id="1_m6e0p"]
+[ext_resource type="Texture2D" uid="uid://cx75dwm7klt1k" path="res://User Interface/Health V2.png" id="1_23kop"]
+[ext_resource type="Script" uid="uid://1ofspb3st6py" path="res://User Interface/Scripts/ui.gd" id="1_wgs5q"]
+[ext_resource type="Script" uid="uid://ba20kdyy4ofsg" path="res://User Interface/Scripts/health_ui.gd" id="2_pefme"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+script = ExtResource("1_wgs5q")
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 401.0
-offset_top = 575.0
-offset_right = 1897.0
-offset_bottom = 871.0
-scale = Vector2(0.24, 0.24)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 260.0
+offset_bottom = -32.0
+grow_vertical = 0
+scale = Vector2(1.76, 1.76)
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="ReferenceRect" type="ReferenceRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
-button_mask = 0
-icon = ExtResource("1_m6e0p")
+editor_only = false
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="ReferenceRect2" type="ReferenceRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
-icon = ExtResource("1_m6e0p")
+editor_only = false
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="ReferenceRect3" type="ReferenceRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
-icon = ExtResource("1_m6e0p")
+editor_only = false
 
-[node name="Button4" type="Button" parent="HBoxContainer"]
+[node name="ReferenceRect4" type="ReferenceRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
-icon = ExtResource("1_m6e0p")
+editor_only = false
 
-[node name="Button5" type="Button" parent="HBoxContainer"]
+[node name="ReferenceRect5" type="ReferenceRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
 layout_mode = 2
-icon = ExtResource("1_m6e0p")
+editor_only = false
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/MarginContainer"]
+position = Vector2(20, 20)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_23kop")
+hframes = 4
+vframes = 2
+script = ExtResource("2_pefme")
+
+[connection signal="health_change" from="." to="HBoxContainer/MarginContainer/Sprite2D" method="_on_health_change"]

@@ -84,5 +84,3 @@ anchor_mode = 0
 size = Vector2i(1792, 1024)
 size_2d_override_stretch = true
 script = ExtResource("6_2a1lc")
-
-[node name="enemy_shooter" parent="." instance=ExtResource("9_2e6f6")]

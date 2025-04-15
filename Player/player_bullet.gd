@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 var direction
 var time_to_live
+var waiting_to_split = false
 
 @export_group("Bullet Stats")
 @export var cooldown = 1
@@ -40,23 +41,23 @@ func _physics_process(delta: float) -> void:
 		pass
 	move_and_slide()
 	time_to_live -= delta
-	if time_to_live <= 0:
+	if time_to_live <= 0 && !waiting_to_split:
 		if splitting_count > 0:
 			var counter = 0
 			for projectile in range(self.splitting_count):
 				var bullet = self.duplicate()
-				bullet.lifespan = splitting_lifespan
+				bullet.spawn_position = self.global_position
+				bullet.lifespan = bullet.splitting_lifespan
 				
 				bullet.direction = self.direction.rotated(deg_to_rad(-(bullet.splitting_angle/2.0)+((bullet.splitting_angle/self.splitting_count)*(counter+.5))))
 				counter += 1
-				bullet.spawn_position = self.global_position
 				bullet.splitting_count = 0
 				get_tree().current_scene.add_child(bullet)
 				if(bullet.burst_speed > 0):
+					waiting_to_split = true
 					await get_tree().create_timer(bullet.burst_speed).timeout
-				
+					waiting_to_split = false
 		#signal here to wand for splitting
-		
 		queue_free()
 
 

@@ -7,4 +7,4 @@ func initialize(val: float):
 	spread = val
 
 func apply_modification(bullet : Bullet):
-	bullet.spread = spread
+	bullet.spread = min(spread, 360)

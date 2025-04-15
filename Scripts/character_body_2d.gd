@@ -76,12 +76,15 @@ func get_input():
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("shoot"):
-		print(active_wand.max_cooldown)
-		print(active_wand.cooldown)
-		if active_wand.cooldown <= 0:
+		if active_wand.cooldown <= 0 && active_wand.charge >= active_wand.charge_time:
 			active_wand.shoot(self.global_position)
 			active_wand.cooldown = active_wand.max_cooldown
 	do_cooldowns(delta)
+	
+	if (Input.is_action_pressed("shoot") && (active_wand.cooldown <= 0 && active_wand.charge_time>0)):
+		active_wand.charge+=delta*2
+	else:
+		active_wand.charge = min(max(active_wand.charge - (delta*10), 0), active_wand.charge_time)
 	
 	if Input.is_action_just_released("slot1"):
 		change_wand_index(0)

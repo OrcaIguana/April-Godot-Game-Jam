@@ -11,5 +11,4 @@ func _ready() -> void:
 	wand_modifiers.append(Weaken_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(0.75)
 	wand_modifiers.append(Cooldown_Bullet_Modification.new())
-	wand_modifiers[wand_modifiers.size()-1].initialize(0.25)
 	super.set_wand_modifiers(wand_modifiers)

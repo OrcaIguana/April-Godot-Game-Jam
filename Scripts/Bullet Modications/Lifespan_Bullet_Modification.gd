@@ -7,4 +7,4 @@ func initialize(val: float):
 	lifespan_addition = val
 
 func apply_modification(bullet : Bullet):
-	bullet.lifespan += lifespan_addition
+	bullet.lifespan = max(bullet.lifespan + lifespan_addition, 0.25)

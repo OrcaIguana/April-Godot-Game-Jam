@@ -7,4 +7,4 @@ func initialize(val: float):
 	splitting_angle = val
 
 func apply_modification(bullet : Bullet):
-	bullet.splitting_angle = splitting_angle
+	bullet.splitting_angle = min(splitting_angle, 360)

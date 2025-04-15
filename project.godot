@@ -15,6 +15,10 @@ run/main_scene="uid://cqus6f4yfq32x"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DungeonGen="*res://Dungeon Generation/dungeon_gen.gd"
+
 [display]
 
 window/size/viewport_width=1920

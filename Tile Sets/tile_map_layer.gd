@@ -8,7 +8,8 @@ func _ready() -> void:
 	_initialize_room()
 
 func _make_dungeon():
-	pass
+	for y in dungeon[x]:
+		pass
 
 func _initialize_room():
 	var _tile_cords = Vector2i(1,1)
@@ -18,5 +19,3 @@ func _initialize_room():
 			_tile_cords += Vector2i(0,1)
 		_tile_cords += Vector2i(1,0)
 		_tile_cords -= Vector2i(0,_room_height)
-	
-	

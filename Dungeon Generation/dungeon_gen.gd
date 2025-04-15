@@ -5,7 +5,7 @@ extends Node2D
 @export var _start : Vector2i = Vector2i(-1,-1)
 @export var _boss_path_length : int = 9
 
-var dungeon : Array
+@export var dungeon : Array
 
 func _ready() -> void:
 	_initialize_dungeon()

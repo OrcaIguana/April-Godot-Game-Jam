@@ -1,0 +1,20 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://dfmv25kds5wwi"
+path="res://.godot/imported/door-north.png-941c384220c08537d47b325f9827bb18.res"
+group_file="res://Tile Sets/Floor Tilemap/DoorTile.png"
+valid=true
+[deps]
+
+
+source_file="res://Tile Sets/Wall Tiles/door-north.png"
+dest_files=["res://.godot/imported/door-north.png-941c384220c08537d47b325f9827bb18.res"]
+
+[params]
+
+atlas_file="res://Tile Sets/Floor Tilemap/DoorTile.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true

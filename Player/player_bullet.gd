@@ -58,3 +58,7 @@ func _physics_process(delta: float) -> void:
 		#signal here to wand for splitting
 		
 		queue_free()
+
+
+func _on_bullet_collision_kill() -> void:
+	queue_free()

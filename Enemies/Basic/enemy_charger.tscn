@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8j41map5g4r4"]
+[gd_scene load_steps=6 format=3 uid="uid://b8j41map5g4r4"]
 
 [ext_resource type="PackedScene" uid="uid://bnasqq4ma8u6m" path="res://Enemies/enemy.tscn" id="1_53d6n"]
 [ext_resource type="Script" uid="uid://cboe5eh1eh83k" path="res://Enemies/Basic/enemy_charger.gd" id="2_21h8r"]
 [ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="3_wow55"]
+[ext_resource type="Script" uid="uid://0r2oblalpu82" path="res://Scripts/basic_collision.gd" id="4_65r4h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wow55"]
+size = Vector2(19.1924, 19.1924)
 
 [node name="enemy_charger" instance=ExtResource("1_53d6n")]
 script = ExtResource("2_21h8r")
@@ -15,3 +19,13 @@ texture = ExtResource("3_wow55")
 [node name="ChargeTimer" type="Timer" parent="." index="2"]
 
 [node name="BulletSpawnpoint" type="Marker2D" parent="." index="3"]
+
+[node name="Collision" type="Area2D" parent="." index="4"]
+script = ExtResource("4_65r4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" index="0"]
+position = Vector2(7.689e-06, 0.571068)
+rotation = 0.785397
+shape = SubResource("RectangleShape2D_wow55")
+
+[connection signal="area_entered" from="Collision" to="." method="_on_collision_area_entered"]

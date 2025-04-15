@@ -31,8 +31,11 @@ func health_changed(new_health):
 
 func hurt(amount):
 	if !invulnerable:
-		health_change.emit(health - amount)
-		print("Sent Signal")
+		var new_health = health - amount
+		health_change.emit(new_health)
+		health = new_health
+		if health == 0:
+			get_tree().quit()
 	else:
 		pass # Some dodge sfx or smth
 
@@ -61,8 +64,6 @@ func _ready():
 	wand_inventory[1] = load_wand(ring)
 	wand_inventory[2] = load_wand(volley)
 	wand_inventory[3] = load_wand(focus)
-	
-	await get_tree().create_timer(5).timeout
 	
 func get_input():
 	var input
@@ -128,5 +129,7 @@ func change_wand_index(index):
 		else:
 			wand_inventory[i].visible = false
 
-func _on_health_change(health: Variant) -> void:
-	pass # Replace with function body.
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.type == "enemy":
+		hurt(1)
+		area.kill_self()

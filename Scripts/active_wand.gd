@@ -3,54 +3,65 @@ extends Node2D
 const bullets = preload("res://Player/player_bullet.tscn")
 
 var max_cooldown = 0
-var time_to_kill = 0
-var projectiles = 0
+var time_to_kill = 1
+var projectiles = 5
 var burst = 0
-var burst_speed = 0
-var spread = 0
-var bullet_speed = 0
+var burst_speed = 0.2
+var spread = 30
+var bullet_speed = 1000
 
 var cooldown = 0
 
-func set_stats(cooldown: float, TTK: float, projectile_amount: int, burst_amount: int, burst_firerate: float, spread_amount: int, speed_of_bullet: float):
-	max_cooldown = cooldown
-	time_to_kill = TTK
-	projectiles = projectile_amount
-	burst = burst_amount
-	burst_speed = burst_firerate
-	spread = spread_amount
-	bullet_speed = speed_of_bullet
+var wand_modifiers : Array[Default_Bullet_Modification]
+var modifiers : Array[Default_Bullet_Modification]
+
+var dummyInstance = bullets.instantiate()
+var dummyBullet = dummyInstance.get_node("CharacterBody2D")
+
+func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
+	for mod in new_wand_modifiers:
+		wand_modifiers.append(mod)
+			
+	dummyInstance = bullets.instantiate()
+	dummyBullet = dummyInstance.get_node("CharacterBody2D")
 	
+	for wand_modifier in wand_modifiers:
+		wand_modifier.apply_modification(dummyBullet)
+			
+	for modifier in modifiers:
+		modifier.apply_modification(dummyBullet)
+		
+	print(dummyBullet.cooldown)
+	max_cooldown=dummyBullet.cooldown
 
 func _physics_process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	self.position = Vector2(0, 0)
 	self.position = self.global_position.direction_to(mouse_pos) * 50
 
-func shoot(parent_pos: Vector2):
+func shoot(parent_pos: Vector2):	
 	var counter = 0
 	var loop = 0
-	var instances = []
 	while true:
-		var negative = false
 		var mouse_pos = get_viewport().get_mouse_position()
 		var direction = global_position.direction_to(mouse_pos)
-		for projectiles in range(projectiles):
+		for projectile in range(dummyBullet.burst):
 			var instance = bullets.instantiate()
 			var bullet = instance.get_node("CharacterBody2D")
-			if negative:
-				bullet.direction = direction.rotated(deg_to_rad(360 - (spread*counter)))
-				negative = false
-			else:
-				bullet.direction = direction.rotated(deg_to_rad(spread*counter))
-				negative = true
-				counter += 1
+			
+			for wand_modifier in wand_modifiers:
+				wand_modifier.apply_modification(bullet)
+			
+			for modifier in modifiers:
+				modifier.apply_modification(bullet)
+			
+			bullet.direction = direction.rotated(deg_to_rad(-(bullet.spread/2.0)+((bullet.spread/bullet.burst)*(counter+.5))))
+			counter += 1
 			bullet.spawn_position = self.global_position
-			bullet.time_to_live = time_to_kill
-			bullet.speed = bullet_speed
 			get_tree().current_scene.add_child(instance)
+			if(bullet.burst_speed > 0):
+				await get_tree().create_timer(dummyBullet.burst_speed).timeout
 		loop += 1
-		if loop >= burst:
+		if loop > 1 || !dummyBullet.is_echo:
 			break
-		await get_tree().create_timer(burst_speed).timeout
 		counter = 0

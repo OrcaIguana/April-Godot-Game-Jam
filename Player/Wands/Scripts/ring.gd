@@ -1,7 +1,9 @@
 extends "res://Scripts/active_wand.gd"
 
 func _ready():
-	super.set_stats(1, 0.5, 12, 1, 0, 30, 200)
+	var wand_modifiers : Array[Default_Bullet_Modification]
+	wand_modifiers.append(Default_Bullet_Modification.new())
+	super.set_wand_modifiers(wand_modifiers)
 
 func shoot(parent_pos: Vector2):
 	var counter = 0
@@ -23,7 +25,6 @@ func shoot(parent_pos: Vector2):
 				counter += 1
 			bullet.spawn_position = parent_pos + bullet.direction * 10
 			bullet.time_to_live = time_to_kill
-			bullet.speed = bullet_speed
 			get_tree().current_scene.add_child(instance)
 		loop += 1
 		if loop >= burst:

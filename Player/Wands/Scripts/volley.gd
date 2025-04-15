@@ -1,7 +1,7 @@
 extends "res://Scripts/active_wand.gd"
 
 func _ready() -> void:
-	super.set_stats(0.5, 1, 1, 5, 0.2, 10, 500)
+	super.set_stats(0.5, 1, 1, 5, 0.05, 10, 500)
 	
 func shoot(parent_pos: Vector2):
 	var loop = 0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4dn0r55je8b6"]
+[gd_scene load_steps=3 format=3 uid="uid://b4dn0r55je8b6"]
 
 [ext_resource type="Script" uid="uid://exianqda4by6" path="res://Scripts/active_wand.gd" id="1_gfv37"]
+[ext_resource type="Script" uid="uid://b3bkqy2vtbp6k" path="res://Player/wand.gd" id="2_0oerd"]
 
 [node name="Wand" type="Node2D"]
 scale = Vector2(6.24996, 6.24996)
@@ -8,3 +9,4 @@ script = ExtResource("1_gfv37")
 
 [node name="Wand" type="Sprite2D" parent="."]
 scale = Vector2(0.160001, 0.160001)
+script = ExtResource("2_0oerd")

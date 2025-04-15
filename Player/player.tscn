@@ -1,13 +1,38 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvnhcrcuvg482"]
+[gd_scene load_steps=23 format=3 uid="uid://cvnhcrcuvg482"]
 
 [ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
 [ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="5_k53q1"]
+[ext_resource type="Texture2D" uid="uid://dvmsibae7phnc" path="res://Player/Sprites/wand-cross.png" id="6_00tjw"]
+[ext_resource type="Script" path="res://Player/dash_cooldown.gd" id="6_fhl08"]
 [ext_resource type="Texture2D" uid="uid://dgo2plj72j1br" path="res://Player/Sprites/player-eyes.png" id="6_od3ui"]
 [ext_resource type="Script" uid="uid://djlfcb8mad1pw" path="res://Player/eyes.gd" id="6_vtle1"]
+[ext_resource type="Script" uid="uid://bt76u50a755ib" path="res://User Interface/Scripts/hotbar.gd" id="7_00tjw"]
+[ext_resource type="Texture2D" uid="uid://dnfpod7bst7t4" path="res://User Interface/Sprites/image1.png" id="7_od3ui"]
+[ext_resource type="Script" path="res://Player/ghost_particles.gd" id="7_vtle1"]
+[ext_resource type="Script" uid="uid://p85rf2qpsxay" path="res://User Interface/Scripts/health.gd" id="7_x3vf3"]
+[ext_resource type="Script" uid="uid://byy2fuohaqiu1" path="res://Player/slot_2.gd" id="8_5htga"]
+[ext_resource type="Script" uid="uid://d2lefs7wec0ls" path="res://Player/slot_3.gd" id="9_p5o4e"]
+[ext_resource type="Script" uid="uid://diy3je4q6tvo2" path="res://Player/progress_bar.gd" id="10_dkpta"]
+[ext_resource type="Script" uid="uid://dsbvb2any6xle" path="res://Player/slot_4.gd" id="10_gu6f8"]
+[ext_resource type="Script" uid="uid://dp6hp5inhtcro" path="res://Player/progress_bar_2.gd" id="12_b1ygp"]
+[ext_resource type="Script" uid="uid://dn45rqfyekbkk" path="res://Player/progress_bar_3.gd" id="14_o28un"]
+[ext_resource type="Script" uid="uid://bpq1rkg7hkeqx" path="res://Player/progress_bar_4.gd" id="16_n471f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
 radius = 0.600333
+
+[sub_resource type="Curve" id="Curve_fhl08"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vtle1"]
+curve = SubResource("Curve_fhl08")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fhl08"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_vtle1")
 
 [node name="Player" type="Node2D"]
 
@@ -29,3 +54,130 @@ position = Vector2(-4056.22, -1268.74)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(51.0926, 50)
 shape = SubResource("CircleShape2D_dl81w")
+
+[node name="Dash" type="Node2D" parent="Player"]
+show_behind_parent = true
+
+[node name="Dash Cooldown Bar" type="ProgressBar" parent="Player/Dash"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = 34.0
+offset_right = 25.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+show_percentage = false
+script = ExtResource("6_fhl08")
+
+[node name="Ghost Particles" type="GPUParticles2D" parent="Player/Dash"]
+show_behind_parent = true
+amount = 60
+texture = ExtResource("5_fhl08")
+lifetime = 0.26
+interp_to_end = 0.444
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_fhl08")
+script = ExtResource("7_vtle1")
+
+[node name="PlayerUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 967.0
+offset_right = 260.0
+offset_bottom = 1007.0
+grow_vertical = 0
+scale = Vector2(1.76, 1.76)
+metadata/_edit_use_anchors_ = true
+
+[node name="Slot 1" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_00tjw")
+expand_mode = 2
+script = ExtResource("7_00tjw")
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 1"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("10_dkpta")
+
+[node name="Slot 2" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_00tjw")
+expand_mode = 2
+script = ExtResource("8_5htga")
+
+[node name="ProgressBar2" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 2"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = -0.25
+offset_right = 39.75
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("12_b1ygp")
+
+[node name="Slot 3" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_00tjw")
+expand_mode = 2
+script = ExtResource("9_p5o4e")
+
+[node name="ProgressBar3" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 3"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 0.0681839
+offset_right = 40.0682
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("14_o28un")
+
+[node name="Slot 4" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_00tjw")
+expand_mode = 2
+script = ExtResource("10_gu6f8")
+
+[node name="ProgressBar4" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 4"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = -0.181824
+offset_right = 39.8182
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("16_n471f")
+
+[node name="Health" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_od3ui")
+expand_mode = 2
+script = ExtResource("7_x3vf3")
+
+[connection signal="health_change" from="Player" to="PlayerUI/HBoxContainer/Health" method="_on_health_change"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 1" method="_on_wand_swap"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 2" method="_on_wand_swap"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 3" method="_on_wand_swap"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 4" method="_on_wand_swap"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 1/ProgressBar" method="_update"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 2/ProgressBar2" method="_update"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 3/ProgressBar3" method="_update"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 4/ProgressBar4" method="_update"]

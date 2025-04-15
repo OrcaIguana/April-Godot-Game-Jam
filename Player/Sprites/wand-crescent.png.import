@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx75dwm7klt1k"
-path="res://.godot/imported/Health V2.png-27968114f20b3f04e1f5b14c798da533.ctex"
+uid="uid://ytbr0u3qp71w"
+path="res://.godot/imported/wand-crescent.png-58e9ddca71b0d5a14720be4794d9a0be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://User Interface/Health V2.png"
-dest_files=["res://.godot/imported/Health V2.png-27968114f20b3f04e1f5b14c798da533.ctex"]
+source_file="res://Player/Sprites/wand-crescent.png"
+dest_files=["res://.godot/imported/wand-crescent.png-58e9ddca71b0d5a14720be4794d9a0be.ctex"]
 
 [params]
 

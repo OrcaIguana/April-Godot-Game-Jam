@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqus6f4yfq32x"]
+[gd_scene load_steps=8 format=3 uid="uid://cqus6f4yfq32x"]
 
-[ext_resource type="PackedScene" uid="uid://d0puk1x4dyneq" path="res://User Interface/ui.tscn" id="1_2a1lc"]
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="2_4iw1c"]
 [ext_resource type="PackedScene" uid="uid://begr7axrp6m8g" path="res://Dungeon Generation/dungeon_gen.tscn" id="3_4iw1c"]
 [ext_resource type="Script" uid="uid://bk8fl6ml1tmev" path="res://Tile Sets/tile_map_layer.gd" id="4_hx1ia"]
 [ext_resource type="Texture2D" uid="uid://bw5tkylrrwwm8" path="res://Tile Sets/Floor Tilemap/FloorTile.png" id="4_k0o5b"]
-[ext_resource type="PackedScene" uid="uid://b8j41map5g4r4" path="res://Enemies/Basic/enemy_charger.tscn" id="5_f2dqo"]
-[ext_resource type="Script" uid="uid://b1dq0y88tx6kx" path="res://camera_view.gd" id="6_2a1lc"]
+[ext_resource type="Script" path="res://camera_view.gd" id="6_2a1lc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a1lc"]
 texture = ExtResource("4_k0o5b")
@@ -28,10 +26,6 @@ sources/0 = SubResource("TileSetAtlasSource_2a1lc")
 
 [node name="Lvl" type="Node2D"]
 
-[node name="Ui" parent="." instance=ExtResource("1_2a1lc")]
-offset_top = 1083.0
-offset_bottom = 1083.0
-
 [node name="DungeonGen" parent="." instance=ExtResource("3_4iw1c")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="DungeonGen"]
@@ -39,8 +33,6 @@ tile_set = SubResource("TileSet_k0o5b")
 script = ExtResource("4_hx1ia")
 
 [node name="Node2D" parent="." instance=ExtResource("2_4iw1c")]
-
-[node name="enemy_charger" parent="." instance=ExtResource("5_f2dqo")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

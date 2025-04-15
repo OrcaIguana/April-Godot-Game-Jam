@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="1_mocho"]
 [ext_resource type="Script" uid="uid://d0llt4nx2tnxv" path="res://Player/Wands/Scripts/focus.gd" id="2_j4ck0"]
-[ext_resource type="Texture2D" uid="uid://bllptbb77uwxw" path="res://Player/Sprites/wand-square.png" id="3_j4ck0"]
+[ext_resource type="Texture2D" uid="uid://bp0qj3m4i83ur" path="res://Player/Sprites/wand-triangle.png" id="3_j4ck0"]
 
 [node name="Wand" instance=ExtResource("1_mocho")]
 script = ExtResource("2_j4ck0")

@@ -3,5 +3,8 @@ extends "res://Scripts/Bullet Modications/Default_Bullet_Modification.gd"
 
 @export var is_orbit = true
 
-func apply_modification(bullet : Bullet, new_is_orbit = is_orbit):
-	bullet.is_orbit = new_is_orbit
+func initialize(val: bool):
+	is_orbit = val
+
+func apply_modification(bullet : Bullet):
+	bullet.is_orbit = is_orbit

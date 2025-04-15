@@ -3,5 +3,8 @@ extends "res://Scripts/Bullet Modications/Default_Bullet_Modification.gd"
 
 @export var speed_multiplier = 0.66
 
-func apply_modification(bullet : Bullet, new_speed_multiplier = speed_multiplier):
-	bullet.speed *= new_speed_multiplier
+func initialize(val: float):
+	speed_multiplier = val
+
+func apply_modification(bullet : Bullet):
+	bullet.speed *= speed_multiplier

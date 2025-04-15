@@ -3,5 +3,8 @@ extends "res://Scripts/Bullet Modications/Default_Bullet_Modification.gd"
 
 @export var damage_multiplier = 1.5
 
-func apply_modification(bullet : Bullet, new_damage_multiplier = damage_multiplier):
-	bullet.damage *= new_damage_multiplier
+func initialize(val: float):
+	damage_multiplier = val
+
+func apply_modification(bullet : Bullet):
+	bullet.damage *= damage_multiplier

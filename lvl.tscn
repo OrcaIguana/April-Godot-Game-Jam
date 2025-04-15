@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bk8fl6ml1tmev" path="res://Tile Sets/tile_map_layer.gd" id="4_hx1ia"]
 [ext_resource type="Texture2D" uid="uid://bw5tkylrrwwm8" path="res://Tile Sets/Floor Tilemap/FloorTile.png" id="4_k0o5b"]
 [ext_resource type="Script" uid="uid://b1dq0y88tx6kx" path="res://camera_view.gd" id="6_2a1lc"]
-[ext_resource type="PackedScene" uid="uid://5vwik7i6gfxq" path="res://Enemies/Basic/enemy_shooter.tscn" id="9_2e6f6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a1lc"]
 texture = ExtResource("4_k0o5b")

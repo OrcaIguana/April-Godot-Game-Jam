@@ -75,6 +75,8 @@ func get_input():
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("shoot"):
+		print(active_wand.max_cooldown)
+		print(active_wand.cooldown)
 		if active_wand.cooldown <= 0:
 			active_wand.shoot(self.global_position)
 			active_wand.cooldown = active_wand.max_cooldown

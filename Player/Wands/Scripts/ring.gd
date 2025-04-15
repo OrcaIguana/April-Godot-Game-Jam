@@ -2,32 +2,16 @@ extends "res://Scripts/active_wand.gd"
 
 func _ready():
 	var wand_modifiers : Array[Default_Bullet_Modification]
-	wand_modifiers.append(Default_Bullet_Modification.new())
+	wand_modifiers.append(Burst_Bullet_Modification.new())
+	wand_modifiers[wand_modifiers.size()-1].initialize(11)
+	wand_modifiers.append(BurstSpeed_Bullet_Modification.new())
+	wand_modifiers[wand_modifiers.size()-1].initialize(0)
+	wand_modifiers.append(Spread_Bullet_Modification.new())
+	wand_modifiers[wand_modifiers.size()-1].initialize(360)
+	wand_modifiers.append(Cooldown_Bullet_Modification.new())
+	wand_modifiers[wand_modifiers.size()-1].initialize(1.5)
+	wand_modifiers.append(Slow_Bullet_Modification.new())
+	wand_modifiers[wand_modifiers.size()-1].initialize(0.25)
+	wand_modifiers.append(Lifespan_Bullet_Modification.new())
+	wand_modifiers[wand_modifiers.size()-1].initialize(-.5)
 	super.set_wand_modifiers(wand_modifiers)
-
-func shoot(parent_pos: Vector2):
-	var counter = 0
-	var loop = 0
-	var instances = []
-	while true:
-		var negative = false
-		var mouse_pos = get_viewport().get_mouse_position()
-		var direction = global_position.direction_to(mouse_pos)
-		for projectiles in range(projectiles):
-			var instance = bullets.instantiate()
-			var bullet = instance.get_node("CharacterBody2D")
-			if negative:
-				bullet.direction = direction.rotated(deg_to_rad(360 - (spread*counter)))
-				negative = false
-			else:
-				bullet.direction = direction.rotated(deg_to_rad(spread*counter))
-				negative = true
-				counter += 1
-			bullet.spawn_position = parent_pos + bullet.direction * 10
-			bullet.time_to_live = time_to_kill
-			get_tree().current_scene.add_child(instance)
-		loop += 1
-		if loop >= burst:
-			break
-		await get_tree().create_timer(burst_speed).timeout
-		counter = 0

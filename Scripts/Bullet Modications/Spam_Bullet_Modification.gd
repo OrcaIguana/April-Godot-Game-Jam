@@ -3,5 +3,8 @@ extends "res://Scripts/Bullet Modications/Default_Bullet_Modification.gd"
 
 @export var is_spam = true
 
-func apply_modification(bullet : Bullet, new_is_spam = is_spam):
-	bullet.is_spam = new_is_spam
+func initialize(val: bool):
+	is_spam = val
+
+func apply_modification(bullet : Bullet):
+	bullet.is_spam = is_spam

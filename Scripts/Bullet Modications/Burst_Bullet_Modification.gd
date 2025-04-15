@@ -1,7 +1,10 @@
 class_name Burst_Bullet_Modification
 extends "res://Scripts/Bullet Modications/Default_Bullet_Modification.gd"
 
-@export var burst_addition = 2
+@export var burst_addition = 4
 
-func apply_modification(bullet : Bullet, new_burst_addition = burst_addition):
-	bullet.burst += new_burst_addition
+func initialize(val: int):
+	burst_addition = val
+
+func apply_modification(bullet : Bullet):
+	bullet.burst += burst_addition

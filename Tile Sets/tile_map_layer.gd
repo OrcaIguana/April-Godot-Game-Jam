@@ -8,7 +8,7 @@ func _ready() -> void:
 	_initialize_room()
 
 func _make_dungeon():
-	for y in dungeon[x]:
+	#for y in dungeon[x]:
 		pass
 
 func _initialize_room():

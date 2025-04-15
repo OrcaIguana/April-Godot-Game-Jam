@@ -23,6 +23,7 @@ var dash_duration = 0
 
 signal health_change(health)
 signal wand_change(id, want_texture)
+signal wand_progress_bar(id, max_cooldown, current_cooldown)
 
 func health_changed(new_health):
 	health_change.emit(new_health)
@@ -41,8 +42,11 @@ func load_wand(wand):
 		return	loaded_wand
 
 func do_cooldowns(delta):
+	var counter = 1
 	for wands in wand_inventory:
 		wands.cooldown -= delta
+		wand_progress_bar.emit(counter, wands.max_cooldown, wands.cooldown)
+		counter += 1
 	dash_duration -= delta
 	get_node("Dash/Dash Cooldown Bar").adjust_dash_bar((dash_duration+(dash_cooldown))/.7)
 
@@ -51,11 +55,11 @@ func _ready():
 	add_to_group("player")
 	for i in range(4):
 		wand_inventory.append(load_wand(default_wand))
-	wand_inventory[0] = load_wand(focus)
+	wand_inventory[0] = load_wand(launcher)
 	active_wand = wand_inventory[0]
 	wand_inventory[1] = load_wand(ring)
 	wand_inventory[2] = load_wand(volley)
-	wand_inventory[3] = load_wand(fan)
+	wand_inventory[3] = load_wand(focus)
 	
 	await get_tree().create_timer(5).timeout
 	

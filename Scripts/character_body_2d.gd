@@ -12,6 +12,7 @@ const launcher = preload("res://Player/Wands/launcher.tscn")
 
 var wand_inventory = []
 var active_wand
+var activeWandIndex = 0
 
 var health = 6
 var invulnerable = false
@@ -80,33 +81,20 @@ func _process(delta: float) -> void:
 	do_cooldowns(delta)
 	
 	if Input.is_action_just_released("slot1"):
-		wand_inventory[0].visible = true
-		wand_inventory[1].visible = false
-		wand_inventory[2].visible = false
-		wand_inventory[3].visible = false
-		active_wand = wand_inventory[0]
-		wand_change.emit(1, active_wand.get_node("Wand").texture)
+		change_wand_index(0)
 	if Input.is_action_just_released("slot2"):
-		wand_inventory[0].visible = false
-		wand_inventory[1].visible = true
-		wand_inventory[2].visible = false
-		wand_inventory[3].visible = false
-		active_wand = wand_inventory[1]
-		wand_change.emit(2, active_wand.get_node("Wand").texture)
+		change_wand_index(1)
 	if Input.is_action_just_released("slot3"):
-		wand_inventory[0].visible = false
-		wand_inventory[1].visible = false
-		wand_inventory[2].visible = true
-		wand_inventory[3].visible = false
-		active_wand = wand_inventory[2]	
-		wand_change.emit(3, active_wand.get_node("Wand").texture)
+		change_wand_index(2)
 	if Input.is_action_just_released("slot4"):
-		wand_inventory[0].visible = false
-		wand_inventory[1].visible = false
-		wand_inventory[2].visible = false
-		wand_inventory[3].visible = true
-		active_wand = wand_inventory[3]
-		wand_change.emit(4, active_wand.get_node("Wand").texture)	
+		change_wand_index(3)
+	
+	if Input.is_action_just_released("swap_wand"):
+		activeWandIndex+=1
+		if (activeWandIndex > 3):
+			activeWandIndex=0
+		change_wand_index(activeWandIndex)
+		
 	
 	if Input.is_action_just_pressed("dash") && (dash_duration <= -dash_cooldown):
 		get_node("Dash/Ghost Particles").set_emitting(true)
@@ -127,6 +115,16 @@ func _physics_process(_delta):
 	get_input()
 	move_and_slide()
 
+func change_wand_index(index):
+	activeWandIndex = index
+	active_wand = wand_inventory[index]
+	wand_change.emit(index+1, active_wand.get_node("Wand").texture)
+	
+	for i in range(4):
+		if (i == index):
+			wand_inventory[i].visible = true
+		else:
+			wand_inventory[i].visible = false
 
 func _on_health_change(health: Variant) -> void:
 	pass # Replace with function body.

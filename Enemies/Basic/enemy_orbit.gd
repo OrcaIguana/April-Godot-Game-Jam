@@ -1,6 +1,10 @@
 extends "res://Enemies/enemy.gd"
 
 const bullet = preload("res://Enemies/enemy_bullet.tscn")
+const OrbitingBullet = preload("res://Enemies/orbiting_bullet.tscn")
+
+var orbit_timer := 0.0
+var orbit_spawn_interval := 4.0
 
 @export var shoot_interval_range := Vector2(1.5,3.0)
 
@@ -12,17 +16,23 @@ func _ready():
 
 	beenTriggered = false
 	
+	orbit_timer = orbit_spawn_interval
+	
 	$WanderTimer.timeout.connect(_on_wander_timer_timeout)
-	$ShootTimer.timeout.connect(_on_shoot_timer_timeout)
 	$WanderTimer.start(randf_range(1.0,2.0))
-	_reset_shoot_timer()
 	
 func _physics_process(delta):
-	if is_player_in_range():
+	if is_player_in_range() && !beenTriggered:
 		beenTriggered = true
+		spawn_orbiting_bullet()
 
 	if beenTriggered:
 		velocity = get_direction_to_player() * speed
+		
+		orbit_timer -= delta
+		if orbit_timer <= 0:
+			spawn_orbiting_bullet()
+			orbit_timer = orbit_spawn_interval
 	
 	move_and_slide()
 
@@ -33,22 +43,13 @@ func _on_wander_timer_timeout():
 		await get_tree().create_timer(.8).timeout
 		velocity = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized() * speed
 		$WanderTimer.start(randf_range(1.0, 2.5))
-
-func _on_shoot_timer_timeout():
-	if beenTriggered:
-		var bullet = shoot_at_player()
-	_reset_shoot_timer()
-
-func _reset_shoot_timer():
-	$ShootTimer.start(randf_range(0.2, 0.6))
 	
-func shoot_at_player():
-	var shot = bullet.instantiate()
-	shot.spawn_position = $BulletSpawnpoint.global_position
-	shot.direction = get_direction_to_player().rotated(randf_range(-5,5)*(3.14/180))
-	get_tree().current_scene.add_child(shot)
-	
-	return shot
+func spawn_orbiting_bullet():
+	for i in range(5):
+		var orb = OrbitingBullet.instantiate()
+		orb.center = global_position
+		orb.angle = i * (TAU/5)
+		get_tree().current_scene.add_child(orb)
 	
 	
 	

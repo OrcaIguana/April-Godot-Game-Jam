@@ -40,7 +40,7 @@ func _on_charge_timer_timeout():
 		spawn_bullet_burst()
 	velocity = Vector2.ZERO
 	resting = true
-	$ChargeTimer.start(10)
+	$WanderTimer.start(10)
 	await get_tree().create_timer(.8).timeout
 	velocity = get_direction_to_player() * speed
 	resting = false
@@ -54,23 +54,20 @@ func spawn_bullet_burst():
 	for i in range(12):
 		var shot = bullet.instantiate()
 		shot.spawn_position = $BulletSpawnpoint.global_position
-		shot.direction = get_direction_to_player().rotated(deg_to_rad(i*30))
+		shot.direction = Vector2.LEFT.rotated(deg_to_rad(i*30))
 		shot.speed = 200
-		shot.time_to_live = 1
 		get_tree().current_scene.add_child(shot)
 	for i in range(8):
 		var shot = bullet.instantiate()
 		shot.spawn_position = $BulletSpawnpoint.global_position
-		shot.direction = get_direction_to_player().rotated(deg_to_rad(i*45))
+		shot.direction = Vector2.LEFT.rotated(deg_to_rad(i*45))
 		shot.speed = 400
-		shot.time_to_live = 1.2
 		get_tree().current_scene.add_child(shot)
 	for i in range(4):
 		var shot = bullet.instantiate()
 		shot.spawn_position = $BulletSpawnpoint.global_position
-		shot.direction = get_direction_to_player().rotated(deg_to_rad(i*90))
+		shot.direction = Vector2.LEFT.rotated(deg_to_rad(i*90))
 		shot.speed = 800
-		shot.time_to_live = 1.2
 		get_tree().current_scene.add_child(shot)
 	
 	

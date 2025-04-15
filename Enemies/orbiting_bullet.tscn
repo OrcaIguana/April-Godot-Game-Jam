@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk5b4xhthm8ms"]
+
+[ext_resource type="Script" uid="uid://cj8nmwgvcay6q" path="res://Enemies/orbiting_bullet.gd" id="1_wvxkb"]
+[ext_resource type="Texture2D" uid="uid://bllptbb77uwxw" path="res://Player/Sprites/wand-square.png" id="2_d2l0i"]
+
+[node name="OrbitingBullet" type="Node2D"]
+script = ExtResource("1_wvxkb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_d2l0i")

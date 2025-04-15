@@ -8,7 +8,7 @@ var beenTriggered := false
 
 func _ready():
 	super._ready()
-	speed = 50
+	speed = 125
 
 	beenTriggered = false
 	
@@ -22,7 +22,7 @@ func _physics_process(delta):
 		beenTriggered = true
 
 	if beenTriggered:
-		velocity = get_direction_to_player() * speed
+		velocity = get_direction_to_player() * speed * 2
 	
 	move_and_slide()
 
@@ -40,16 +40,12 @@ func _on_shoot_timer_timeout():
 	_reset_shoot_timer()
 
 func _reset_shoot_timer():
-	$ShootTimer.start(randf_range(0.2, 0.6))
+	$ShootTimer.start(1)
 	
 func shoot_at_player():
-	var shot = bullet.instantiate()
-	shot.spawn_position = $BulletSpawnpoint.global_position
-	shot.direction = get_direction_to_player().rotated(randf_range(-5,5)*(3.14/180))
-	get_tree().current_scene.add_child(shot)
-	
-	return shot
-	
-	
-	
-	
+	for i in range(5):
+		var shot = bullet.instantiate()
+		shot.spawn_position = $BulletSpawnpoint.global_position
+		shot.direction = get_direction_to_player().rotated(deg_to_rad((i+1)*60))
+		shot.speed = 300
+		get_tree().current_scene.add_child(shot)

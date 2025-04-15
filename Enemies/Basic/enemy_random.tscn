@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://brdtthhwypauj"]
+
+[ext_resource type="PackedScene" uid="uid://bnasqq4ma8u6m" path="res://Enemies/enemy.tscn" id="1_u73yj"]
+[ext_resource type="Script" uid="uid://hahbr6i1mofj" path="res://Enemies/Basic/enemy_random.gd" id="2_cwd22"]
+[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="3_q6nxg"]
+
+[node name="enemy_random" instance=ExtResource("1_u73yj")]
+script = ExtResource("2_cwd22")
+shoot_interval_range = Vector2(1.5, 3)
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_q6nxg")
+
+[node name="WanderTimer" type="Timer" parent="." index="1"]
+
+[node name="ShootTimer" type="Timer" parent="." index="2"]
+
+[node name="BulletSpawnpoint" type="Marker2D" parent="." index="3"]
+gizmo_extents = 0.0

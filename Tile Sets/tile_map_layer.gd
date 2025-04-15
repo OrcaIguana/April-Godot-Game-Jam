@@ -11,6 +11,17 @@ func _make_dungeon():
 	# for y in dungeon[x]:
 		pass
 
+func _check_room_doors():
+	pass
+	if dungeon[_room_cords.x -1][_room_cords.y] > 0:
+		pass
+	if dungeon[_room_cords.x + 1][_room_cords.y] > 0:
+		pass
+	if dungeon[_room_cords.x][_room_cords.y - 1] > 0:
+		pass
+	if dungeon[_room_cords.x][_room_cords.y + 1] > 0:
+		pass
+
 func _initialize_room():
 	var _tile_cords = Vector2i(1,1)
 	for i in range(_room_width):

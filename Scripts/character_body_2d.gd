@@ -36,9 +36,6 @@ func hurt(amount):
 		health = new_health
 		if health == 0:
 			get_tree().quit()
-		invulnerable = true
-		await get_tree().create_timer(1).timeout
-		invulnerable = false
 	else:
 		pass # Some dodge sfx or smth
 

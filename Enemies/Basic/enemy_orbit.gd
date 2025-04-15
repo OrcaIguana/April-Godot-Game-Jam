@@ -51,6 +51,7 @@ func spawn_orbiting_bullet():
 		orb.angle = i * (TAU/5)
 		get_tree().current_scene.add_child(orb)
 	
-	
-	
-	
+func _on_collision_area_entered(area: Area2D) -> void:
+	if area.type == "friendly":
+		area.kill_self()
+		queue_free()

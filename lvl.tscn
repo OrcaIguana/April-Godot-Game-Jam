@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqus6f4yfq32x"]
+[gd_scene load_steps=9 format=3 uid="uid://cqus6f4yfq32x"]
 
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="2_4iw1c"]
 [ext_resource type="PackedScene" uid="uid://begr7axrp6m8g" path="res://Dungeon Generation/dungeon_gen.tscn" id="3_4iw1c"]
 [ext_resource type="Script" uid="uid://bk8fl6ml1tmev" path="res://Tile Sets/tile_map_layer.gd" id="4_hx1ia"]
 [ext_resource type="Texture2D" uid="uid://bw5tkylrrwwm8" path="res://Tile Sets/Floor Tilemap/FloorTile.png" id="4_k0o5b"]
 [ext_resource type="Script" path="res://camera_view.gd" id="6_2a1lc"]
+[ext_resource type="PackedScene" uid="uid://5vwik7i6gfxq" path="res://Enemies/Basic/enemy_shooter.tscn" id="9_2e6f6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a1lc"]
 texture = ExtResource("4_k0o5b")
@@ -41,3 +42,5 @@ anchor_mode = 0
 size = Vector2i(1792, 1024)
 size_2d_override_stretch = true
 script = ExtResource("6_2a1lc")
+
+[node name="enemy_shooter" parent="." instance=ExtResource("9_2e6f6")]

@@ -65,3 +65,9 @@ func shoot_at_player():
 			shot.direction = Vector2.LEFT.rotated(deg_to_rad(i*45))
 			shot.speed = 300
 			get_tree().current_scene.add_child(shot)
+
+
+func _on_collision_area_entered(area: Area2D) -> void:
+	if area.type == "friendly":
+		area.kill_self()
+		queue_free()

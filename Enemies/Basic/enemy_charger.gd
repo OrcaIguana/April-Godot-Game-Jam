@@ -69,7 +69,8 @@ func spawn_bullet_burst():
 		shot.direction = Vector2.LEFT.rotated(deg_to_rad(i*90))
 		shot.speed = 800
 		get_tree().current_scene.add_child(shot)
-	
-	
-	
-	
+
+func _on_collision_area_entered(area: Area2D) -> void:
+	if area.type == "friendly":
+		area.kill_self()
+		queue_free()

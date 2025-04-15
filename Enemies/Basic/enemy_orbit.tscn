@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1ra3fh0s6f2h"]
+[gd_scene load_steps=6 format=3 uid="uid://c1ra3fh0s6f2h"]
 
 [ext_resource type="PackedScene" uid="uid://bnasqq4ma8u6m" path="res://Enemies/enemy.tscn" id="1_erkms"]
 [ext_resource type="Script" uid="uid://jpeu3gni06cs" path="res://Enemies/Basic/enemy_orbit.gd" id="2_erkms"]
 [ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="3_wrj5k"]
+[ext_resource type="Script" uid="uid://0r2oblalpu82" path="res://Scripts/basic_collision.gd" id="4_8tpsk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrj5k"]
+size = Vector2(19.1924, 19.1924)
 
 [node name="enemy_shooter" instance=ExtResource("1_erkms")]
 script = ExtResource("2_erkms")
@@ -17,3 +21,13 @@ texture = ExtResource("3_wrj5k")
 gizmo_extents = 0.0
 
 [node name="BurstTimer" type="Timer" parent="." index="3"]
+
+[node name="Collision" type="Area2D" parent="." index="4"]
+script = ExtResource("4_8tpsk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" index="0"]
+position = Vector2(7.689e-06, 0.571068)
+rotation = 0.785397
+shape = SubResource("RectangleShape2D_wrj5k")
+
+[connection signal="area_entered" from="Collision" to="." method="_on_collision_area_entered"]

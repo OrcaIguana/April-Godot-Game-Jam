@@ -50,6 +50,11 @@ func shoot_at_player():
 	
 	return shot
 	
+func _on_collision_area_entered(area: Area2D) -> void:
+	if area.type == "friendly":
+		area.kill_self()
+		queue_free()
+	
 	
 	
 	

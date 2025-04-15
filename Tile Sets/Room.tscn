@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bdwbuwwgt3roq"]
+
+[node name="Room" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="."]

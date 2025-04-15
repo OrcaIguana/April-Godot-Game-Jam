@@ -44,9 +44,9 @@ func shoot(parent_pos: Vector2):
 	var counter = 0
 	var loop = 0
 	while true:
-		var mouse_pos = get_viewport().get_mouse_position()
-		var direction = global_position.direction_to(mouse_pos)
 		for projectile in range(dummyBullet.burst):
+			var mouse_pos = get_viewport().get_mouse_position()
+			var direction = global_position.direction_to(mouse_pos)
 			var instance = bullets.instantiate()
 			var bullet = instance.get_node("CharacterBody2D")
 			

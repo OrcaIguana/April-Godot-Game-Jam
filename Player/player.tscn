@@ -19,9 +19,6 @@
 [ext_resource type="Script" uid="uid://dn45rqfyekbkk" path="res://User Interface/Scripts/progress_bar_3.gd" id="14_o28un"]
 [ext_resource type="Script" uid="uid://bpq1rkg7hkeqx" path="res://User Interface/Scripts/progress_bar_4.gd" id="16_n471f"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
-radius = 0.600333
-
 [sub_resource type="Curve" id="Curve_fhl08"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -33,6 +30,9 @@ curve = SubResource("Curve_fhl08")
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_vtle1")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
+radius = 0.600333
 
 [node name="Player" type="Node2D"]
 
@@ -50,10 +50,6 @@ script = ExtResource("6_vtle1")
 
 [node name="Wand" parent="Player" instance=ExtResource("5_k53q1")]
 position = Vector2(-4056.22, -1268.74)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-scale = Vector2(51.0926, 50)
-shape = SubResource("CircleShape2D_dl81w")
 
 [node name="Dash" type="Node2D" parent="Player"]
 show_behind_parent = true
@@ -83,6 +79,12 @@ interp_to_end = 0.444
 trail_lifetime = 0.01
 process_material = SubResource("ParticleProcessMaterial_fhl08")
 script = ExtResource("7_vtle1")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+scale = Vector2(51.0926, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("CircleShape2D_dl81w")
 
 [node name="PlayerUI" type="Control" parent="."]
 layout_mode = 3
@@ -181,3 +183,4 @@ script = ExtResource("7_x3vf3")
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 2/ProgressBar2" method="_update"]
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 3/ProgressBar3" method="_update"]
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 4/ProgressBar4" method="_update"]
+[connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]

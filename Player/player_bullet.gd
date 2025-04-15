@@ -38,3 +38,7 @@ func _physics_process(delta: float) -> void:
 	time_to_live -= delta
 	if time_to_live <= 0:
 		queue_free()
+
+
+func _on_bullet_collision_kill() -> void:
+	queue_free()

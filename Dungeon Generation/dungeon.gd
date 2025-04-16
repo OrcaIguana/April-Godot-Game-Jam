@@ -80,7 +80,7 @@ func find_next_room(room_id, room_coords):
 					return "LEFT"
 				if y > room_coords[1]:
 					return "DOWN"
-				if y > room_coords[1]:
+				if y < room_coords[1]:
 					return "UP"
 
 func opposite(direction):

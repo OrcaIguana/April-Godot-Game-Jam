@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 	if get_tree().get_node_count_in_group("enemy") == 0 and disable == true:
 		unlock()
 		
-
 func lock():
 	var doors = [$Door, $Door2, $Door3, $Door4]
 	for door in doors:

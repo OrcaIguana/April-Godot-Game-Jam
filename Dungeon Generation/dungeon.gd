@@ -109,11 +109,13 @@ func _spawn_dungeon(dungeon_array):
 						previous_direction = find_next_room(counter, [x, y])
 						new_room.add_doors([previous_direction])
 						previous_direction = opposite(previous_direction)
+						new_room.id = counter
 						counter += 1
 					else:
 						direction = find_next_room(counter, [x, y])
 						new_room.add_doors([direction, previous_direction])
 						previous_direction = opposite(direction)
+						new_room.id = counter
 						counter += 1
 					add_child(new_room)
 		if counter > _boss_path_length:

@@ -16,6 +16,7 @@ var activeWandIndex = 0
 
 var health = 6
 var invulnerable = false
+var is_dead = false
 
 const dash_cooldown = 0.7
 var is_dashing = false
@@ -26,6 +27,7 @@ signal health_change(health)
 signal wand_change(id, want_texture)
 signal wand_progress_bar(id, max_cooldown, current_cooldown)
 signal room_change(direction)
+signal dead
 
 func health_changed(new_health):
 	health_change.emit(new_health)
@@ -36,7 +38,8 @@ func hurt(amount):
 		health_change.emit(new_health)
 		health = new_health
 		if health == 0:
-			get_tree().quit()
+			is_dead = true
+			dead.emit()
 	else:
 		pass # Some dodge sfx or smth
 
@@ -79,6 +82,8 @@ func get_input():
 	velocity = input * speed
 
 func _process(delta: float) -> void:
+	if is_dead:
+		return
 	if Input.is_action_just_released("shoot"):
 		if active_wand.cooldown <= 0 && active_wand.charge >= active_wand.charge_time:
 			active_wand.shoot(self.global_position)
@@ -122,6 +127,8 @@ func _process(delta: float) -> void:
 			get_node("Dash/Ghost Particles").set_emitting(false)
 	
 func _physics_process(_delta):
+	if is_dead:
+		return
 	get_input()
 	move_and_slide()
 

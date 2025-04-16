@@ -71,6 +71,8 @@ func spawn_bullet_burst():
 		get_tree().current_scene.add_child(shot)
 
 func _on_collision_area_entered(area: Area2D) -> void:
-	if area.type == "friendly":
+	if area.type == "friendly_bullet":
 		area.kill_self()
 		queue_free()
+	else:
+		pass

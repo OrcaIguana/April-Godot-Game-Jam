@@ -5,3 +5,8 @@ func _ready() -> void:
 
 func _on_player_room_change(direction: Variant) -> void:
 	self.position = self.position + direction
+
+
+func _on_player_dead() -> void:
+	$"Dead Screen".visible = true
+	get_tree().paused = true

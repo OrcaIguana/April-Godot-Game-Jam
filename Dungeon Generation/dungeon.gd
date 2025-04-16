@@ -1,5 +1,6 @@
 extends Node2D
 
+var room = preload("res://Tile Sets/Room.tscn")
 # Create Array for dungeon
 @export var _dimensions : Vector2i = Vector2i(6,6)
 @export var _start : Vector2i = Vector2i(-1,-1)
@@ -7,11 +8,14 @@ extends Node2D
 
 @export var dungeon : Array
 
+var placed_dungeon = []
+
 func _ready() -> void:
 	_initialize_dungeon()
 	_place_entrance()
 	_generate_boss_path(_start , _boss_path_length)
 	_print_dungeon()
+	_spawn_dungeon(dungeon)
 
 func _initialize_dungeon() -> void:
 	for x in _dimensions.x:
@@ -65,3 +69,39 @@ func _print_dungeon() -> void:
 				dungeon_as_string += "   "
 		dungeon_as_string += '\n'
 	print(dungeon_as_string)
+	
+func find_next_room(room_id, room_coords):
+	for y in range(_dimensions.y - 1 , -1 , -1):
+		for x in _dimensions.x:
+			if int(dungeon[x][y]) == int(room_id) + 1:
+				if x > room_coords[0]:
+					return ["LEFT", "UP", "DOWN"]
+				if x < room_coords[0]:
+					return ["RIGHT", "UP", "DOWN"]
+				if y > room_coords[1]:
+					return ["RIGHT", "LEFT", "UP"]
+				if y > room_coords[1]:
+					return ["RIGHT", "LEFT", "DOWN"]
+		
+func _spawn_dungeon(dungeon_array):
+	for y in range(_dimensions.y - 1 , -1 , -1):
+		for x in _dimensions.x:
+			if dungeon_array[x][y]:
+				var new_room = room.instantiate()
+				placed_dungeon.append(new_room)
+				new_room.x = x
+				new_room.y = y
+				if str(dungeon_array[x][y]) == "S":
+					pass
+				else:
+					new_room.disable_doors(find_next_room(dungeon_array[x][y], [x, y]))
+				add_child(new_room)
+			
+func _get_start():
+	for y in range(_dimensions.y - 1 , -1 , -1):
+		for x in _dimensions.x:
+			if dungeon[x][y]:
+				if int(dungeon[x][y]) == 1:
+					return Vector2(1930 * x, 1100 * y)
+				else:
+					continue

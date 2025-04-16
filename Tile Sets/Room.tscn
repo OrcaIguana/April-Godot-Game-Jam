@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://bdwbuwwgt3roq"]
+[gd_scene load_steps=21 format=4 uid="uid://bdwbuwwgt3roq"]
 
 [ext_resource type="Texture2D" uid="uid://d1f0huq3f5bo8" path="res://Tile Sets/Wall Tiles/pathway-north.png" id="1_8i7r8"]
 [ext_resource type="Script" uid="uid://bqftpxoqa4jyw" path="res://Tile Sets/door_up.gd" id="1_rsif5"]
+[ext_resource type="Script" uid="uid://b4m11xfodh330" path="res://Tile Sets/room.gd" id="1_vofp0"]
 [ext_resource type="Texture2D" uid="uid://c8a6fqmt8i5en" path="res://Tile Sets/Wall Tiles/corner.png" id="2_krgyq"]
 [ext_resource type="Texture2D" uid="uid://butdjhuj1yxlb" path="res://Tile Sets/Wall Tiles/wall.png" id="3_c5kuq"]
 [ext_resource type="Script" uid="uid://dsnx17w07iprw" path="res://Tile Sets/door_right.gd" id="3_mkwg8"]
@@ -91,6 +92,7 @@ sources/1 = SubResource("TileSetAtlasSource_727xo")
 size = Vector2(64, 30)
 
 [node name="Room" type="Node2D"]
+script = ExtResource("1_vofp0")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_fu2cp")
@@ -102,7 +104,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAA
 tile_set = SubResource("TileSet_jn4is")
 
 [node name="Door" type="Area2D" parent="."]
-position = Vector2(960, 14)
+position = Vector2(960, 6)
 script = ExtResource("1_rsif5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door"]
@@ -113,7 +115,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door2" type="Area2D" parent="."]
-position = Vector2(1906, 540)
+position = Vector2(1914, 540)
 script = ExtResource("3_mkwg8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door2"]
@@ -126,7 +128,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door3" type="Area2D" parent="."]
-position = Vector2(960, 1066)
+position = Vector2(960, 1083)
 script = ExtResource("4_rwvu7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door3"]
@@ -139,7 +141,7 @@ rotation = 3.14159
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door4" type="Area2D" parent="."]
-position = Vector2(14, 540)
+position = Vector2(6, 540)
 rotation = -1.5708
 script = ExtResource("5_c4jah")
 

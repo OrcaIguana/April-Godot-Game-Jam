@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://begr7axrp6m8g"]
-
-[ext_resource type="Script" uid="uid://btsyagdo0jg30" path="res://Dungeon Generation/dungeon_gen.gd" id="1_v2pu0"]
-
-[node name="DungeonGen" type="Node2D"]
-script = ExtResource("1_v2pu0")

@@ -50,8 +50,6 @@ func shoot(parent_pos: Vector2):
 			var instance = bullets.instantiate()
 			var bullet = instance.get_node("CharacterBody2D")
 			
-			wand_modifiers.append(Seeking_Bullet_Modification.new())
-			
 			for wand_modifier in wand_modifiers:
 				wand_modifier.apply_modification(bullet)
 			

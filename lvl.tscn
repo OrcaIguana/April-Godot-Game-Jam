@@ -66,10 +66,19 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_2a1lc")
 sources/1 = SubResource("TileSetAtlasSource_2e6f6")
 sources/2 = SubResource("TileSetAtlasSource_62trd")
-=======
 [ext_resource type="Script" path="res://camera_view.gd" id="6_2a1lc"]
 [ext_resource type="PackedScene" uid="uid://bdwbuwwgt3roq" path="res://Tile Sets/Room.tscn" id="8_5ud41"]
+
+[ext_resource type="Script" path="res://camera_view.gd" id="6_2a1lc"]
+[ext_resource type="PackedScene" uid="uid://bdwbuwwgt3roq" path="res://Tile Sets/Room.tscn" id="8_5ud41"]
+
+
+[ext_resource type="Script" path="res://camera_view.gd" id="6_2a1lc"]
+[ext_resource type="PackedScene" uid="uid://bdwbuwwgt3roq" path="res://Tile Sets/Room.tscn" id="8_5ud41"]
+=======
 >>>>>>> Stashed changes
+[ext_resource type="Script" path="res://camera_view.gd" id="6_2a1lc"]
+[ext_resource type="PackedScene" uid="uid://bdwbuwwgt3roq" path="res://Tile Sets/Room.tscn" id="8_5ud41"]
 
 [node name="Lvl" type="Node2D"]
 

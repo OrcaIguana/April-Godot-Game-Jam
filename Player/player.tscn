@@ -88,6 +88,9 @@ script = ExtResource("8_o28un")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_dl81w")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_dl81w")
+
 [node name="PlayerUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0

@@ -117,7 +117,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_bullet_collision_kill() -> void:
-	queue_free()
+	if(!is_piercing):
+		queue_free()
 
 func find_seeking_target(distance: int) -> bool:
 	var closest_distance = distance

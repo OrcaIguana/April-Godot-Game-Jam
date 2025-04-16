@@ -25,6 +25,7 @@ var dash_duration = 0
 signal health_change(health)
 signal wand_change(id, want_texture)
 signal wand_progress_bar(id, max_cooldown, current_cooldown)
+signal room_change(direction)
 
 func health_changed(new_health):
 	health_change.emit(new_health)
@@ -136,3 +137,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.type == "enemy":
 		hurt(1)
 		area.kill_self()
+	if area.type == "door_left":
+		self.position = self.position + Vector2(-100, 0)
+		room_change.emit(Vector2(-1930, 0))
+	if area.type == "door_up":
+		self.position = self.position + Vector2(0, -100)
+		room_change.emit(Vector2(0, -1100))
+	if area.type == "door_right":
+		self.position = self.position + Vector2(100, 0)
+		room_change.emit(Vector2(1930, 0))
+	if area.type == "door_down":
+		self.position = self.position + Vector2(0, 100)
+		room_change.emit(Vector2(0, 1100))

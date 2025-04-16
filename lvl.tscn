@@ -10,6 +10,3 @@ script = ExtResource("1_hx1ia")
 [node name="Dungeon" parent="." instance=ExtResource("2_xliyy")]
 
 [node name="Player" parent="." instance=ExtResource("3_4iw1c")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0

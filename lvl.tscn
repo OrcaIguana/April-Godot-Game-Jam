@@ -1,11 +1,5 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqus6f4yfq32x"]
 
-[ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="2_4iw1c"]
-[ext_resource type="Script" path="res://camera_view.gd" id="6_2a1lc"]
-[ext_resource type="PackedScene" uid="uid://bdwbuwwgt3roq" path="res://Tile Sets/Room.tscn" id="8_5ud41"]
-
-[gd_scene load_steps=4 format=3 uid="uid://cqus6f4yfq32x"]
-
 [ext_resource type="Script" uid="uid://bedihovhitjol" path="res://lvl.gd" id="1_hx1ia"]
 [ext_resource type="PackedScene" uid="uid://c3isnhvdmyuen" path="res://Dungeon Generation/dungeon.tscn" id="2_xliyy"]
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="3_4iw1c"]
@@ -16,19 +10,3 @@ script = ExtResource("1_hx1ia")
 [node name="Dungeon" parent="." instance=ExtResource("2_xliyy")]
 
 [node name="Player" parent="." instance=ExtResource("3_4iw1c")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
-[node name="SubViewport" type="SubViewport" parent="Camera2D"]
-size = Vector2i(1792, 1024)
-size_2d_override_stretch = true
-script = ExtResource("6_2a1lc")
-
-[node name="enemy_shooter" parent="." instance=ExtResource("9_2e6f6")]
-
-[node name="enemy_charger" parent="." instance=ExtResource("9_62trd")]
-
-[node name="enemy_shooter2" parent="." instance=ExtResource("10_dqmf8")]
-
-[node name="enemy_random" parent="." instance=ExtResource("11_8ud87")]

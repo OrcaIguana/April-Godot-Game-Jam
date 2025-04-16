@@ -1,4 +1,4 @@
-extends "res://Enemies/enemy.gd"
+dextends "res://Enemies/enemy.gd"
 
 const bullet = preload("res://Enemies/enemy_bullet.tscn")
 

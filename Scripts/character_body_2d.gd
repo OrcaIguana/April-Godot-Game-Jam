@@ -66,7 +66,7 @@ func _ready():
 	wand_inventory[2] = load_wand(volley)
 	wand_inventory[3] = load_wand(focus)
 	invulnerable = true
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(10).timeout
 	invulnerable = false
 	
 func get_input():

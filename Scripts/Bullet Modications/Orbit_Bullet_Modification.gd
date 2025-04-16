@@ -8,3 +8,7 @@ func initialize(val: bool):
 
 func apply_modification(bullet : Bullet):
 	bullet.is_orbit = is_orbit
+	if(bullet.burst_speed == 0):
+		bullet.burst_speed = .02
+	bullet.lifespan = max(bullet.lifespan+1, 2)
+	bullet.splitting_lifespan += 1

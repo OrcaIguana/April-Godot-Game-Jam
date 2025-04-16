@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal killed_enemy
 
 var enemies = []
+var player
 
 var direction
 var time_to_live
@@ -38,23 +39,46 @@ var spawn_position = Vector2()
 
 func _ready():
 	enemies = get_tree().get_nodes_in_group("enemy")
+	player = get_tree().get_nodes_in_group("player")[0]
 	time_to_live = lifespan
 	self.global_position = spawn_position
 	if(is_seeking):
-		find_seeking_target()
+		find_seeking_target(2000)
+	if(is_orbit):
+		speed = max(speed, 1000)
+		var mouse_pos = get_viewport().get_mouse_position()
+		self.global_position += self.spawn_position.direction_to(mouse_pos) * 50
 	self.rotate(direction.angle())
 	velocity = direction * speed
 
 func _physics_process(delta: float) -> void:
-	if(is_seeking):
+	if(is_seeking && !is_orbit):
 		if(enemies.size() > 0):
 			if(is_instance_valid(seeking_target)):
 				var target_direction = global_position.direction_to(seeking_target.global_position)
-				rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000, 2))
+				rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2))
 				direction = Vector2(cos(rotation), sin(rotation))
 				velocity = speed * direction
 			else:
 				enemies.erase(null)
+	elif (is_orbit && !is_seeking):
+		var target_direction = global_position.direction_to(player.global_position)
+		rotation = lerp_angle(rotation, target_direction.angle()+PI/2, 1)
+		direction = Vector2(cos(rotation), sin(rotation))
+		velocity = speed * direction
+	elif (is_seeking && is_orbit):
+		if(find_seeking_target(500)):
+			if(is_instance_valid(seeking_target)):
+				var target_direction = global_position.direction_to(seeking_target.global_position)
+				rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2))
+				direction = Vector2(cos(rotation), sin(rotation))
+				velocity = speed * direction
+		else:
+			var target_direction = global_position.direction_to(player.global_position)
+			rotation = lerp_angle(rotation, target_direction.angle()+PI/2, 1)
+			direction = Vector2(cos(rotation), sin(rotation))
+			velocity = speed * direction
+	
 	move_and_slide()
 	time_to_live -= delta
 	if time_to_live <= 0 && !waiting_to_split:
@@ -80,14 +104,21 @@ func _physics_process(delta: float) -> void:
 func _on_bullet_collision_kill() -> void:
 	queue_free()
 
-func find_seeking_target() -> bool:
-	var closest_distance =3000
+func find_seeking_target(distance: int) -> bool:
+	var closest_distance = distance
+	var distance_to_enemy = distance
 	if(enemies.size()>0):
 		for enemy in enemies:
-			var distance_to_enemy = position.distance_to(enemy.position)
+			if(!is_instance_valid(enemy)):
+				continue
+			distance_to_enemy = position.distance_to(enemy.position)
 			if(distance_to_enemy < closest_distance):
 				closest_distance = distance_to_enemy
 				seeking_target = enemy
-		return true
+		if(distance_to_enemy < distance):
+			return true
+		else:
+			seeking_target = null;
 	else:
 		return false
+	return false

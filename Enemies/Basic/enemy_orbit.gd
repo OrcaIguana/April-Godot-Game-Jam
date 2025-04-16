@@ -13,7 +13,7 @@ var beenTriggered := false
 func _ready():
 	super._ready()
 	speed = 50
-
+	
 	beenTriggered = false
 	
 	orbit_timer = orbit_spawn_interval

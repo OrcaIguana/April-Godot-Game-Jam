@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bdwbuwwgt3roq"]
+[gd_scene load_steps=23 format=4 uid="uid://bdwbuwwgt3roq"]
 
 [ext_resource type="Texture2D" uid="uid://d1f0huq3f5bo8" path="res://Tile Sets/Wall Tiles/pathway-north.png" id="1_8i7r8"]
 [ext_resource type="Script" uid="uid://bqftpxoqa4jyw" path="res://Tile Sets/door_up.gd" id="1_rsif5"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c85jnuqfghhnj" path="res://Tile Sets/door_left.gd" id="5_c4jah"]
 [ext_resource type="Texture2D" uid="uid://bw5tkylrrwwm8" path="res://Tile Sets/Floor Tilemap/FloorTile.png" id="12_udaa2"]
 [ext_resource type="Texture2D" uid="uid://bduhj5jhgx4n6" path="res://Tile Sets/Floor Tilemap/WallTile.png" id="13_fc7gd"]
+[ext_resource type="Script" uid="uid://e8iednlnedbg" path="res://Tile Sets/collision_shape_2d.gd" id="13_tyvmf"]
 [ext_resource type="Texture2D" uid="uid://brnl6fas6th6w" path="res://Tile Sets/Floor Tilemap/Corner.png" id="14_ghwim"]
 [ext_resource type="Script" uid="uid://bk8fl6ml1tmev" path="res://Tile Sets/tile_map_layer.gd" id="15_ce5i6"]
 
@@ -91,6 +92,9 @@ sources/1 = SubResource("TileSetAtlasSource_727xo")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jn4is"]
 size = Vector2(64, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vofp0"]
+size = Vector2(1913, 1071.5)
+
 [node name="Room" type="Node2D"]
 script = ExtResource("1_vofp0")
 
@@ -104,7 +108,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAA
 tile_set = SubResource("TileSet_jn4is")
 
 [node name="Door" type="Area2D" parent="."]
+visible = false
 position = Vector2(960, 6)
+monitorable = false
 script = ExtResource("1_rsif5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door"]
@@ -115,7 +121,9 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door2" type="Area2D" parent="."]
+visible = false
 position = Vector2(1914, 540)
+monitorable = false
 script = ExtResource("3_mkwg8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door2"]
@@ -128,7 +136,9 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door3" type="Area2D" parent="."]
+visible = false
 position = Vector2(960, 1083)
+monitorable = false
 script = ExtResource("4_rwvu7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door3"]
@@ -141,8 +151,10 @@ rotation = 3.14159
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door4" type="Area2D" parent="."]
+visible = false
 position = Vector2(6, 540)
 rotation = -1.5708
+monitorable = false
 script = ExtResource("5_c4jah")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door4"]
@@ -151,3 +163,12 @@ texture = ExtResource("1_8i7r8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door4"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_jn4is")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("13_tyvmf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(957, 536.75)
+shape = SubResource("RectangleShape2D_vofp0")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

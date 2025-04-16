@@ -75,33 +75,55 @@ func find_next_room(room_id, room_coords):
 		for x in _dimensions.x:
 			if int(dungeon[x][y]) == int(room_id) + 1:
 				if x > room_coords[0]:
-					return ["LEFT", "UP", "DOWN"]
+					return "RIGHT"
 				if x < room_coords[0]:
-					return ["RIGHT", "UP", "DOWN"]
+					return "LEFT"
 				if y > room_coords[1]:
-					return ["RIGHT", "LEFT", "UP"]
+					return "DOWN"
 				if y > room_coords[1]:
-					return ["RIGHT", "LEFT", "DOWN"]
-		
+					return "UP"
+
+func opposite(direction):
+	if direction == "RIGHT":
+		return "LEFT"
+	if direction == "LEFT":
+		return "RIGHT"
+	if direction == "UP":
+		return "DOWN"
+	if direction == "DOWN":
+		return "UP"
+
 func _spawn_dungeon(dungeon_array):
-	for y in range(_dimensions.y - 1 , -1 , -1):
-		for x in _dimensions.x:
-			if dungeon_array[x][y]:
-				var new_room = room.instantiate()
-				placed_dungeon.append(new_room)
-				new_room.x = x
-				new_room.y = y
-				if str(dungeon_array[x][y]) == "S":
-					pass
-				else:
-					new_room.disable_doors(find_next_room(dungeon_array[x][y], [x, y]))
-				add_child(new_room)
-			
+	var previous_direction
+	var direction
+	var counter = 1
+	while true:
+		for y in _dimensions.y:
+			for x in _dimensions.x:
+				if int(dungeon_array[x][y]) == counter:
+					var new_room = room.instantiate()
+					placed_dungeon.append(new_room)
+					new_room.x = x
+					new_room.y = y
+					if previous_direction == null:
+						previous_direction = find_next_room(counter, [x, y])
+						new_room.add_doors([previous_direction])
+						previous_direction = opposite(previous_direction)
+						counter += 1
+					else:
+						direction = find_next_room(counter, [x, y])
+						new_room.add_doors([direction, previous_direction])
+						previous_direction = opposite(direction)
+						counter += 1
+					add_child(new_room)
+		if counter > _boss_path_length:
+			break
+				
 func _get_start():
 	for y in range(_dimensions.y - 1 , -1 , -1):
 		for x in _dimensions.x:
 			if dungeon[x][y]:
 				if int(dungeon[x][y]) == 1:
-					return Vector2(1930 * x, 1100 * y)
+					return Vector2(2000 * x, 1200 * y)
 				else:
 					continue

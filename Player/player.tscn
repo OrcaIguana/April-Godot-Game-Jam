@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://dp6hp5inhtcro" path="res://User Interface/Scripts/progress_bar_2.gd" id="12_b1ygp"]
 [ext_resource type="Script" uid="uid://dn45rqfyekbkk" path="res://User Interface/Scripts/progress_bar_3.gd" id="14_o28un"]
 [ext_resource type="Script" uid="uid://bpq1rkg7hkeqx" path="res://User Interface/Scripts/progress_bar_4.gd" id="16_n471f"]
-[ext_resource type="Script" path="res://Player/camera_2d.gd" id="21_7emwf"]
+[ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

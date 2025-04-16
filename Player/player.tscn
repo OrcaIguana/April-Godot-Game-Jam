@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cvnhcrcuvg482"]
+[gd_scene load_steps=25 format=3 uid="uid://cvnhcrcuvg482"]
 
 [ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://p85rf2qpsxay" path="res://User Interface/Scripts/health.gd" id="7_x3vf3"]
 [ext_resource type="Script" uid="uid://byy2fuohaqiu1" path="res://User Interface/Scripts/slot_2.gd" id="8_5htga"]
 [ext_resource type="Script" uid="uid://0r2oblalpu82" path="res://Scripts/basic_collision.gd" id="8_o28un"]
+[ext_resource type="Script" uid="uid://dpy6qar0udrlk" path="res://Player/player_ui.gd" id="9_n471f"]
 [ext_resource type="Script" uid="uid://d2lefs7wec0ls" path="res://User Interface/Scripts/slot_3.gd" id="9_p5o4e"]
 [ext_resource type="Script" uid="uid://diy3je4q6tvo2" path="res://User Interface/Scripts/progress_bar.gd" id="10_dkpta"]
 [ext_resource type="Script" uid="uid://dsbvb2any6xle" path="res://User Interface/Scripts/slot_4.gd" id="10_gu6f8"]
@@ -88,18 +89,27 @@ script = ExtResource("8_o28un")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CircleShape2D_dl81w")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_dl81w")
+
 [node name="PlayerUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
 offset_right = 40.0
-offset_bottom = 40.0
+grow_vertical = 0
+script = ExtResource("9_n471f")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -4.75
+anchor_top = -24.05
+anchor_right = -4.75
+anchor_bottom = -24.05
 offset_top = 967.0
 offset_right = 260.0
 offset_bottom = 1007.0
@@ -177,6 +187,7 @@ expand_mode = 2
 script = ExtResource("7_x3vf3")
 
 [connection signal="health_change" from="Player" to="PlayerUI/HBoxContainer/Health" method="_on_health_change"]
+[connection signal="room_change" from="Player" to="PlayerUI" method="_on_player_room_change"]
 [connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 1" method="_on_wand_swap"]
 [connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 2" method="_on_wand_swap"]
 [connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 3" method="_on_wand_swap"]

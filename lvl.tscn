@@ -70,15 +70,18 @@ sources/0 = SubResource("TileSetAtlasSource_2a1lc")
 sources/1 = SubResource("TileSetAtlasSource_2e6f6")
 sources/2 = SubResource("TileSetAtlasSource_62trd")
 
+[gd_scene load_steps=4 format=3 uid="uid://cqus6f4yfq32x"]
+
+[ext_resource type="Script" uid="uid://bedihovhitjol" path="res://lvl.gd" id="1_hx1ia"]
+[ext_resource type="PackedScene" uid="uid://c3isnhvdmyuen" path="res://Dungeon Generation/dungeon.tscn" id="2_xliyy"]
+[ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="3_4iw1c"]
+
 [node name="Lvl" type="Node2D"]
+script = ExtResource("1_hx1ia")
 
-[node name="DungeonGen" parent="." instance=ExtResource("3_4iw1c")]
+[node name="Dungeon" parent="." instance=ExtResource("2_xliyy")]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="DungeonGen"]
-tile_set = SubResource("TileSet_k0o5b")
-script = ExtResource("4_hx1ia")
-
-[node name="Node2D" parent="." instance=ExtResource("2_4iw1c")]
+[node name="Player" parent="." instance=ExtResource("3_4iw1c")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

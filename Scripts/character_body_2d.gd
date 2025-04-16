@@ -11,6 +11,7 @@ const volley = preload("res://Player/Wands/voley.tscn")
 const launcher = preload("res://Player/Wands/launcher.tscn")
 
 var wand_inventory = []
+var spell_inventory = [[null, null, null], [null, null, null], [null, null, null]]
 var active_wand
 var activeWandIndex = 0
 

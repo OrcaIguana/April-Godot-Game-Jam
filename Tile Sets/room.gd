@@ -64,7 +64,6 @@ func spawn_enemies(difficulty):
 	for enemy in new_enemies:
 		enemy.spawn_location = spawnpoints[randi_range(0, 3)].global_position
 		call_deferred("add_child", enemy)
-		print(enemy.spawn_location)
 	
 func lock():
 	var doors = [$Door, $Door2, $Door3, $Door4]

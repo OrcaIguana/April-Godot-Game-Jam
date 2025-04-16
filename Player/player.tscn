@@ -1,9 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://cvnhcrcuvg482"]
+[gd_scene load_steps=25 format=3 uid="uid://cvnhcrcuvg482"]
 
 [ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
 [ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="5_k53q1"]
-[ext_resource type="Texture2D" uid="uid://dvmsibae7phnc" path="res://Player/Sprites/wand-cross.png" id="6_00tjw"]
 [ext_resource type="Script" uid="uid://dr7iox7g73row" path="res://Player/dash_cooldown.gd" id="6_fhl08"]
 [ext_resource type="Texture2D" uid="uid://dgo2plj72j1br" path="res://Player/Sprites/player-eyes.png" id="6_od3ui"]
 [ext_resource type="Script" uid="uid://djlfcb8mad1pw" path="res://Player/eyes.gd" id="6_vtle1"]
@@ -20,7 +19,7 @@
 [ext_resource type="Script" uid="uid://dp6hp5inhtcro" path="res://User Interface/Scripts/progress_bar_2.gd" id="12_b1ygp"]
 [ext_resource type="Script" uid="uid://dn45rqfyekbkk" path="res://User Interface/Scripts/progress_bar_3.gd" id="14_o28un"]
 [ext_resource type="Script" uid="uid://bpq1rkg7hkeqx" path="res://User Interface/Scripts/progress_bar_4.gd" id="16_n471f"]
-[ext_resource type="Script" path="res://Player/camera_2d.gd" id="21_7emwf"]
+[ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -119,8 +118,8 @@ scale = Vector2(1.76, 1.76)
 metadata/_edit_use_anchors_ = true
 
 [node name="Slot 1" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("6_00tjw")
 expand_mode = 2
 script = ExtResource("7_00tjw")
 
@@ -134,8 +133,8 @@ show_percentage = false
 script = ExtResource("10_dkpta")
 
 [node name="Slot 2" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("6_00tjw")
 expand_mode = 2
 script = ExtResource("8_5htga")
 
@@ -150,8 +149,8 @@ show_percentage = false
 script = ExtResource("12_b1ygp")
 
 [node name="Slot 3" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("6_00tjw")
 expand_mode = 2
 script = ExtResource("9_p5o4e")
 
@@ -166,8 +165,8 @@ show_percentage = false
 script = ExtResource("14_o28un")
 
 [node name="Slot 4" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("6_00tjw")
 expand_mode = 2
 script = ExtResource("10_gu6f8")
 

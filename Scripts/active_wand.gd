@@ -36,7 +36,7 @@ func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 		charge_time = min(.5, max_cooldown)
 
 func _physics_process(delta):
-	var mouse_pos = get_viewport().get_mouse_position()
+	var mouse_pos = get_global_mouse_position()
 	self.position = Vector2(0, 0)
 	self.position = self.global_position.direction_to(mouse_pos) * (50 - min(charge, charge_time)*20)
 

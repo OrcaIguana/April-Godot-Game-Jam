@@ -13,13 +13,13 @@ func _make_dungeon():
 
 func _check_room_doors():
 	pass
-	if dungeon[_room_cords.x -1][_room_cords.y] > 0:
+	if [_room_cords.x -1][_room_cords.y] > 0:
 		pass
-	if dungeon[_room_cords.x + 1][_room_cords.y] > 0:
+	if [_room_cords.x + 1][_room_cords.y] > 0:
 		pass
-	if dungeon[_room_cords.x][_room_cords.y - 1] > 0:
+	if [_room_cords.x][_room_cords.y - 1] > 0:
 		pass
-	if dungeon[_room_cords.x][_room_cords.y + 1] > 0:
+	if [_room_cords.x][_room_cords.y + 1] > 0:
 		pass
 
 func _initialize_room():

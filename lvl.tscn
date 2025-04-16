@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqus6f4yfq32x"]
+[gd_scene load_steps=16 format=3 uid="uid://cqus6f4yfq32x"]
 
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="2_4iw1c"]
 [ext_resource type="PackedScene" uid="uid://begr7axrp6m8g" path="res://Dungeon Generation/dungeon_gen.tscn" id="3_4iw1c"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://brnl6fas6th6w" path="res://Tile Sets/Floor Tilemap/Corner.png" id="4_kfp6p"]
 [ext_resource type="Script" uid="uid://b1dq0y88tx6kx" path="res://camera_view.gd" id="6_2a1lc"]
 [ext_resource type="PackedScene" uid="uid://5vwik7i6gfxq" path="res://Enemies/Basic/enemy_shooter.tscn" id="9_2e6f6"]
+[ext_resource type="PackedScene" uid="uid://b8j41map5g4r4" path="res://Enemies/Basic/enemy_charger.tscn" id="9_62trd"]
+[ext_resource type="PackedScene" uid="uid://c1ra3fh0s6f2h" path="res://Enemies/Basic/enemy_orbit.tscn" id="10_dqmf8"]
+[ext_resource type="PackedScene" uid="uid://brdtthhwypauj" path="res://Enemies/Basic/enemy_random.tscn" id="11_8ud87"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a1lc"]
 texture = ExtResource("4_k0o5b")
@@ -84,3 +87,11 @@ anchor_mode = 0
 size = Vector2i(1792, 1024)
 size_2d_override_stretch = true
 script = ExtResource("6_2a1lc")
+
+[node name="enemy_shooter" parent="." instance=ExtResource("9_2e6f6")]
+
+[node name="enemy_charger" parent="." instance=ExtResource("9_62trd")]
+
+[node name="enemy_shooter2" parent="." instance=ExtResource("10_dqmf8")]
+
+[node name="enemy_random" parent="." instance=ExtResource("11_8ud87")]

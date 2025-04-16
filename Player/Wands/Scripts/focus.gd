@@ -8,5 +8,5 @@ func _ready() -> void:
 	wand_modifiers[wand_modifiers.size()-1].initialize(2.5)
 	wand_modifiers.append(Cooldown_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(0.75)
-	# wand_modifiers.append(Charge_Bullet_Modification.new())
+	wand_modifiers.append(Charge_Bullet_Modification.new())
 	super.set_wand_modifiers(wand_modifiers)

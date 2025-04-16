@@ -4,11 +4,12 @@ var x
 var y
 
 var disable = false
+var unlocked = false
 
-var enemies = [preload("res://Enemies/Basic/enemy_shooter.tscn"),
- preload("res://Enemies/Basic/enemy_orbit.tscn"),
- preload("res://Enemies/Basic/enemy_charger.tscn"),
- preload("res://Enemies/Basic/enemy_random.gd"), ]
+var enemy_shooter = preload("res://Enemies/Basic/enemy_shooter.tscn")
+var enemy_orbit = preload("res://Enemies/Basic/enemy_orbit.tscn")
+var enemy_charger = preload("res://Enemies/Basic/enemy_charger.tscn")
+var enemy_random = preload("res://Enemies/Basic/enemy_random.gd")
 
 var id
 
@@ -35,33 +36,34 @@ func add_doors(add):
 			$Door4.monitoring = true
 
 func _process(delta: float) -> void:
-	if get_tree().get_node_count_in_group("enemy") == 0 and disable == true:
+	if get_tree().get_node_count_in_group("enemy") == 0 and disable == true and unlocked == false:
 		unlock()
+		unlocked = true
 
 func spawn_enemies(difficulty):
 	var spawnpoints = [$"Spawn Point", $"Spawn Point2", $"Spawn Point3", $"Spawn Point4"]
 	
-	var spawn_credits = difficulty * randi_range(1, 10)
+	var spawn_credits = difficulty * randi_range(id, 10)
 	
 	var new_enemies = []
 	
 	while spawn_credits >= 0:
 		if spawn_credits > 50:
-			new_enemies.append(enemies[3].instantiate())
+			new_enemies.append(enemy_random.instantiate())
 			spawn_credits -= 50
 		elif spawn_credits > 25:
-			new_enemies.append(enemies[2].instantiate())
+			new_enemies.append(enemy_charger.instantiate())
 			spawn_credits -= 1
 		elif spawn_credits > 10:
-			new_enemies.append(enemies[1].instantiate())
+			new_enemies.append(enemy_orbit.instantiate())
 			spawn_credits -= 10
 		else:
-			new_enemies.append(enemies[0].instantiate())
+			new_enemies.append(enemy_shooter.instantiate())
 			spawn_credits -= 1
 			
 	for enemy in new_enemies:
 		enemy.spawn_location = spawnpoints[randi_range(0, 3)].global_position
-		add_child(enemy)
+		call_deferred("add_child", enemy)
 	
 func lock():
 	var doors = [$Door, $Door2, $Door3, $Door4]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed: float = 100.0;
-var follow_distance = 400.0;
+var follow_distance = 900.0;
 
 var player: Node2D
 

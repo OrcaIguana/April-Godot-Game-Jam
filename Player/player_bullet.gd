@@ -46,9 +46,9 @@ func _ready():
 		find_seeking_target(2000)
 	if(is_orbit):
 		speed = max(speed, 1000)
-		var mouse_pos = get_viewport().get_mouse_position()
+		var mouse_pos = get_global_mouse_position()
 		self.global_position += self.spawn_position.direction_to(mouse_pos) * 50
-	self.rotate(direction.angle())
+	self.rotate(direction.angle() + 90)
 	velocity = direction * speed
 
 func _physics_process(delta: float) -> void:

@@ -23,4 +23,9 @@ position = Vector2(0.000254363, 0.428888)
 rotation = 0.788973
 shape = SubResource("RectangleShape2D_5ljcc")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.000254363, 0.428888)
+rotation = 0.788973
+shape = SubResource("RectangleShape2D_5ljcc")
+
 [connection signal="kill" from="CharacterBody2D/Bullet Collision" to="CharacterBody2D" method="_on_bullet_collision_kill"]

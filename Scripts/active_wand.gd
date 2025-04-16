@@ -21,9 +21,9 @@ func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	dummyInstance = bullets.instantiate()
 	dummyBullet = dummyInstance.get_node("CharacterBody2D")
 	
-	wand_modifiers.append(Orbit_Bullet_Modification.new())
-	wand_modifiers.append(Seeking_Bullet_Modification.new())
-	wand_modifiers.append(SplittingCount_Bullet_Modification.new())
+	#wand_modifiers.append(Orbit_Bullet_Modification.new())
+	#wand_modifiers.append(Seeking_Bullet_Modification.new())
+	#wand_modifiers.append(SplittingCount_Bullet_Modification.new())
 
 	for wand_modifier in wand_modifiers:
 		wand_modifier.apply_modification(dummyBullet)
@@ -49,7 +49,7 @@ func shoot(parent_pos: Vector2):
 	var loop = 0
 	while true:
 		for projectile in range(dummyBullet.burst):
-			var mouse_pos = get_viewport().get_mouse_position()
+			var mouse_pos = get_global_mouse_position()
 			var direction = global_position.direction_to(mouse_pos)
 			var instance = bullets.instantiate()
 			var bullet = instance.get_node("CharacterBody2D")

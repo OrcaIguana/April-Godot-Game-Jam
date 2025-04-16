@@ -103,6 +103,7 @@ size = Vector2(64, 30)
 size = Vector2(1913, 1071.5)
 
 [node name="Room" type="Node2D"]
+position = Vector2(-1, 4)
 script = ExtResource("1_vofp0")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

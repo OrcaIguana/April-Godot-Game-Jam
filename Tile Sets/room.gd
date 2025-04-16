@@ -5,6 +5,11 @@ var y
 
 var disable = false
 
+var enemies = [preload("res://Enemies/Basic/enemy_shooter.tscn"),
+ preload("res://Enemies/Basic/enemy_orbit.tscn"),
+ preload("res://Enemies/Basic/enemy_charger.tscn"),
+ preload("res://Enemies/Basic/enemy_random.gd"), ]
+
 var id
 
 func _ready() -> void:
@@ -32,7 +37,32 @@ func add_doors(add):
 func _process(delta: float) -> void:
 	if get_tree().get_node_count_in_group("enemy") == 0 and disable == true:
 		unlock()
-		
+
+func spawn_enemies(difficulty):
+	var spawnpoints = [$"Spawn Point", $"Spawn Point2", $"Spawn Point3", $"Spawn Point4"]
+	
+	var spawn_credits = difficulty * randi_range(1, 10)
+	
+	var new_enemies = []
+	
+	while spawn_credits >= 0:
+		if spawn_credits > 50:
+			new_enemies.append(enemies[3].instantiate())
+			spawn_credits -= 50
+		elif spawn_credits > 25:
+			new_enemies.append(enemies[2].instantiate())
+			spawn_credits -= 1
+		elif spawn_credits > 10:
+			new_enemies.append(enemies[1].instantiate())
+			spawn_credits -= 10
+		else:
+			new_enemies.append(enemies[0].instantiate())
+			spawn_credits -= 1
+			
+	for enemy in new_enemies:
+		enemy.spawn_location = spawnpoints[randi_range(0, 3)].global_position
+		add_child(enemy)
+	
 func lock():
 	var doors = [$Door, $Door2, $Door3, $Door4]
 	for door in doors:
@@ -50,4 +80,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.type == "friendly":
 		if not disable:
 			lock()
+			spawn_enemies(id)
 			disable = true

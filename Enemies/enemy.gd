@@ -5,9 +5,12 @@ var follow_distance = 400.0;
 
 var player: Node2D
 
+var spawn_location: Vector2 = Vector2()
+
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	add_to_group("enemy")
+	self.global_position = spawn_location
 	
 func is_player_in_range() -> bool:
 	return player and global_position.distance_to(player.global_position) < follow_distance

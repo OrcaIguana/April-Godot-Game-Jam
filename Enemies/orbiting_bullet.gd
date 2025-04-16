@@ -17,6 +17,7 @@ func _process(delta):
 	angle += effective_speed * delta
 	orbit_radius = orbit_radius + radius_growth_rate * delta
 	global_position = center + Vector2(cos(angle), sin(angle)) * orbit_radius
+	
 
 
 func _on_bullet_collision_kill() -> void:

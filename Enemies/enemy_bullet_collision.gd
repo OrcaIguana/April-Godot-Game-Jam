@@ -6,3 +6,4 @@ var type = "enemy"
 
 func kill_self():
 	kill.emit()
+	

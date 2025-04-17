@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bn4vpnaxmp4sb" path="res://Player/ghost_particles.gd" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://p85rf2qpsxay" path="res://User Interface/Scripts/health.gd" id="7_x3vf3"]
 [ext_resource type="Script" uid="uid://byy2fuohaqiu1" path="res://User Interface/Scripts/slot_2.gd" id="8_5htga"]
-[ext_resource type="Script" path="res://Player/Player_Trigger.gd" id="8_n471f"]
+[ext_resource type="Script" uid="uid://b2w1s3ysi4hef" path="res://Player/Player_Trigger.gd" id="8_n471f"]
 [ext_resource type="Script" uid="uid://dpy6qar0udrlk" path="res://Player/player_ui.gd" id="9_n471f"]
 [ext_resource type="Script" uid="uid://d2lefs7wec0ls" path="res://User Interface/Scripts/slot_3.gd" id="9_p5o4e"]
 [ext_resource type="Script" uid="uid://diy3je4q6tvo2" path="res://User Interface/Scripts/progress_bar.gd" id="10_dkpta"]

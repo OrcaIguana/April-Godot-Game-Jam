@@ -9,22 +9,35 @@ var charge = 0
 var cooldown = 0
 
 var wand_modifiers : Array[Default_Bullet_Modification]
-var modifiers : Array[Default_Bullet_Modification]
+var spell_modifiers : Array[Default_Bullet_Modification]
 
+# Dummy bullet for getting bullet attributes for shooting
 var dummyInstance = bullets.instantiate()
 var dummyBullet = dummyInstance.get_node("CharacterBody2D")
 
+# Called when new wand is created
 func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	for mod in new_wand_modifiers:
 		wand_modifiers.append(mod)
+	apply_modifiers()
 	
+# Called when spells on a wand are changes
+func set_spell_modifiers(new_spell_modifiers: Array[Default_Bullet_Modification]):
+	spell_modifiers.clear()
+	
+	for modifier in new_spell_modifiers:
+		spell_modifiers.append(modifier)
+	apply_modifiers()
+		
+#Applies modifiers to the dummy bullet.
+func apply_modifiers(): 
 	dummyInstance = bullets.instantiate()
 	dummyBullet = dummyInstance.get_node("CharacterBody2D")
 	
 	for wand_modifier in wand_modifiers:
 		wand_modifier.apply_modification(dummyBullet)
 			
-	for modifier in modifiers:
+	for modifier in spell_modifiers:
 		modifier.apply_modification(dummyBullet)
 	
 	max_cooldown=dummyBullet.cooldown
@@ -53,8 +66,8 @@ func shoot(parent_pos: Vector2):
 			for wand_modifier in wand_modifiers:
 				wand_modifier.apply_modification(bullet)
 			
-			for modifier in modifiers:
-				modifier.apply_modification(bullet)
+			for spell_modifier in spell_modifiers:
+				spell_modifier.apply_modification(bullet)
 			
 			bullet.direction = direction.rotated(deg_to_rad(-(bullet.spread/2.0)+((bullet.spread/bullet.burst)*(counter+.5))))
 			counter += 1

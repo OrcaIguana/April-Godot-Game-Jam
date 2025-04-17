@@ -19,8 +19,8 @@
 [ext_resource type="Script" uid="uid://dp6hp5inhtcro" path="res://User Interface/Scripts/progress_bar_2.gd" id="12_b1ygp"]
 [ext_resource type="Script" uid="uid://dn45rqfyekbkk" path="res://User Interface/Scripts/progress_bar_3.gd" id="14_o28un"]
 [ext_resource type="Script" uid="uid://bpq1rkg7hkeqx" path="res://User Interface/Scripts/progress_bar_4.gd" id="16_n471f"]
-[ext_resource type="Texture2D" uid="uid://ci58scfu85ixh" path="res://Player/Sprites/wand-trapezoid.png" id="18_7emwf"]
-[ext_resource type="Script" uid="uid://j2k4n5v2m4ve" path="res://Player/Inventory.gd" id="19_hshwv"]
+[ext_resource type="Script" uid="uid://b3io1qnl3jcux" path="res://Player/level_up.gd" id="20_7emwf"]
+[ext_resource type="Script" uid="uid://c1h1n5pdp7cg0" path="res://Player/level_up_screen.gd" id="20_hshwv"]
 [ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]
@@ -134,6 +134,34 @@ offset_bottom = 40.0
 show_percentage = false
 script = ExtResource("10_dkpta")
 
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 1"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 1"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 1/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 1/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 1/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
 [node name="Slot 2" type="TextureRect" parent="PlayerUI/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -149,6 +177,34 @@ offset_right = 39.75
 offset_bottom = 40.0
 show_percentage = false
 script = ExtResource("12_b1ygp")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 2"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 2"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 2/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 2/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 2/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
 
 [node name="Slot 3" type="TextureRect" parent="PlayerUI/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
@@ -166,6 +222,34 @@ offset_bottom = 40.0
 show_percentage = false
 script = ExtResource("14_o28un")
 
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 3"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 3"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 3/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 3/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 3/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
 [node name="Slot 4" type="TextureRect" parent="PlayerUI/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -182,98 +266,33 @@ offset_bottom = 40.0
 show_percentage = false
 script = ExtResource("16_n471f")
 
-[node name="Inventory" type="TextureButton" parent="PlayerUI/HBoxContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-disabled = true
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("19_hshwv")
-
-[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Inventory"]
-visible = false
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-offset_left = -1.56819
-offset_top = -81.2498
-offset_right = 126.432
-offset_bottom = 46.7502
-scale = Vector2(0.636364, 0.636364)
-color = Color(0.239216, 0.239216, 0.239216, 0.843137)
-
-[node name="GridContainer" type="GridContainer" parent="PlayerUI/HBoxContainer/Inventory"]
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 4"]
 visible = false
 layout_mode = 0
-offset_left = -1.56783
-offset_top = -81.25
-offset_right = 126.432
-offset_bottom = 46.75
-scale = Vector2(0.636364, 0.636364)
-columns = 3
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
 
-[node name="TextureButton" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 4"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 4/VBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
 
-[node name="TextureButton2" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 4/VBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
 
-[node name="TextureButton3" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 4/VBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButton4" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButton5" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButton6" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButton7" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButton8" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureButton9" type="TextureButton" parent="PlayerUI/HBoxContainer/Inventory/GridContainer"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-texture_normal = ExtResource("18_7emwf")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="Health" type="TextureRect" parent="PlayerUI/HBoxContainer"]
 layout_mode = 2
@@ -298,6 +317,49 @@ offset_right = 1033.0
 offset_bottom = 581.0
 text = "YOU ARE DEAD"
 
+[node name="Level Up Screen" type="ColorRect" parent="PlayerUI"]
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_left = -232.0
+offset_top = -997.0
+offset_right = 1883.0
+offset_bottom = 123.0
+color = Color(0.247059, 0.247059, 0.247059, 0.854902)
+script = ExtResource("20_hshwv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 882.0
+offset_top = 354.0
+offset_right = 1105.0
+offset_bottom = 386.0
+text = "Level Up! Choose a reward"
+
+[node name="Button" type="Button" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 433.0
+offset_right = 905.0
+offset_bottom = 673.0
+script = ExtResource("20_7emwf")
+
+[node name="Button2" type="Button" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 433.0
+offset_right = 1064.0
+offset_bottom = 673.0
+script = ExtResource("20_7emwf")
+
+[node name="Button3" type="Button" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 1084.0
+offset_top = 433.0
+offset_right = 1222.0
+offset_bottom = 673.0
+script = ExtResource("20_7emwf")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 script = ExtResource("21_7emwf")
@@ -305,6 +367,7 @@ script = ExtResource("21_7emwf")
 [connection signal="dead" from="Player" to="PlayerUI" method="_on_player_dead"]
 [connection signal="health_change" from="Player" to="PlayerUI/HBoxContainer/Health" method="_on_health_change"]
 [connection signal="health_change" from="Player" to="Camera2D" method="_on_player_health_change"]
+[connection signal="level_up_signal" from="Player" to="PlayerUI" method="_on_player_level_up_signal"]
 [connection signal="room_change" from="Player" to="PlayerUI" method="_on_player_room_change"]
 [connection signal="room_change" from="Player" to="Camera2D" method="_on_player_room_change"]
 [connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 1" method="_on_wand_swap"]
@@ -316,6 +379,12 @@ script = ExtResource("21_7emwf")
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 3/ProgressBar3" method="_update"]
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 4/ProgressBar4" method="_update"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]
-[connection signal="mouse_entered" from="PlayerUI/HBoxContainer/Inventory" to="PlayerUI/HBoxContainer/Inventory" method="_on_hover"]
-[connection signal="mouse_entered" from="PlayerUI/HBoxContainer/Inventory/GridContainer" to="PlayerUI/HBoxContainer/Inventory" method="_on_hover"]
-[connection signal="mouse_exited" from="PlayerUI/HBoxContainer/Inventory/GridContainer" to="PlayerUI/HBoxContainer/Inventory" method="_on_exit"]
+[connection signal="chosen" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
+[connection signal="on_press" from="PlayerUI/Level Up Screen/Button" to="Player" method="wand_get"]
+[connection signal="pressed" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen/Button" method="_on_pressed"]
+[connection signal="chosen" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
+[connection signal="on_press" from="PlayerUI/Level Up Screen/Button2" to="Player" method="wand_get"]
+[connection signal="pressed" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Level Up Screen/Button2" method="_on_pressed"]
+[connection signal="chosen" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
+[connection signal="on_press" from="PlayerUI/Level Up Screen/Button3" to="Player" method="wand_get"]
+[connection signal="pressed" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Level Up Screen/Button3" method="_on_pressed"]

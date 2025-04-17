@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 func spawn_enemies(difficulty):
 	var spawnpoints = [$"Spawn Point", $"Spawn Point2", $"Spawn Point3", $"Spawn Point4"]
 	
-	var spawn_credits = difficulty * randi_range(id, 10)
+	var spawn_credits = difficulty * randi_range(1, id)
 	
 	var new_enemies = []
 	

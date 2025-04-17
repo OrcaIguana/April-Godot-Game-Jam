@@ -11,9 +11,12 @@ const volley = preload("res://Player/Wands/voley.tscn")
 const launcher = preload("res://Player/Wands/launcher.tscn")
 
 var wand_inventory = []
-var spell_inventory = [[null, null, null], [null, null, null], [null, null, null]]
 var active_wand
 var activeWandIndex = 0
+
+var level = 0
+var next_level_xp = 2
+var current_xp = 0
 
 var health = 6
 var invulnerable = false
@@ -29,6 +32,7 @@ signal wand_change(id, want_texture)
 signal wand_progress_bar(id, max_cooldown, current_cooldown)
 signal room_change(direction)
 signal dead
+signal level_up_signal
 
 func health_changed(new_health):
 	health_change.emit(new_health)
@@ -44,6 +48,15 @@ func hurt(amount):
 	else:
 		pass # Some dodge sfx or smth
 
+func level_up():
+	level_up_signal.emit()
+	get_tree().paused = true
+	
+func wand_get(wand):
+	add_child(wand)
+	wand.visible = false
+	wand_inventory[wand_inventory.find(null)] = wand
+
 func load_wand(wand):
 		var loaded_wand = wand.instantiate()
 		loaded_wand.visible = false
@@ -53,6 +66,8 @@ func load_wand(wand):
 func do_cooldowns(delta):
 	var counter = 1
 	for wands in wand_inventory:
+		if wands == null:
+			continue
 		wands.cooldown -= delta
 		wand_progress_bar.emit(counter, wands.max_cooldown, wands.cooldown)
 		counter += 1
@@ -63,15 +78,13 @@ func _ready():
 	var wand
 	add_to_group("player")
 	for i in range(4):
-		wand_inventory.append(load_wand(default_wand))
+		wand_inventory.append(null)
 	wand_inventory[0] = load_wand(launcher)
 	active_wand = wand_inventory[0]
-	wand_inventory[1] = load_wand(ring)
-	wand_inventory[2] = load_wand(volley)
-	wand_inventory[3] = load_wand(focus)
 	invulnerable = true
 	await get_tree().create_timer(10).timeout
 	invulnerable = false
+	
 	
 func get_input():
 	var input
@@ -90,6 +103,11 @@ func _process(delta: float) -> void:
 			active_wand.shoot(self.global_position)
 			active_wand.cooldown = active_wand.max_cooldown
 	do_cooldowns(delta)
+	
+	if current_xp >= next_level_xp:
+		current_xp = 0
+		next_level_xp += 3
+		level_up()
 	
 	if (Input.is_action_pressed("shoot") && (active_wand.cooldown <= 0 && active_wand.charge_time>0)):
 		active_wand.charge+=delta*2
@@ -134,6 +152,8 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func change_wand_index(index):
+	if wand_inventory[index] == null:
+		return
 	activeWandIndex = index
 	active_wand = wand_inventory[index]
 	wand_change.emit(index+1, active_wand.get_node("Wand").texture)
@@ -142,6 +162,8 @@ func change_wand_index(index):
 		if (i == index):
 			wand_inventory[i].visible = true
 		else:
+			if wand_inventory[i] == null:
+				continue
 			wand_inventory[i].visible = false
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -160,3 +182,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.type == "door_down":
 		self.position = self.position + Vector2(0, 200)
 		room_change.emit(Vector2(0, 1200))
+	if area.type == "XP":
+		current_xp += 1
+		area.kill_self()

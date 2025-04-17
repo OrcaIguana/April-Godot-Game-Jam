@@ -19,3 +19,9 @@ func get_direction_to_player() -> Vector2:
 	if player:
 		return (player.global_position - global_position).normalized()
 	return Vector2.ZERO
+
+func _on_death():
+	var XP = load("res://Enemies/XP.tscn").instantiate()
+	XP.spawn_position = self.global_position
+	get_tree().current_scene.add_child(XP)
+	queue_free()

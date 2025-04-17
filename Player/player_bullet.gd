@@ -19,6 +19,7 @@ var time_to_live
 var waiting_to_split = false
 var screen_position
 var clockwise = 1
+var seeking_strength = 1.0
 
 # For timers
 var can_suck = true
@@ -84,7 +85,7 @@ func _physics_process(delta: float) -> void:
 			if(enemies.size() > 0):
 				if(is_instance_valid(seeking_target)):
 					var target_direction = global_position.direction_to(seeking_target.global_position)
-					rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2))
+					rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2*seeking_strength))
 					direction = Vector2(cos(rotation), sin(rotation))
 					velocity = speed * direction
 				else:
@@ -102,7 +103,7 @@ func _physics_process(delta: float) -> void:
 				if(enemies.size() > 0):
 					if(is_instance_valid(seeking_target)):
 						var target_direction = global_position.direction_to(seeking_target.global_position)
-						rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2))
+						rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2*seeking_strength))
 						#if(clockwise == -1):
 							#rotation += PI
 						direction = Vector2(cos(rotation), sin(rotation))
@@ -137,6 +138,7 @@ func check_split():
 					bullet.spawn_position = self.global_position
 				bullet.lifespan = bullet.splitting_lifespan
 				bullet.clockwise = self.clockwise
+				bullet.seeking_strength = .2
 				
 				bullet.direction = self.direction.rotated(deg_to_rad(-(bullet.splitting_angle/2.0)+((bullet.splitting_angle/self.splitting_count)*(counter+.5))))
 				counter += 1
@@ -191,20 +193,18 @@ func update_seeking_target(distance: int):
 
 func find_seeking_target(distance: int) -> bool:
 	enemies = get_tree().get_nodes_in_group("enemy")
-	var closest_distance = distance
-	var distance_to_enemy
+	var closest_distance = 3000
+	var distance_to_enemy = 0
 	if(enemies.size()>0):
-		print("Checking enemy list", enemies)
-		print("Detection range: ", closest_distance)
 		for enemy in enemies:
 			if(!is_instance_valid(enemy)):
 				continue
 			distance_to_enemy = self.global_position.distance_to(enemy.global_position)
 			if(distance_to_enemy < closest_distance):
 				closest_distance = distance_to_enemy
-				print("     Distance to enemy: ", closest_distance)
 				seeking_target = enemy
-		if(distance_to_enemy < distance):
+			distance_to_enemy = 0
+		if(self.global_position.distance_to(seeking_target.global_position) < distance):
 			return true
 		else:
 			#print(distance_to_enemy)

@@ -22,10 +22,9 @@ func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	dummyBullet = dummyInstance.get_node("CharacterBody2D")
 	
 
-	# wand_modifiers.append(Orbit_Bullet_Modification.new())
 	wand_modifiers.append(Bouncing_Bullet_Modification.new())
 	wand_modifiers.append(Seeking_Bullet_Modification.new())
-
+	
 	for wand_modifier in wand_modifiers:
 		wand_modifier.apply_modification(dummyBullet)
 			

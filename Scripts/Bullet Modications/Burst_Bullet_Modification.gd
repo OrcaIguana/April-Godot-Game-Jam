@@ -8,3 +8,5 @@ func initialize(val: int):
 
 func apply_modification(bullet : Bullet):
 	bullet.burst += burst_addition
+	if(bullet.spread == 0):
+		bullet.spread += 30

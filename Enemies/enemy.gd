@@ -9,7 +9,7 @@ var spawn_location: Vector2 = Vector2()
 
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
-	add_to_group("enemy")
+	self.add_to_group("enemy")
 	self.global_position = spawn_location
 	
 func is_player_in_range() -> bool:

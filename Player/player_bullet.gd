@@ -1,22 +1,33 @@
 class_name Bullet
 extends CharacterBody2D
 
+var texture = preload("res://Player/Sprites/player-bullet.png")
+
 signal killed_enemy
 
+# Outside info
 var enemies = []
 var player
+var enemy_bullets = []
+var nearby_enemy_bullets = []
 var viewport
 var viewport_position
 
+# Basic attributes
 var direction
 var time_to_live
 var waiting_to_split = false
 var screen_position
 var clockwise = 1
-var can_bounce = true
 
+# For timers
+var can_suck = true
+var can_seek = true
+
+# For seeking
 var seeking_target
 
+# Modifiable Stats
 @export_group("Bullet Stats")
 @export var cooldown = 1
 @export var speed = 1000
@@ -29,6 +40,7 @@ var seeking_target
 @export var splitting_count = 0
 @export var splitting_lifespan = 1
 @export var stun_duration = 0
+@export var sucking = 0
 
 @export_group("Bullet Modifiers")
 @export var is_seeking = false
@@ -43,27 +55,32 @@ var seeking_target
 var spawn_position = Vector2()
 
 func _ready():
+	$Sprite2D.texture = texture
 	viewport = get_viewport()
 	viewport_position = viewport.get_canvas_transform().get_origin() - get_viewport_rect().size / 2
 	enemies = get_tree().get_nodes_in_group("enemy")
+	enemy_bullets = get_tree().get_nodes_in_group("enemy_bullets")
 	player = get_tree().get_nodes_in_group("player")[0]
 	time_to_live = lifespan
 	self.global_position = spawn_position
 	screen_position = self.global_position + viewport_position
 	if(is_seeking):
-		find_seeking_target(2000)
-	if(is_orbit):
-		speed = max(speed, 1000)
-		var mouse_pos = get_global_mouse_position()
-		self.global_position += self.spawn_position.direction_to(mouse_pos) * 50
-		screen_position = self.global_position + viewport_position
-		if((abs(self.screen_position.x) > (Vector2(viewport.get_size()).x - 64) / 2) || (abs(self.screen_position.y) > (Vector2(viewport.get_size()).y - 64) / 2)):
-			global_position = self.global_position.move_toward(-viewport_position, 125)
+		find_seeking_target(500)
+	if(is_orbit && !is_instance_valid(seeking_target) && seeking_target != null):
+		if(global_position.distance_to(seeking_target.global_position) > 500):
+			speed = max(speed, 1000)
+			var mouse_pos = get_global_mouse_position()
+			self.global_position += self.spawn_position.direction_to(mouse_pos) * 50
+			screen_position = self.global_position + viewport_position
+			if((abs(self.screen_position.x) > (Vector2(viewport.get_size()).x - 64) / 2) || (abs(self.screen_position.y) > (Vector2(viewport.get_size()).y - 64) / 2)):
+				global_position = self.global_position.move_toward(-viewport_position, 125)
 	self.rotate(direction.angle())
 	velocity = direction * speed
+	
 func _physics_process(delta: float) -> void:
 	if(!bounce()):
 		if(is_seeking && !is_orbit):
+			update_seeking_target(500)
 			if(enemies.size() > 0):
 				if(is_instance_valid(seeking_target)):
 					var target_direction = global_position.direction_to(seeking_target.global_position)
@@ -74,33 +91,50 @@ func _physics_process(delta: float) -> void:
 					enemies.erase(null)
 		elif (is_orbit && !is_seeking):
 			var target_direction = global_position.direction_to(player.global_position)
-			rotation = lerp_angle(rotation, target_direction.angle()+PI/2, 1)
+			rotation = lerp_angle(rotation, target_direction.angle()+PI/2-(max(clockwise*2/((speed+1000)/(speed/1000)), 1)), 1)
 			if(clockwise == -1):
 				rotation += PI
 			direction = Vector2(cos(rotation), sin(rotation))
 			velocity = speed * direction
 		elif (is_seeking && is_orbit):
-			if(find_seeking_target(500)):
-				if(is_instance_valid(seeking_target)):
-					var target_direction = global_position.direction_to(seeking_target.global_position)
-					rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2))
-					if(clockwise == -1):
-						rotation += PI
-					direction = Vector2(cos(rotation), sin(rotation))
-					velocity = speed * direction
+			update_seeking_target(500)
+			if(seeking_target != null):
+				if(enemies.size() > 0):
+					if(is_instance_valid(seeking_target)):
+						var target_direction = global_position.direction_to(seeking_target.global_position)
+						rotation = lerp_angle(rotation, target_direction.angle(), 0.05*max(speed/1000.0, 2))
+						#if(clockwise == -1):
+							#rotation += PI
+						direction = Vector2(cos(rotation), sin(rotation))
+						velocity = speed * direction
+					else:
+						enemies.erase(null)
 			else:
 				var target_direction = global_position.direction_to(player.global_position)
-				rotation = lerp_angle(rotation, target_direction.angle()+PI/2, 1)
+				rotation = lerp_angle(rotation, target_direction.angle()+PI/2-(clockwise*max(speed/20000, .1)), 1)
+				if(clockwise == -1):
+						rotation += PI
 				direction = Vector2(cos(rotation), sin(rotation))
 				velocity = speed * direction
+	if(sucking != 0):
+		suck()
+		
 	move_and_slide()
 	time_to_live -= delta
-	if time_to_live <= 0 && !waiting_to_split:
+	if time_to_live <= 0:
+		check_split()
+		
+
+func check_split():
+	if(!waiting_to_split):
 		if splitting_count > 0:
 			var counter = 0
 			for projectile in range(self.splitting_count):
 				var bullet = self.duplicate()
-				bullet.spawn_position = self.global_position
+				if(is_orbit):
+					bullet.spawn_position = self.global_position+Vector2(counter*10, counter*10)
+				else:
+					bullet.spawn_position = self.global_position
 				bullet.lifespan = bullet.splitting_lifespan
 				bullet.clockwise = self.clockwise
 				
@@ -117,23 +151,63 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_bullet_collision_kill() -> void:
+	check_split()
 	if(!is_piercing):
+		if(sucking != 0):
+			for enemy_bullet in get_nearby_enemy_bullets(200):
+				enemy_bullet.update_can_move(true)
 		queue_free()
 
+func get_nearby_enemy_bullets(suck_distance: int) -> Array:
+	enemy_bullets = get_tree().get_nodes_in_group("enemy_bullets")
+	var nearby_enemy_bullets = []
+	for enemy_bullet in enemy_bullets:
+		if(global_position.distance_to(enemy_bullet.global_position) < suck_distance*abs(sucking)):
+			nearby_enemy_bullets.append(enemy_bullet)
+			enemy_bullet.update_can_move(false)
+		else:
+			pass
+			enemy_bullet.update_can_move(true)
+	return nearby_enemy_bullets
+	
+func suck():
+	if(can_suck):
+		if(can_suck):
+			nearby_enemy_bullets = get_nearby_enemy_bullets(200)
+			can_suck = false
+			await get_tree().create_timer(0.1).timeout
+			can_suck = true
+	for enemy_bullet in nearby_enemy_bullets:
+		if(is_instance_valid(enemy_bullet)):
+			enemy_bullet.global_position = enemy_bullet.global_position.move_toward(self.global_position, sucking*2)
+
+func update_seeking_target(distance: int):
+	if(can_seek):
+		find_seeking_target(distance)
+		can_seek = false
+		await get_tree().create_timer(0.1).timeout
+		can_seek = true
+
+
 func find_seeking_target(distance: int) -> bool:
+	enemies = get_tree().get_nodes_in_group("enemy")
 	var closest_distance = distance
-	var distance_to_enemy = distance
+	var distance_to_enemy
 	if(enemies.size()>0):
+		print("Checking enemy list", enemies)
+		print("Detection range: ", closest_distance)
 		for enemy in enemies:
 			if(!is_instance_valid(enemy)):
 				continue
-			distance_to_enemy = position.distance_to(enemy.position)
+			distance_to_enemy = self.global_position.distance_to(enemy.global_position)
 			if(distance_to_enemy < closest_distance):
 				closest_distance = distance_to_enemy
+				print("     Distance to enemy: ", closest_distance)
 				seeking_target = enemy
 		if(distance_to_enemy < distance):
 			return true
 		else:
+			#print(distance_to_enemy)
 			seeking_target = null;
 	else:
 		return false
@@ -142,25 +216,24 @@ func find_seeking_target(distance: int) -> bool:
 func bounce() -> bool:
 	if(is_bouncing):
 		screen_position = self.global_position + viewport_position
-		if(can_bounce):
-			if(abs(self.screen_position.x) > (Vector2(viewport.get_size()).x - 64) / 2):
-				if(velocity.x > 0):
-					velocity.x = -abs(velocity.x)
-					clockwise *= -1
-				elif(velocity.x < 0):
-					velocity.x = abs(velocity.x)
-					clockwise *= -1
-					return true
-				global_position.x = min(max(global_position.x, -viewport_position.x - (viewport.get_size()).x / 2 + 35), -viewport_position.x + (viewport.get_size()).x / 2 - 35)
-				global_position.y = min(max(global_position.y, -viewport_position.y - (viewport.get_size()).y / 2 + 35), -viewport_position.y + (viewport.get_size()).y / 2 - 35)
-			if(abs(self.screen_position.y) > (Vector2(viewport.get_size()).y - 64) / 2):
-				if(velocity.y > 0):
-					velocity.y = -abs(velocity.y)
-					clockwise *= -1
-				elif(velocity.y < 0):
-					velocity.y = abs(velocity.y)
-					clockwise *= -1
-					return true
-				global_position.x = min(max(global_position.x, -viewport_position.x - (viewport.get_size()).x / 2 + 35), -viewport_position.x + (viewport.get_size()).x / 2 - 35)
-				global_position.y = min(max(global_position.y, -viewport_position.y - (viewport.get_size()).y / 2 + 35), -viewport_position.y + (viewport.get_size()).y / 2 - 35)
+		if(abs(self.screen_position.x) > (Vector2(viewport.get_size()).x - 64) / 2):
+			if(velocity.x > 0):
+				velocity.x = -abs(velocity.x)
+				clockwise *= -1
+			elif(velocity.x < 0):
+				velocity.x = abs(velocity.x)
+				clockwise *= -1
+				return true
+			global_position.x = min(max(global_position.x, -viewport_position.x - (viewport.get_size()).x / 2 + 35), -viewport_position.x + (viewport.get_size()).x / 2 - 35)
+			global_position.y = min(max(global_position.y, -viewport_position.y - (viewport.get_size()).y / 2 + 35), -viewport_position.y + (viewport.get_size()).y / 2 - 35)
+		if(abs(self.screen_position.y) > (Vector2(viewport.get_size()).y - 64) / 2):
+			if(velocity.y > 0):
+				velocity.y = -abs(velocity.y)
+				clockwise *= -1
+			elif(velocity.y < 0):
+				velocity.y = abs(velocity.y)
+				clockwise *= -1
+				return true
+			global_position.x = min(max(global_position.x, -viewport_position.x - (viewport.get_size()).x / 2 + 35), -viewport_position.x + (viewport.get_size()).x / 2 - 35)
+			global_position.y = min(max(global_position.y, -viewport_position.y - (viewport.get_size()).y / 2 + 35), -viewport_position.y + (viewport.get_size()).y / 2 - 35)
 	return false

@@ -9,3 +9,4 @@ func initialize(val: bool):
 func apply_modification(bullet : Bullet):
 	bullet.is_bouncing = is_bouncing
 	bullet.lifespan += 1
+	bullet.splitting_lifespan += 1

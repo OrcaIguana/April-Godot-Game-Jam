@@ -171,16 +171,16 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		hurt(1)
 		area.kill_self()
 	if area.type == "door_left":
-		self.position = self.position + Vector2(-200, 0)
+		self.position = self.position + Vector2(-250, 0)
 		room_change.emit(Vector2(-2000, 0))
 	if area.type == "door_up":
-		self.position = self.position + Vector2(0, -200)
+		self.position = self.position + Vector2(0, -250)
 		room_change.emit(Vector2(0, -1200))
 	if area.type == "door_right":
-		self.position = self.position + Vector2(200, 0)
+		self.position = self.position + Vector2(250, 0)
 		room_change.emit(Vector2(2000, 0))
 	if area.type == "door_down":
-		self.position = self.position + Vector2(0, 200)
+		self.position = self.position + Vector2(0, 250)
 		room_change.emit(Vector2(0, 1200))
 	if area.type == "XP":
 		current_xp += 1

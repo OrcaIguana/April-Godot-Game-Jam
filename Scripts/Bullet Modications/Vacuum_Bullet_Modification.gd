@@ -8,3 +8,6 @@ func initialize(val: int):
 
 func apply_modification(bullet : Bullet):
 	bullet.sucking += suck
+
+func get_modifier_name() -> String:
+	return "Vacuum"

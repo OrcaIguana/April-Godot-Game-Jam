@@ -9,3 +9,6 @@ func initialize(val: bool):
 func apply_modification(bullet : Bullet):
 	bullet.is_seeking = is_seeking
 	bullet.speed = max(bullet.speed, 300)
+
+func get_modifier_name() -> String:
+	return "Seeking"

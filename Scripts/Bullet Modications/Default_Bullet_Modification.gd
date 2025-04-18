@@ -6,3 +6,6 @@ func instantiate(valf : float = 0, vali : int = 0, valb : bool = false):
 
 func apply_modification(bullet : Bullet):
 	pass
+
+func get_modifier_name() -> String:
+	return "Default"

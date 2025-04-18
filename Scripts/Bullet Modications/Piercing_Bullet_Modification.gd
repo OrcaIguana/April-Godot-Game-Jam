@@ -8,3 +8,7 @@ func initialize(val: bool):
 
 func apply_modification(bullet : Bullet):
 	bullet.is_piercing = is_piercing
+	bullet.speed *= 1.2
+
+func get_modifier_name() -> String:
+	return "Piercing"

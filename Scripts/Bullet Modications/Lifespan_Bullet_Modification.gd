@@ -8,3 +8,6 @@ func initialize(val: float):
 
 func apply_modification(bullet : Bullet):
 	bullet.lifespan = max(bullet.lifespan + lifespan_addition, 0.25)
+
+func get_modifier_name() -> String:
+	return "Increase Lifespan"

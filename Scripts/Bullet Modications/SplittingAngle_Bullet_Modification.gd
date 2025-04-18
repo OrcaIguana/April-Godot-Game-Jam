@@ -8,3 +8,6 @@ func initialize(val: float):
 
 func apply_modification(bullet : Bullet):
 	bullet.splitting_angle = min(splitting_angle, 360)
+
+func get_modifier_name() -> String:
+	return "Invalid Spell: SplittingAngle"

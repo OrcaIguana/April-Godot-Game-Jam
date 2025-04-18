@@ -8,3 +8,6 @@ func initialize(val: float):
 
 func apply_modification(bullet : Bullet):
 	bullet.cooldown *= coolup_multiplier
+
+func get_modifier_name() -> String:
+	return "Reduce Cooldown"

@@ -8,3 +8,6 @@ func initialize(val: Texture2D):
 
 func apply_modification(bullet : Bullet):
 	bullet.texture = texture
+
+func get_modifier_name() -> String:
+	return "Invalid Spell: Texture"

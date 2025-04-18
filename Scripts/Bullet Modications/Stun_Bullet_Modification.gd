@@ -8,3 +8,6 @@ func initialize(val: float):
 
 func apply_modification(bullet : Bullet):
 	bullet.stun_duration += stun_addition
+
+func get_modifier_name() -> String:
+	return "Stun"

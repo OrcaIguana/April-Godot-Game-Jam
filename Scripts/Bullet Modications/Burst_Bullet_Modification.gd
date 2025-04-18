@@ -10,3 +10,6 @@ func apply_modification(bullet : Bullet):
 	bullet.burst += burst_addition
 	if(bullet.spread == 0):
 		bullet.spread += 30
+
+func get_modifier_name() -> String:
+	return "Burst"

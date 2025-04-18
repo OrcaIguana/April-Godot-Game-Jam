@@ -13,3 +13,6 @@ func apply_modification(bullet : Bullet):
 	if(bullet.splitting_angle == 0):
 		bullet.splitting_angle = 90;
 	bullet.splitting_lifespan *= splitting_lifespan
+
+func get_modifier_name() -> String:
+	return "Shard"

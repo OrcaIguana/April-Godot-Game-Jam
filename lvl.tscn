@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqus6f4yfq32x"]
+[gd_scene load_steps=7 format=3 uid="uid://cqus6f4yfq32x"]
 
 [ext_resource type="Script" uid="uid://bedihovhitjol" path="res://lvl.gd" id="1_hx1ia"]
 [ext_resource type="PackedScene" uid="uid://c3isnhvdmyuen" path="res://Dungeon Generation/dungeon.tscn" id="2_xliyy"]
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="3_4iw1c"]
+[ext_resource type="Script" uid="uid://b7or6uckxhbub" path="res://Audio/sound_system.gd" id="4_hx1ia"]
+[ext_resource type="AudioStream" uid="uid://ddi4vfn4a2kf" path="res://Audio/Audio Assets/Tracks/test_track.mp3" id="5_k0o5b"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2a1lc"]
+stream_count = 1
+stream_0 = ExtResource("5_k0o5b")
 
 [node name="Lvl" type="Node2D"]
 script = ExtResource("1_hx1ia")
@@ -10,3 +16,11 @@ script = ExtResource("1_hx1ia")
 [node name="Dungeon" parent="." instance=ExtResource("2_xliyy")]
 
 [node name="Player" parent="." instance=ExtResource("3_4iw1c")]
+
+[node name="Sound_System" type="Node" parent="."]
+script = ExtResource("4_hx1ia")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound_System"]
+stream = SubResource("AudioStreamPlaylist_2a1lc")
+
+[connection signal="finished" from="Sound_System/AudioStreamPlayer" to="Sound_System" method="_on_audio_stream_player_finished"]

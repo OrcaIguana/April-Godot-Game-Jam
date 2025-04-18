@@ -8,3 +8,6 @@ func initialize(val: bool):
 
 func apply_modification(bullet : Bullet):
 	bullet.is_echo = is_echo
+
+func get_modifier_name() -> String:
+	return "Echo"

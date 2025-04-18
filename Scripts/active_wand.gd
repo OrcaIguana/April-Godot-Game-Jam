@@ -28,7 +28,7 @@ func set_spell_modifiers(new_spell_modifiers: Array[Default_Bullet_Modification]
 	for modifier in new_spell_modifiers:
 		spell_modifiers.append(modifier)
 	apply_modifiers()
-		
+	
 #Applies modifiers to the dummy bullet.
 func apply_modifiers(): 
 	dummyInstance = bullets.instantiate()

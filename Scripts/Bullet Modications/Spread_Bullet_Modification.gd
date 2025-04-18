@@ -8,3 +8,6 @@ func initialize(val: float):
 
 func apply_modification(bullet : Bullet):
 	bullet.spread = min(spread, 360)
+
+func get_modifier_name() -> String:
+	return "Invalid Spell: Spread"

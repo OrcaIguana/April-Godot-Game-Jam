@@ -10,3 +10,6 @@ func apply_modification(bullet : Bullet):
 	bullet.is_bouncing = is_bouncing
 	bullet.lifespan += 1
 	bullet.splitting_lifespan += 1
+
+func get_modifier_name() -> String:
+	return "Bouncing"

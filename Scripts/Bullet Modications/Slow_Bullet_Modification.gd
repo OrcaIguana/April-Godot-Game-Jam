@@ -8,3 +8,6 @@ func initialize(val: float):
 
 func apply_modification(bullet : Bullet):
 	bullet.speed *= speed_multiplier
+
+func get_modifier_name() -> String:
+	return "Invalid Spell: Slow Bullet"

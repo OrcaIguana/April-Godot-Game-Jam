@@ -8,3 +8,6 @@ func initialize(val: float):
 
 func apply_modification(bullet : Bullet):
 	bullet.damage *= damage_multiplier
+
+func get_modifier_name() -> String:
+	return "Strengthen"

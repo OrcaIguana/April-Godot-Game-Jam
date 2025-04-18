@@ -1,14 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqus6f4yfq32x"]
+[gd_scene load_steps=10 format=3 uid="uid://cqus6f4yfq32x"]
 
 [ext_resource type="Script" uid="uid://bedihovhitjol" path="res://Enemies/Boss/lvl.gd" id="1_hx1ia"]
 [ext_resource type="PackedScene" uid="uid://c3isnhvdmyuen" path="res://Dungeon Generation/dungeon.tscn" id="2_xliyy"]
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="3_4iw1c"]
 [ext_resource type="Script" uid="uid://b7or6uckxhbub" path="res://Audio/sound_system.gd" id="4_hx1ia"]
-[ext_resource type="AudioStream" uid="uid://ddi4vfn4a2kf" path="res://Audio/Audio Assets/Tracks/test_track.mp3" id="5_k0o5b"]
+[ext_resource type="AudioStream" uid="uid://ddi4vfn4a2kf" path="res://Audio/Audio_Assets/Tracks/test_track.mp3" id="5_k0o5b"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_k0o5b"]
+stream_count = 1
+stream_0 = ExtResource("5_k0o5b")
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2a1lc"]
 stream_count = 1
 stream_0 = ExtResource("5_k0o5b")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_f2dqo"]
+stream_count = 1
+stream_0 = ExtResource("5_k0o5b")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_5ud41"]
+clip_count = 3
+clip_0/name = &"dungeonMusic"
+clip_0/stream = SubResource("AudioStreamPlaylist_k0o5b")
+clip_0/auto_advance = 0
+clip_1/name = &"menuMusic"
+clip_1/stream = SubResource("AudioStreamPlaylist_2a1lc")
+clip_1/auto_advance = 0
+clip_2/name = &"bossMusic"
+clip_2/stream = SubResource("AudioStreamPlaylist_f2dqo")
+clip_2/auto_advance = 0
+initial_clip = 1
 
 [node name="Lvl" type="Node2D"]
 script = ExtResource("1_hx1ia")
@@ -17,10 +38,13 @@ script = ExtResource("1_hx1ia")
 
 [node name="Player" parent="." instance=ExtResource("3_4iw1c")]
 
-[node name="Sound_System" type="Node" parent="."]
+[node name="Sound_System" type="Node" parent="." node_paths=PackedStringArray("music_player")]
+process_mode = 3
 script = ExtResource("4_hx1ia")
+music_player = NodePath("Music_Player")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sound_System"]
-stream = SubResource("AudioStreamPlaylist_2a1lc")
-
-[connection signal="finished" from="Sound_System/AudioStreamPlayer" to="Sound_System" method="_on_audio_stream_player_finished"]
+[node name="Music_Player" type="AudioStreamPlayer" parent="Sound_System"]
+stream = SubResource("AudioStreamInteractive_5ud41")
+volume_db = -28.548
+autoplay = true
+bus = &"Music"

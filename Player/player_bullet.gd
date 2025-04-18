@@ -42,6 +42,7 @@ var seeking_target
 @export var splitting_lifespan = 1
 @export var stun_duration = 0
 @export var sucking = 0
+@export var echo_count = 0
 
 @export_group("Bullet Modifiers")
 @export var is_seeking = false
@@ -93,7 +94,7 @@ func _physics_process(delta: float) -> void:
 					enemies.erase(null)
 		elif (is_orbit && !is_seeking):
 			var target_direction = global_position.direction_to(player.global_position)
-			rotation = lerp_angle(rotation, target_direction.angle()+PI/2-(max(clockwise*2/((speed+1000)/(speed/1000)), 1)), 1)
+			rotation = lerp_angle(rotation, target_direction.angle()+PI/2-(clockwise*max(speed/20000, .1)), 1)
 			if(clockwise == -1):
 				rotation += PI
 			direction = Vector2(cos(rotation), sin(rotation))
@@ -124,6 +125,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	time_to_live -= delta
 	if time_to_live <= 0:
+		if(sucking != 0):
+			fix_suck()
+		if(splitting_count > 0):
+			Global_Sound_System.play_sound(Global_Sound_System.player_bullet_split_sound)
 		check_split()
 		
 
@@ -154,6 +159,7 @@ func check_split():
 
 
 func _on_bullet_collision_kill() -> void:
+	Global_Sound_System.play_sound(Global_Sound_System.enemy_hit_sound)
 	check_split()
 	if(!is_piercing):
 		if(sucking != 0):
@@ -175,14 +181,19 @@ func get_nearby_enemy_bullets(suck_distance: int) -> Array:
 	
 func suck():
 	if(can_suck):
-		if(can_suck):
-			nearby_enemy_bullets = get_nearby_enemy_bullets(200)
-			can_suck = false
-			await get_tree().create_timer(0.1).timeout
-			can_suck = true
+		nearby_enemy_bullets = get_nearby_enemy_bullets(200)
+		can_suck = false
+		await get_tree().create_timer(0.1).timeout
+		can_suck = true
 	for enemy_bullet in nearby_enemy_bullets:
 		if(is_instance_valid(enemy_bullet)):
 			enemy_bullet.global_position = enemy_bullet.global_position.move_toward(self.global_position, sucking*2)
+
+func fix_suck():
+	nearby_enemy_bullets = get_nearby_enemy_bullets(200)
+	for enemy_bullet in nearby_enemy_bullets:
+		if(is_instance_valid(enemy_bullet)):
+			enemy_bullet.can_move = true
 
 func update_seeking_target(distance: int):
 	if(can_seek):

@@ -35,6 +35,7 @@ signal dead
 signal level_up_signal
 
 func health_changed(new_health):
+	Global_Sound_System.play_sound(Global_Sound_System.player_hit_sound)
 	health_change.emit(new_health)
 
 func hurt(amount):
@@ -49,6 +50,8 @@ func hurt(amount):
 		pass # Some dodge sfx or smth
 
 func level_up():
+	Global_Sound_System.play_sound(Global_Sound_System.level_up_sound)
+	level_up_signal.emit()
 	get_tree().paused = true
 	level_up_signal.emit()
 
@@ -139,6 +142,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("dash") && (dash_duration <= -dash_cooldown):
 		get_node("Dash/Ghost Particles").set_emitting(true)
+		Global_Sound_System.play_sound(Global_Sound_System.dash_sound)
 		is_dashing = true
 		invulnerable = true
 		dash_duration = 0.2
@@ -190,6 +194,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		self.position = self.position + Vector2(0, 250)
 		room_change.emit(Vector2(0, 1200))
 	if area.type == "XP":
+		Global_Sound_System.play_sound(Global_Sound_System.xp_pickup_sound)
 		current_xp += 1
 		area.kill_self()
 	if area.type == "enemy_laser":

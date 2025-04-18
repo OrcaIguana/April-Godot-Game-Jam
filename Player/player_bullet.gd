@@ -33,7 +33,7 @@ var seeking_target
 @export var cooldown = 1
 @export var speed = 1000
 @export var lifespan = 1
-@export var damage = 0
+@export var damage: float = 1
 @export var burst = 1
 @export var burst_speed = 0
 @export var spread = 0
@@ -57,6 +57,7 @@ var spawn_position = Vector2()
 
 func _ready():
 	$Sprite2D.texture = texture
+	$"Bullet Collision".damage = damage
 	viewport = get_viewport()
 	viewport_position = viewport.get_canvas_transform().get_origin() - get_viewport_rect().size / 2
 	enemies = get_tree().get_nodes_in_group("enemy")

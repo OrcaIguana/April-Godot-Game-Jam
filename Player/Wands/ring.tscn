@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cwoqo66jgusj" path="res://Player/Wands/Scripts/ring.gd" id="2_wqior"]
 [ext_resource type="Texture2D" uid="uid://djc6khf44idhe" path="res://Player/Sprites/wand-hexa.png" id="3_inar1"]
 
-[node name="Wand" instance=ExtResource("1_rblcu")]
+[node name="Ring" instance=ExtResource("1_rblcu")]
 script = ExtResource("2_wqior")
 
 [node name="Wand" parent="." index="0"]

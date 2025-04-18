@@ -8,12 +8,18 @@ var charge = 0
 
 var cooldown = 0
 
+var internal_name = "Name"
+
 var wand_modifiers : Array[Default_Bullet_Modification]
 var spell_modifiers : Array[Default_Bullet_Modification]
 
 # Dummy bullet for getting bullet attributes for shooting
 var dummyInstance = bullets.instantiate()
 var dummyBullet = dummyInstance.get_node("CharacterBody2D")
+
+# Gets name of wand for UI purposes
+func get_internal_name():
+	return internal_name
 
 # Called when new wand is created
 func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
@@ -22,11 +28,12 @@ func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	apply_modifiers()
 	
 # Called when spells on a wand are changes
-func set_spell_modifiers(new_spell_modifiers: Array[Default_Bullet_Modification]):
-	spell_modifiers.clear()
+func set_spell_modifiers(new_spell_modifiers: Array):
+	# spell_modifiers.clear()
 	
 	for modifier in new_spell_modifiers:
 		spell_modifiers.append(modifier)
+		print(modifier.get_modifier_name())
 	apply_modifiers()
 	
 #Applies modifiers to the dummy bullet.
@@ -43,6 +50,7 @@ func apply_modifiers():
 	max_cooldown=dummyBullet.cooldown
 	if(dummyBullet.is_charge):
 		charge_time = min(.5, max_cooldown)
+	
 
 func _physics_process(delta):
 	var mouse_pos = get_global_mouse_position()

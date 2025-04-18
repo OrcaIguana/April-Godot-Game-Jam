@@ -1,6 +1,7 @@
 extends "res://Scripts/active_wand.gd"
 
 func _ready() -> void:
+	internal_name = "Volley"
 	var wand_modifiers : Array[Default_Bullet_Modification]	
 	wand_modifiers.append(Burst_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(4)
@@ -13,5 +14,5 @@ func _ready() -> void:
 	wand_modifiers.append(Cooldown_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(1.25)
 	wand_modifiers.append(Slow_Bullet_Modification.new())
-	wand_modifiers[wand_modifiers.size()-1].initialize(0.5)
+	wand_modifiers[wand_modifiers.size()-1].initialize(0.5) 
 	super.set_wand_modifiers(wand_modifiers)

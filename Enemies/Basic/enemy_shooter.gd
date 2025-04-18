@@ -53,7 +53,7 @@ func shoot_at_player():
 func _on_collision_area_entered(area: Area2D) -> void:
 	if area.type == "friendly_bullet":
 		area.kill_self()
-		super._on_death()
+		super.hurt(area.damage)
 	else:
 		pass
 	

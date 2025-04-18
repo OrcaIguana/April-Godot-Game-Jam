@@ -49,13 +49,20 @@ func hurt(amount):
 		pass # Some dodge sfx or smth
 
 func level_up():
-	level_up_signal.emit()
 	get_tree().paused = true
+	level_up_signal.emit()
+
 	
 func wand_get(wand):
 	add_child(wand)
 	wand.visible = false
-	wand_inventory[wand_inventory.find(null)] = wand
+	var location = wand_inventory.find(null)
+	wand_inventory[location] = wand
+	change_wand_index(location)
+	
+	
+func spell_add(spell, slot):
+	wand_inventory[slot].set_spell_modifiers(spell)
 
 func load_wand(wand):
 		var loaded_wand = wand.instantiate()
@@ -84,7 +91,7 @@ func _ready():
 	invulnerable = true
 	await get_tree().create_timer(10).timeout
 	invulnerable = false
-	
+	change_wand_index(0)
 	
 func get_input():
 	var input

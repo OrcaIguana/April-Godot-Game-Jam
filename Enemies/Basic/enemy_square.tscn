@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx3l73s0geq1i"]
+[gd_scene load_steps=4 format=3 uid="uid://fma6qwd7irpf"]
 
 [ext_resource type="PackedScene" uid="uid://bnasqq4ma8u6m" path="res://Enemies/enemy.tscn" id="1_u7a25"]
 [ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_vpysj"]

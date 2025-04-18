@@ -7,6 +7,8 @@ var player: Node2D
 
 var spawn_location: Vector2 = Vector2()
 
+var health = 1
+
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	add_to_group("enemy")
@@ -25,3 +27,8 @@ func _on_death():
 	XP.spawn_position = self.global_position
 	get_tree().current_scene.add_child(XP)
 	queue_free()
+
+func hurt(amount):
+	health -= amount
+	if health <= 0:
+		_on_death()

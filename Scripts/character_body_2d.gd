@@ -56,6 +56,9 @@ func wand_get(wand):
 	add_child(wand)
 	wand.visible = false
 	wand_inventory[wand_inventory.find(null)] = wand
+	
+func spell_add(spell, slot):
+	wand_inventory[wand_inventory.find(slot)].set_spell_modifiers(spell)
 
 func load_wand(wand):
 		var loaded_wand = wand.instantiate()

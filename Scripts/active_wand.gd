@@ -23,7 +23,7 @@ func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	
 # Called when spells on a wand are changes
 func set_spell_modifiers(new_spell_modifiers: Array[Default_Bullet_Modification]):
-	spell_modifiers.clear()
+	# spell_modifiers.clear()
 	
 	for modifier in new_spell_modifiers:
 		spell_modifiers.append(modifier)

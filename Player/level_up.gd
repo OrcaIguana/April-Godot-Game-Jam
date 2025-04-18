@@ -5,6 +5,8 @@ var bias = 50
 
 var current_selection
 
+var currently_spell
+
 signal chosen
 
 var current_wands = [
@@ -17,12 +19,23 @@ var current_wands = [
 ]
 
 var current_spells = [
-	preload("res://Player/Wands/focus.tscn"),
-	preload("res://Player/Wands/blaster.tscn"),
-	preload("res://Player/Wands/fan.tscn"),
-	preload("res://Player/Wands/ring.tscn"),
-	preload("res://Player/Wands/voley.tscn"),
-	preload("res://Player/Wands/launcher.tscn")
+	Echo_Bullet_Modification.new(),
+	Slow_Bullet_Modification.new(),
+	Spam_Bullet_Modification.new(),
+	Stun_Bullet_Modification.new(),
+	Burst_Bullet_Modification.new(),
+	Orbit_Bullet_Modification.new(),
+	Speed_Bullet_Modification.new()
+]
+
+var spell_icons = [
+	preload("res://Sprites/item-icon-blue.png"),
+	preload("res://Sprites/item-icon-pink.png"),
+	preload("res://Sprites/item-icon-red.png"),
+	preload("res://Sprites/item-icon-purple.png"),
+	preload("res://Sprites/item-icon-cyan.png"),
+	preload("res://Sprites/item-icon-orange.png"),
+	preload("res://Sprites/item-icon-green.png")
 ]
 
 signal on_press(current_selection)
@@ -39,8 +52,11 @@ func _choose_slot():
 	else:
 		current_selection = current_wands[randi_range(0, len(current_wands)-1)].instantiate()
 		bias += 10
-	self.text = "TEST"
-	self.icon = current_selection.get_node("Wand").texture
+	if is_spell:
+		self.icon = spell_icons[randi_range(0, len(spell_icons))]
+		self.text = current_selection
+	else:
+		self.icon = current_selection.get_node("Wand").texture
 
 
 func _on_pressed() -> void:

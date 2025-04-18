@@ -51,7 +51,7 @@ func on_rectangle_phase_start():
 	attack_cooldown = 2.0
 
 func on_circle_phase_start():
-	speed = 300
+	speed = 350
 	attack_cooldown = 0.0
 	shoot_cooldown = 0.0
 

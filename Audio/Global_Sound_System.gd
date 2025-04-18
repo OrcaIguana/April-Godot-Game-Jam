@@ -41,9 +41,11 @@ func play_sound(sound : AudioStream):
 		var new_player = AudioStreamPlayer.new()
 		new_player.bus = "SFX"
 		new_player.volume_db=-20
-		new_player.max_polyphony = 15
+		new_player.max_polyphony = 3
 		sfx_players.append(new_player)
 		sound_system.add_child(new_player)
 		target_player = new_player
 		target_player.set_stream(sound)
+	randomize()
+	target_player.pitch_scale = randf_range(0.9,1.1)
 	target_player.play()

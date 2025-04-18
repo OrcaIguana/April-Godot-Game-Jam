@@ -35,11 +35,11 @@ signal dead
 signal level_up_signal
 
 func health_changed(new_health):
-	Global_Sound_System.play_sound(Global_Sound_System.player_hit_sound)
 	health_change.emit(new_health)
 
 func hurt(amount):
 	if !invulnerable:
+		Global_Sound_System.play_sound(Global_Sound_System.player_hit_sound)
 		var new_health = health - amount
 		health_change.emit(new_health)
 		health = new_health

@@ -38,7 +38,6 @@ func _on_wander_timer_timeout():
 func _on_charge_timer_timeout():
 	if beenTriggered:
 		spawn_bullet_burst()
-	Global_Sound_System.play_sound(Global_Sound_System.charger_explosion_sound)
 	velocity = Vector2.ZERO
 	resting = true
 	$WanderTimer.start(10)
@@ -52,6 +51,7 @@ func _reset_charge_timer():
 	$ChargeTimer.start(1)
 	
 func spawn_bullet_burst():
+	Global_Sound_System.play_sound(Global_Sound_System.charger_explosion_sound)
 	for i in range(12):
 		var shot = bullet.instantiate()
 		shot.spawn_position = $BulletSpawnpoint.global_position

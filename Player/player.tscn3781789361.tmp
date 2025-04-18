@@ -1,0 +1,477 @@
+[gd_scene load_steps=32 format=3 uid="uid://cvnhcrcuvg482"]
+
+[ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
+[ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
+[ext_resource type="PackedScene" uid="uid://b4dn0r55je8b6" path="res://Player/wand.tscn" id="5_k53q1"]
+[ext_resource type="Script" uid="uid://dr7iox7g73row" path="res://Player/dash_cooldown.gd" id="6_fhl08"]
+[ext_resource type="Texture2D" uid="uid://dgo2plj72j1br" path="res://Player/Sprites/player-eyes.png" id="6_od3ui"]
+[ext_resource type="Script" uid="uid://djlfcb8mad1pw" path="res://Player/eyes.gd" id="6_vtle1"]
+[ext_resource type="Script" uid="uid://bt76u50a755ib" path="res://User Interface/Scripts/hotbar.gd" id="7_00tjw"]
+[ext_resource type="Texture2D" uid="uid://dnfpod7bst7t4" path="res://User Interface/Sprites/image1.png" id="7_od3ui"]
+[ext_resource type="Script" uid="uid://bn4vpnaxmp4sb" path="res://Player/ghost_particles.gd" id="7_vtle1"]
+[ext_resource type="Script" uid="uid://p85rf2qpsxay" path="res://User Interface/Scripts/health.gd" id="7_x3vf3"]
+[ext_resource type="Script" uid="uid://byy2fuohaqiu1" path="res://User Interface/Scripts/slot_2.gd" id="8_5htga"]
+[ext_resource type="Script" uid="uid://b2w1s3ysi4hef" path="res://Player/Player_Trigger.gd" id="8_n471f"]
+[ext_resource type="Script" uid="uid://dpy6qar0udrlk" path="res://Player/player_ui.gd" id="9_n471f"]
+[ext_resource type="Script" uid="uid://d2lefs7wec0ls" path="res://User Interface/Scripts/slot_3.gd" id="9_p5o4e"]
+[ext_resource type="Script" uid="uid://diy3je4q6tvo2" path="res://User Interface/Scripts/progress_bar.gd" id="10_dkpta"]
+[ext_resource type="Script" uid="uid://dsbvb2any6xle" path="res://User Interface/Scripts/slot_4.gd" id="10_gu6f8"]
+[ext_resource type="Script" uid="uid://dp6hp5inhtcro" path="res://User Interface/Scripts/progress_bar_2.gd" id="12_b1ygp"]
+[ext_resource type="Script" uid="uid://dn45rqfyekbkk" path="res://User Interface/Scripts/progress_bar_3.gd" id="14_o28un"]
+[ext_resource type="Script" uid="uid://bpq1rkg7hkeqx" path="res://User Interface/Scripts/progress_bar_4.gd" id="16_n471f"]
+[ext_resource type="Script" uid="uid://b3io1qnl3jcux" path="res://Player/level_up.gd" id="20_7emwf"]
+[ext_resource type="Script" uid="uid://c1h1n5pdp7cg0" path="res://Player/level_up_screen.gd" id="20_hshwv"]
+[ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
+[ext_resource type="Script" path="res://Player/Wand_Selection.gd" id="22_gpjlu"]
+[ext_resource type="Script" uid="uid://d1qbmy7l4orml" path="res://Player/new_spell.gd" id="22_sm0op"]
+[ext_resource type="Script" path="res://Player/button_2.gd" id="23_8mwp6"]
+[ext_resource type="Script" path="res://Player/button_3.gd" id="24_qemgg"]
+[ext_resource type="Script" path="res://Player/button_4.gd" id="25_8viyr"]
+
+[sub_resource type="Curve" id="Curve_fhl08"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vtle1"]
+curve = SubResource("Curve_fhl08")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fhl08"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_vtle1")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dl81w"]
+radius = 0.600333
+
+[node name="Player" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+floor_stop_on_slope = false
+script = ExtResource("1_hqtel")
+
+[node name="Body" type="Sprite2D" parent="Player"]
+texture = ExtResource("5_fhl08")
+
+[node name="Eyes" type="Sprite2D" parent="Player"]
+texture = ExtResource("6_od3ui")
+script = ExtResource("6_vtle1")
+
+[node name="Wand" parent="Player" instance=ExtResource("5_k53q1")]
+position = Vector2(-4056.22, -1268.74)
+
+[node name="Dash" type="Node2D" parent="Player"]
+show_behind_parent = true
+
+[node name="Dash Cooldown Bar" type="ProgressBar" parent="Player/Dash"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = 34.0
+offset_right = 25.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+show_percentage = false
+script = ExtResource("6_fhl08")
+
+[node name="Ghost Particles" type="GPUParticles2D" parent="Player/Dash"]
+show_behind_parent = true
+amount = 60
+texture = ExtResource("5_fhl08")
+lifetime = 0.26
+interp_to_end = 0.444
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_fhl08")
+script = ExtResource("7_vtle1")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+scale = Vector2(51.0926, 50)
+script = ExtResource("8_n471f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("CircleShape2D_dl81w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_dl81w")
+
+[node name="PlayerUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("9_n471f")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -4.75
+anchor_top = -24.05
+anchor_right = -4.75
+anchor_bottom = -24.05
+offset_top = 967.0
+offset_right = 260.0
+offset_bottom = 1007.0
+grow_vertical = 0
+scale = Vector2(1.76, 1.76)
+metadata/_edit_use_anchors_ = true
+
+[node name="Slot 1" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("7_00tjw")
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 1"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("10_dkpta")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 1"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 1"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 1/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 1/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 1/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Slot 2" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("8_5htga")
+
+[node name="ProgressBar2" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 2"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = -0.25
+offset_right = 39.75
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("12_b1ygp")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 2"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 2"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 2/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 2/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 2/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Slot 3" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("9_p5o4e")
+
+[node name="ProgressBar3" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 3"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 0.0681839
+offset_right = 40.0682
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("14_o28un")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 3"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 3"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 3/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 3/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 3/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Slot 4" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("10_gu6f8")
+
+[node name="ProgressBar4" type="ProgressBar" parent="PlayerUI/HBoxContainer/Slot 4"]
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = -0.181824
+offset_right = 39.8182
+offset_bottom = 40.0
+show_percentage = false
+script = ExtResource("16_n471f")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/HBoxContainer/Slot 4"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -88.9773
+scale = Vector2(1, 3.20455)
+color = Color(0.197515, 0.29985, 0.306289, 0.752941)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/HBoxContainer/Slot 4"]
+visible = false
+layout_mode = 0
+offset_top = -128.977
+offset_right = 40.0
+offset_bottom = -0.977264
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 4/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 4/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerUI/HBoxContainer/Slot 4/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Health" type="TextureRect" parent="PlayerUI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_od3ui")
+expand_mode = 2
+script = ExtResource("7_x3vf3")
+
+[node name="Dead Screen" type="ColorRect" parent="PlayerUI"]
+visible = false
+layout_mode = 2
+offset_left = -232.0
+offset_top = -997.0
+offset_right = 1883.0
+offset_bottom = 123.0
+color = Color(0.247059, 0.247059, 0.247059, 0.854902)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Dead Screen"]
+layout_mode = 0
+offset_left = 905.0
+offset_top = 549.0
+offset_right = 1033.0
+offset_bottom = 581.0
+text = "YOU ARE DEAD"
+
+[node name="Level Up Screen" type="ColorRect" parent="PlayerUI"]
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_left = -232.0
+offset_top = -997.0
+offset_right = 1883.0
+offset_bottom = 123.0
+color = Color(0.247059, 0.247059, 0.247059, 0.854902)
+script = ExtResource("20_hshwv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 882.0
+offset_top = 354.0
+offset_right = 1105.0
+offset_bottom = 386.0
+text = "Level Up! Choose a reward"
+
+[node name="Button" type="Button" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 433.0
+offset_right = 905.0
+offset_bottom = 673.0
+script = ExtResource("20_7emwf")
+
+[node name="Button2" type="Button" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 433.0
+offset_right = 1064.0
+offset_bottom = 673.0
+script = ExtResource("20_7emwf")
+
+[node name="Button3" type="Button" parent="PlayerUI/Level Up Screen"]
+layout_mode = 0
+offset_left = 1084.0
+offset_top = 433.0
+offset_right = 1222.0
+offset_bottom = 673.0
+script = ExtResource("20_7emwf")
+
+[node name="Select slot" type="ColorRect" parent="PlayerUI"]
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_left = -219.0
+offset_top = -1002.0
+offset_right = 1896.0
+offset_bottom = 118.0
+color = Color(0.247059, 0.247059, 0.247059, 0.854902)
+script = ExtResource("22_sm0op")
+
+[node name="Which Wand?" type="RichTextLabel" parent="PlayerUI/Select slot"]
+layout_mode = 0
+offset_left = 962.0
+offset_top = 374.0
+offset_right = 1185.0
+offset_bottom = 406.0
+text = "What wand?"
+
+[node name="Button" type="Button" parent="PlayerUI/Select slot"]
+layout_mode = 0
+offset_left = 699.0
+offset_top = 433.0
+offset_right = 837.0
+offset_bottom = 673.0
+script = ExtResource("22_gpjlu")
+
+[node name="Button2" type="Button" parent="PlayerUI/Select slot"]
+layout_mode = 0
+offset_left = 861.0
+offset_top = 433.0
+offset_right = 999.0
+offset_bottom = 673.0
+script = ExtResource("23_8mwp6")
+
+[node name="Button3" type="Button" parent="PlayerUI/Select slot"]
+layout_mode = 0
+offset_left = 1022.0
+offset_top = 433.0
+offset_right = 1160.0
+offset_bottom = 673.0
+script = ExtResource("24_qemgg")
+
+[node name="Button4" type="Button" parent="PlayerUI/Select slot"]
+layout_mode = 0
+offset_left = 1186.0
+offset_top = 433.0
+offset_right = 1324.0
+offset_bottom = 673.0
+script = ExtResource("25_8viyr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("21_7emwf")
+
+[connection signal="dead" from="Player" to="PlayerUI" method="_on_player_dead"]
+[connection signal="health_change" from="Player" to="PlayerUI/HBoxContainer/Health" method="_on_health_change"]
+[connection signal="health_change" from="Player" to="Camera2D" method="_on_player_health_change"]
+[connection signal="level_up_signal" from="Player" to="PlayerUI" method="_on_player_level_up_signal"]
+[connection signal="room_change" from="Player" to="PlayerUI" method="_on_player_room_change"]
+[connection signal="room_change" from="Player" to="Camera2D" method="_on_player_room_change"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 1" method="_on_wand_swap"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 2" method="_on_wand_swap"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 3" method="_on_wand_swap"]
+[connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 4" method="_on_wand_swap"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 1/ProgressBar" method="_update"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 2/ProgressBar2" method="_update"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 3/ProgressBar3" method="_update"]
+[connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 4/ProgressBar4" method="_update"]
+[connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]
+[connection signal="chosen" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
+[connection signal="on_press" from="PlayerUI/Level Up Screen/Button" to="Player" method="wand_get"]
+[connection signal="pressed" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen/Button" method="_on_pressed"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button2" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button3" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button4" method="_on_button_spell"]
+[connection signal="chosen" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
+[connection signal="on_press" from="PlayerUI/Level Up Screen/Button2" to="Player" method="wand_get"]
+[connection signal="pressed" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Level Up Screen/Button2" method="_on_pressed"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button2" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button3" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button4" method="_on_button_spell"]
+[connection signal="chosen" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
+[connection signal="on_press" from="PlayerUI/Level Up Screen/Button3" to="Player" method="wand_get"]
+[connection signal="pressed" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Level Up Screen/Button3" method="_on_pressed"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button2" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button3" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button4" method="_on_button_spell"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button" to="PlayerUI/Select slot" method="_on_button_chosen"]
+[connection signal="pressed" from="PlayerUI/Select slot/Button" to="PlayerUI/Select slot/Button" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button" to="PlayerUI/Select slot/Button" method="_on_visibility_changed"]
+[connection signal="wand_selection" from="PlayerUI/Select slot/Button" to="Player" method="spell_add"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button2" to="PlayerUI/Select slot" method="_on_button_chosen"]
+[connection signal="pressed" from="PlayerUI/Select slot/Button2" to="PlayerUI/Select slot/Button2" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button2" to="PlayerUI/Select slot/Button2" method="_on_visibility_changed"]
+[connection signal="wand_selection" from="PlayerUI/Select slot/Button2" to="Player" method="spell_add"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button3" to="PlayerUI/Select slot" method="_on_button_chosen"]
+[connection signal="pressed" from="PlayerUI/Select slot/Button3" to="PlayerUI/Select slot/Button3" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button3" to="PlayerUI/Select slot/Button3" method="_on_visibility_changed"]
+[connection signal="wand_selection" from="PlayerUI/Select slot/Button3" to="Player" method="spell_add"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot" method="_on_button_chosen"]
+[connection signal="pressed" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot/Button4" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot/Button4" method="_on_visibility_changed"]
+[connection signal="wand_selection" from="PlayerUI/Select slot/Button4" to="Player" method="spell_add"]

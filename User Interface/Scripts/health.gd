@@ -13,4 +13,4 @@ var sprite_array = [
 ]
 
 func _on_health_change(health):
-	self.texture = sprite_array[health]
+	self.texture = sprite_array[max(health, 0)]

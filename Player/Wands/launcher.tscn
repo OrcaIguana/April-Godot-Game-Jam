@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bwc02pbk6v4fb" path="res://Player/Wands/Scripts/launcher.gd" id="2_vme5p"]
 [ext_resource type="Texture2D" uid="uid://dvmsibae7phnc" path="res://Player/Sprites/wand-cross.png" id="3_o6ewi"]
 
-[node name="Wand" instance=ExtResource("1_o6ewi")]
+[node name="Launcher" instance=ExtResource("1_o6ewi")]
 script = ExtResource("2_vme5p")
 
 [node name="Wand" parent="." index="0"]

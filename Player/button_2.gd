@@ -11,8 +11,8 @@ func _ready() -> void:
 func _choose_slot():
 	var wands = get_node("../../../Player").wand_inventory
 	var selected_wand = wands[1]
-	self.text = "None"
 	if selected_wand != null:
+		self.text = selected_wand.name
 		self.icon = selected_wand.get_node("Wand").texture
 
 func _on_pressed() -> void:

@@ -62,6 +62,7 @@ func _choose_slot():
 		self.currently_spell = true
 	else:
 		self.icon = current_selection.get_node("Wand").texture
+		self.text = current_selection.name
 		self.currently_spell = false
 
 

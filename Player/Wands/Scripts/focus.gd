@@ -1,6 +1,7 @@
 extends "res://Scripts/active_wand.gd"
 
 func _ready() -> void:
+	internal_name = "Focus"
 	var wand_modifiers : Array[Default_Bullet_Modification]
 	wand_modifiers.append(Speed_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(2.5)

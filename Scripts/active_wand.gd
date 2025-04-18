@@ -8,12 +8,18 @@ var charge = 0
 
 var cooldown = 0
 
+var internal_name = "Name"
+
 var wand_modifiers : Array[Default_Bullet_Modification]
 var spell_modifiers : Array[Default_Bullet_Modification]
 
 # Dummy bullet for getting bullet attributes for shooting
 var dummyInstance = bullets.instantiate()
 var dummyBullet = dummyInstance.get_node("CharacterBody2D")
+
+# Gets name of wand for UI purposes
+func get_internal_name():
+	return internal_name
 
 # Called when new wand is created
 func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):

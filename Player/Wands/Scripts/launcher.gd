@@ -1,6 +1,7 @@
 extends "res://Scripts/active_wand.gd"
 
 func _ready() -> void:
+	internal_name = "Launcher"
 	var wand_modifiers : Array[Default_Bullet_Modification]
 	wand_modifiers.append(Slow_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(0.5)

@@ -40,7 +40,7 @@ func play_sound(sound : AudioStream):
 		print("Making new audio player for: ", sound)
 		var new_player = AudioStreamPlayer.new()
 		new_player.bus = "SFX"
-		new_player.volume_db=-15
+		new_player.volume_db=-20
 		new_player.max_polyphony = 15
 		sfx_players.append(new_player)
 		sound_system.add_child(new_player)

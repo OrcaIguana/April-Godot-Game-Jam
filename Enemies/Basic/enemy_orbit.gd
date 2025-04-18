@@ -47,7 +47,7 @@ func _on_wander_timer_timeout():
 func spawn_orbiting_bullet():
 	for i in range(5):
 		var orb = OrbitingBullet.instantiate()
-		orb.center = global_position
+		orb.center_global = global_position
 		orb.angle = i * (TAU/5)
 		get_tree().current_scene.add_child(orb)
 	

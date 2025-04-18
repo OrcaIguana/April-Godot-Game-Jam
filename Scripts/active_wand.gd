@@ -26,7 +26,7 @@ func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	for mod in new_wand_modifiers:
 		wand_modifiers.append(mod)
 	# append test modifiers below here
-		
+
 	apply_modifiers()
 	
 # Called when spells on a wand are changes

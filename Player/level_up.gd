@@ -29,7 +29,10 @@ var current_spells = [
 	Repulse_Bullet_Modification.new(),
 	Seeking_Bullet_Modification.new(),
 	Bouncing_Bullet_Modification.new(),
-	Vacuum_Bullet_Modification.new()
+	Vacuum_Bullet_Modification.new(),
+	Coolup_Bullet_Modification.new(),
+	Piercing_Bullet_Modification.new(),
+	SplittingCount_Bullet_Modification.new(),
 ]
 
 var spell_icons = [

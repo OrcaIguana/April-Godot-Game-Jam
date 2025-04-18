@@ -11,7 +11,8 @@ func apply_modification(bullet : Bullet):
 	if(bullet.burst_speed == 0):
 		bullet.burst_speed = .02
 	bullet.lifespan = max(bullet.lifespan+1, 2)
-	bullet.splitting_lifespan += 1
+	bullet.splitting_lifespan = max(bullet.splitting_lifespan+1, 2)
+	bullet.speed = max(bullet.speed, 1000)
 
 func get_modifier_name() -> String:
 	return "Orbit"

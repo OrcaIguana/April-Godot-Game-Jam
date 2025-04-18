@@ -122,6 +122,7 @@ func _spawn_dungeon(dungeon_array):
 			break
 				
 func _get_start():
+	Global_Sound_System.location = "dungeon"
 	for y in range(_dimensions.y - 1 , -1 , -1):
 		for x in _dimensions.x:
 			if dungeon[x][y]:

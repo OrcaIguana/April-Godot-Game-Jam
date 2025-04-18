@@ -4,6 +4,7 @@ func _ready() -> void:
 	self.position = self.position + Vector2(-750, 480)
 
 func _on_player_room_change(direction: Variant) -> void:
+	Global_Sound_System.play_sound(Global_Sound_System.door_sound)
 	self.position = self.position + direction
 
 

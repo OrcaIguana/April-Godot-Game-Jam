@@ -8,6 +8,7 @@ func initialize(val: bool):
 
 func apply_modification(bullet : Bullet):
 	bullet.is_echo = is_echo
+	bullet.echo_count += 1
 
 func get_modifier_name() -> String:
 	return "Echo"

@@ -38,6 +38,7 @@ func _on_wander_timer_timeout():
 func _on_charge_timer_timeout():
 	if beenTriggered:
 		spawn_bullet_burst()
+	Global_Sound_System.play_sound(Global_Sound_System.charger_explosion_sound)
 	velocity = Vector2.ZERO
 	resting = true
 	$WanderTimer.start(10)

@@ -1,10 +1,21 @@
 extends Node
-class_name Sound_System_Class
 
-# Tracks
-#var Boss_Track = preload()
+@export var music_player : AudioStreamPlayer
 
-var is_looping
+var location: String
+var location_music: String
 
-func _on_audio_stream_player_finished() -> void:
-	pass # Replace with function body.
+func _ready():
+	Global_Sound_System.set_sound_system(self)
+	location = Global_Sound_System.location
+	pass
+
+func _process(delta):
+	if(location != Global_Sound_System.location):
+		location = Global_Sound_System.location
+		update_music()
+	pass
+
+func update_music():
+	location_music = str(location + "Music")
+	music_player["parameters/switch_to_clip"] = location_music

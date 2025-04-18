@@ -25,6 +25,8 @@ func get_internal_name():
 func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	for mod in new_wand_modifiers:
 		wand_modifiers.append(mod)
+	# append test modifiers below here
+		
 	apply_modifiers()
 	
 # Called when spells on a wand are changes
@@ -33,7 +35,6 @@ func set_spell_modifiers(new_spell_modifiers: Array):
 	
 	for modifier in new_spell_modifiers:
 		spell_modifiers.append(modifier)
-		print(modifier.get_modifier_name())
 	apply_modifiers()
 	
 #Applies modifiers to the dummy bullet.
@@ -62,6 +63,7 @@ func _process(delta):
 		modulate = Color((1+min(.5,charge)), (1+min(.5,charge)), (1+min(.5,charge)), 1)
 	
 func shoot(parent_pos: Vector2):	
+	Global_Sound_System.play_sound(Global_Sound_System.player_shoot_sound)
 	var counter = 0
 	var loop = 0
 	while true:
@@ -84,9 +86,8 @@ func shoot(parent_pos: Vector2):
 			if(bullet.burst_speed > 0):
 				await get_tree().create_timer(dummyBullet.burst_speed).timeout
 		loop += 1
-		if loop > 1 || !dummyBullet.is_echo:
+		if loop > dummyBullet.echo_count || !dummyBullet.is_echo:
 			break
 		if(dummyBullet.is_echo):
-			print("echo")
 			await get_tree().create_timer(.25).timeout
 		counter = 0

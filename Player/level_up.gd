@@ -7,6 +7,7 @@ var current_selection
 
 var currently_spell
 
+signal spell(chosen_spell)
 signal chosen
 
 var current_wands = [
@@ -20,12 +21,15 @@ var current_wands = [
 
 var current_spells = [
 	Echo_Bullet_Modification.new(),
-	Slow_Bullet_Modification.new(),
-	Spam_Bullet_Modification.new(),
-	Stun_Bullet_Modification.new(),
 	Burst_Bullet_Modification.new(),
 	Orbit_Bullet_Modification.new(),
-	Speed_Bullet_Modification.new()
+	Speed_Bullet_Modification.new(),
+	Charge_Bullet_Modification.new(),
+	Strengthen_Bullet_Modification.new(),
+	Repulse_Bullet_Modification.new(),
+	Seeking_Bullet_Modification.new(),
+	Bouncing_Bullet_Modification.new(),
+	Vacuum_Bullet_Modification.new()
 ]
 
 var spell_icons = [
@@ -47,19 +51,25 @@ func _choose_slot():
 	var is_spell = randi_range(0, 100) > bias
 	
 	if is_spell:
-		current_selection = current_spells[randi_range(0, len(current_spells)-1)].instantiate()
+		current_selection = current_spells[randi_range(0, len(current_spells)-1)]
 		bias -= 10
 	else:
 		current_selection = current_wands[randi_range(0, len(current_wands)-1)].instantiate()
 		bias += 10
 	if is_spell:
-		self.icon = spell_icons[randi_range(0, len(spell_icons))]
-		self.text = current_selection
+		self.icon = spell_icons[randi_range(0, len(spell_icons)-1)]
+		self.text = current_selection.get_modifier_name()
+		self.currently_spell = true
 	else:
 		self.icon = current_selection.get_node("Wand").texture
+		self.currently_spell = false
 
 
 func _on_pressed() -> void:
-	get_tree().paused = false
-	chosen.emit()
-	on_press.emit(current_selection)
+	if currently_spell:
+		chosen.emit()
+		spell.emit(current_selection)
+	else:
+		get_tree().paused = false
+		chosen.emit()
+		on_press.emit(current_selection)

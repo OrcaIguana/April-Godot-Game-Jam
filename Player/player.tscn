@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cvnhcrcuvg482"]
+[gd_scene load_steps=32 format=3 uid="uid://cvnhcrcuvg482"]
 
 [ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://c1h1n5pdp7cg0" path="res://Player/level_up_screen.gd" id="20_hshwv"]
 [ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
 [ext_resource type="Script" uid="uid://c0sr75yjeent" path="res://Player/Wand_Selection.gd" id="22_gpjlu"]
+[ext_resource type="Script" uid="uid://d1qbmy7l4orml" path="res://Player/new_spell.gd" id="22_sm0op"]
 [ext_resource type="Script" uid="uid://cx5cjsur7qylr" path="res://Player/button_2.gd" id="23_8mwp6"]
 [ext_resource type="Script" uid="uid://2t0g3421q1mi" path="res://Player/button_3.gd" id="24_qemgg"]
 [ext_resource type="Script" uid="uid://gu8r162guqgv" path="res://Player/button_4.gd" id="25_8viyr"]
@@ -366,13 +367,14 @@ script = ExtResource("20_7emwf")
 
 [node name="Select slot" type="ColorRect" parent="PlayerUI"]
 process_mode = 2
+visible = false
 layout_mode = 0
 offset_left = -219.0
 offset_top = -1002.0
 offset_right = 1896.0
 offset_bottom = 118.0
 color = Color(0.247059, 0.247059, 0.247059, 0.854902)
-script = ExtResource("20_hshwv")
+script = ExtResource("22_sm0op")
 
 [node name="Which Wand?" type="RichTextLabel" parent="PlayerUI/Select slot"]
 layout_mode = 0
@@ -436,14 +438,40 @@ script = ExtResource("21_7emwf")
 [connection signal="chosen" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
 [connection signal="on_press" from="PlayerUI/Level Up Screen/Button" to="Player" method="wand_get"]
 [connection signal="pressed" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen/Button" method="_on_pressed"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button2" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button3" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Select slot/Button4" method="_on_button_spell"]
 [connection signal="chosen" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
 [connection signal="on_press" from="PlayerUI/Level Up Screen/Button2" to="Player" method="wand_get"]
 [connection signal="pressed" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Level Up Screen/Button2" method="_on_pressed"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button2" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button3" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button2" to="PlayerUI/Select slot/Button4" method="_on_button_spell"]
 [connection signal="chosen" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
 [connection signal="on_press" from="PlayerUI/Level Up Screen/Button3" to="Player" method="wand_get"]
 [connection signal="pressed" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Level Up Screen/Button3" method="_on_pressed"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button2" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button3" method="_on_button_spell"]
+[connection signal="spell" from="PlayerUI/Level Up Screen/Button3" to="PlayerUI/Select slot/Button4" method="_on_button_spell"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button" to="PlayerUI/Select slot" method="_on_button_chosen"]
 [connection signal="pressed" from="PlayerUI/Select slot/Button" to="PlayerUI/Select slot/Button" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button" to="PlayerUI/Select slot/Button" method="_on_visibility_changed"]
 [connection signal="wand_selection" from="PlayerUI/Select slot/Button" to="Player" method="spell_add"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button2" to="PlayerUI/Select slot" method="_on_button_chosen"]
 [connection signal="pressed" from="PlayerUI/Select slot/Button2" to="PlayerUI/Select slot/Button2" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button2" to="PlayerUI/Select slot/Button2" method="_on_visibility_changed"]
+[connection signal="wand_selection" from="PlayerUI/Select slot/Button2" to="Player" method="spell_add"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button3" to="PlayerUI/Select slot" method="_on_button_chosen"]
 [connection signal="pressed" from="PlayerUI/Select slot/Button3" to="PlayerUI/Select slot/Button3" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button3" to="PlayerUI/Select slot/Button3" method="_on_visibility_changed"]
+[connection signal="wand_selection" from="PlayerUI/Select slot/Button3" to="Player" method="spell_add"]
+[connection signal="chosen" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot" method="_on_button_chosen"]
 [connection signal="pressed" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot/Button4" method="_on_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot/Button4" method="_on_visibility_changed"]
+[connection signal="wand_selection" from="PlayerUI/Select slot/Button4" to="Player" method="spell_add"]

@@ -192,3 +192,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.type == "XP":
 		current_xp += 1
 		area.kill_self()
+	if area.type == "enemy_laser":
+		hurt(1)

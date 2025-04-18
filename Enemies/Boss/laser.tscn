@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmb8dps4hpd0k"]
+
+[ext_resource type="Script" uid="uid://dsewme8c6x6jr" path="res://Enemies/Boss/laser.gd" id="1_fn5yt"]
+[ext_resource type="Script" uid="uid://bk2dni7h1yopu" path="res://area_2d.gd" id="2_6vqwg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vqwg"]
+size = Vector2(638, 20)
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_fn5yt")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+script = ExtResource("2_6vqwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(309, 0)
+scale = Vector2(18.2, 2.84)
+shape = SubResource("RectangleShape2D_6vqwg")
+
+[node name="Time Till Death" type="Timer" parent="."]
+one_shot = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(2283.94, 1.47819)
+scale = Vector2(17.2807, 0.340788)
+polygon = PackedVector2Array(-266.5, -86.5, 87.5, -86.5, 86.39, 86.628, -267.81, 85.528)
+uv = PackedVector2Array(-266.5, -86.5, 87.5, -86.5, 86.39, 86.628, -267.81, 85.528)
+
+[connection signal="timeout" from="Time Till Death" to="." method="_on_time_till_death_timeout"]

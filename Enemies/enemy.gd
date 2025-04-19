@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var speed: float = 100.0;
 var follow_distance = 900.0;
+var is_dead : bool = false
 
 var player: Node2D
 
@@ -31,4 +32,6 @@ func _on_death():
 func hurt(amount):
 	health -= amount
 	if health <= 0:
+		is_dead = true
+	if is_dead:
 		_on_death()

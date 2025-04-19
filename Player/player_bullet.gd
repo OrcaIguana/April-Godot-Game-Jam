@@ -57,8 +57,9 @@ var seeking_target
 var spawn_position = Vector2()
 
 func _ready():
+	add_to_group("friendly_bullets")
 	$Sprite2D.texture = texture
-	$"Bullet Collision".damage = damage
+	$"Bullet Collision".damage = damage*(max((splitting_count+1)/2.0, 1))
 	viewport = get_viewport()
 	viewport_position = viewport.get_canvas_transform().get_origin() - get_viewport_rect().size / 2
 	enemies = get_tree().get_nodes_in_group("enemy")
@@ -150,7 +151,7 @@ func check_split():
 				counter += 1
 				bullet.splitting_count = 0
 				get_tree().current_scene.add_child(bullet)
-				if(bullet.burst_speed > 0):
+				if(bullet.burst_speed > 0 && !is_orbit):
 					waiting_to_split = true
 					await get_tree().create_timer(bullet.burst_speed).timeout
 					waiting_to_split = false
@@ -160,7 +161,6 @@ func check_split():
 
 func _on_bullet_collision_kill() -> void:
 	Global_Sound_System.play_sound(Global_Sound_System.enemy_hit_sound)
-	check_split()
 	if(!is_piercing):
 		if(sucking != 0):
 			for enemy_bullet in get_nearby_enemy_bullets(200):

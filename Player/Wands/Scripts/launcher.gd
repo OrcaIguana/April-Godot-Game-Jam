@@ -9,4 +9,6 @@ func _ready() -> void:
 	wand_modifiers[wand_modifiers.size()-1].initialize(360.0)
 	wand_modifiers.append(SplittingCount_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(10, .15)
+	wand_modifiers.append(Weaken_Bullet_Modification.new())
+	wand_modifiers[wand_modifiers.size()-1].initialize(.5)
 	super.set_wand_modifiers(wand_modifiers)

@@ -44,6 +44,7 @@ func _reset_shoot_timer():
 	
 func shoot_at_player():
 	var shot = bullet.instantiate()
+	Global_Sound_System.play_sound(Global_Sound_System.enemy_shoot_sound)
 	shot.spawn_position = $BulletSpawnpoint.global_position
 	shot.direction = get_direction_to_player().rotated(randf_range(-5,5)*(3.14/180))
 	get_tree().current_scene.add_child(shot)

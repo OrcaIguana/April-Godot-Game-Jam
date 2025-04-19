@@ -85,6 +85,7 @@ func shoot(parent_pos: Vector2):
 			get_tree().current_scene.add_child(instance)
 			if(bullet.burst_speed > 0):
 				await get_tree().create_timer(dummyBullet.burst_speed).timeout
+				
 		loop += 1
 		if loop > dummyBullet.echo_count || !dummyBullet.is_echo:
 			break

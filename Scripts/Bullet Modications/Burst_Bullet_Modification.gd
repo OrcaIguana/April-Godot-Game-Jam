@@ -1,7 +1,7 @@
 class_name Burst_Bullet_Modification
 extends "res://Scripts/Bullet Modications/Default_Bullet_Modification.gd"
 
-@export var burst_addition = 4
+@export var burst_addition = 2
 
 func initialize(val: int):
 	burst_addition = val

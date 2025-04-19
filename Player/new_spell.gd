@@ -7,3 +7,7 @@ func _on_button_chosen() -> void:
 
 func _on_button_spell(chosen_spell: Variant) -> void:
 	self.visible = true
+	get_node("Button").visible = true
+	get_node("Button2").visible = true
+	get_node("Button3").visible = true
+	get_node("Button4").visible = true

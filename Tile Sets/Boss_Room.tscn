@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwes2xp18eutl"]
+[gd_scene load_steps=13 format=3 uid="uid://btyfo02txhhch"]
 
 [ext_resource type="Script" uid="uid://cn3pfbxx7abr4" path="res://Tile Sets/boss_room.gd" id="1_is4xm"]
 [ext_resource type="Texture2D" uid="uid://b7nh1mq856j45" path="res://Tile Sets/Room Tiles/prism-boss-floor.png" id="2_is4xm"]

@@ -27,8 +27,10 @@ func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 		wand_modifiers.append(mod)
 	# append test modifiers below here
 	#wand_modifiers.append(Seeking_Bullet_Modification.new())
+	#wand_modifiers.append(Burst_Bullet_Modification.new())
 	#wand_modifiers.append(Orbit_Bullet_Modification.new())
 	#wand_modifiers.append(Burst_Bullet_Modification.new())
+	#wand_modifiers.append(SplittingCount_Bullet_Modification.new())
 	#wand_modifiers.append(Bouncing_Bullet_Modification.new())
 	#wand_modifiers.append(Repulse_Bullet_Modification.new())
 	#wand_modifiers.append(Coolup_Bullet_Modification.new())

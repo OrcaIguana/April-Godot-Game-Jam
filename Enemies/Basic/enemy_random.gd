@@ -44,6 +44,7 @@ func _reset_shoot_timer():
 func shoot_at_player():
 	var bullet_selector = randi_range(1,4)
 	if bullet_selector == 1:
+		$AnimatedSprite2D.play("new_animation")
 		for i in range(3):
 			var shot = bullet.instantiate()
 			shot.spawn_position = $BulletSpawnpoint.global_position
@@ -52,6 +53,7 @@ func shoot_at_player():
 			get_tree().current_scene.add_child(shot)
 			await get_tree().create_timer(.1).timeout
 	if bullet_selector == 2:
+		$AnimatedSprite2D.play("new_animation_2")
 		var shot = bullet.instantiate()
 		shot.spawn_position = $BulletSpawnpoint.global_position
 		shot.direction = get_direction_to_player()
@@ -59,6 +61,7 @@ func shoot_at_player():
 		shot.apply_scale(Vector2(2.5, 2.5))
 		get_tree().current_scene.add_child(shot)
 	if bullet_selector == 3:
+		$AnimatedSprite2D.play("new_animation_1")
 		for i in range(8):
 			var shot = bullet.instantiate()
 			shot.spawn_position = $BulletSpawnpoint.global_position

@@ -19,10 +19,12 @@ func _ready():
 	
 func _physics_process(delta):
 	if is_player_in_range():
+		$AnimatedSprite2D.play("Shooting")
 		beenTriggered = true
 
 	if beenTriggered:
 		velocity = get_direction_to_player() * speed
+		$AnimatedSprite2D.rotation = get_direction_to_player().angle() + -30
 	
 	move_and_slide()
 

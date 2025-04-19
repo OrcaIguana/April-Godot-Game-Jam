@@ -89,7 +89,7 @@ func _ready():
 	add_to_group("player")
 	for i in range(4):
 		wand_inventory.append(null)
-	wand_inventory[0] = load_wand(launcher)
+	wand_inventory[0] = load_wand(blaster)
 	active_wand = wand_inventory[0]
 	invulnerable = true
 	await get_tree().create_timer(10).timeout

@@ -1,33 +1,127 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1ra3fh0s6f2h"]
+[gd_scene load_steps=18 format=3 uid="uid://c1ra3fh0s6f2h"]
 
 [ext_resource type="PackedScene" uid="uid://bnasqq4ma8u6m" path="res://Enemies/enemy.tscn" id="1_erkms"]
 [ext_resource type="Script" uid="uid://jpeu3gni06cs" path="res://Enemies/Basic/enemy_orbit.gd" id="2_erkms"]
-[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="3_wrj5k"]
+[ext_resource type="Texture2D" uid="uid://di2pdp523ccgi" path="res://Enemies/Sprites/Circle sprite sheet.png" id="3_8tpsk"]
 [ext_resource type="Script" uid="uid://0r2oblalpu82" path="res://Scripts/basic_collision.gd" id="4_8tpsk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrj5k"]
-size = Vector2(19.1924, 19.1924)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tpsk"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(311, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrj5k"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(622, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xtld"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(933, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syf0o"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(1244, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbxos"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(1555, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uow8y"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(0, 306, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3vfl"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(311, 306, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pchfm"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(622, 306, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n31sa"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(933, 306, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v856f"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(1244, 306, 311, 304)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl0a8"]
+atlas = ExtResource("3_8tpsk")
+region = Rect2(1555, 306, 311, 304)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ga17a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tpsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrj5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xtld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syf0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbxos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uow8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3vfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pchfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n31sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v856f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl0a8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8tpsk"]
 
 [node name="enemy_shooter" instance=ExtResource("1_erkms")]
+scale = Vector2(1.36, 1.36)
 script = ExtResource("2_erkms")
 shoot_interval_range = Vector2(1.5, 3)
 
-[node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("3_wrj5k")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.119999, 0.119999)
+sprite_frames = SubResource("SpriteFrames_ga17a")
+frame = 9
+frame_progress = 0.285354
 
-[node name="WanderTimer" type="Timer" parent="." index="1"]
+[node name="Sprite2D" parent="." index="1"]
+visible = false
+texture = ExtResource("3_8tpsk")
+hframes = 6
+vframes = 2
 
-[node name="BulletSpawnpoint" type="Marker2D" parent="." index="2"]
+[node name="WanderTimer" type="Timer" parent="." index="2"]
+
+[node name="BulletSpawnpoint" type="Marker2D" parent="." index="3"]
 gizmo_extents = 0.0
 
-[node name="BurstTimer" type="Timer" parent="." index="3"]
+[node name="BurstTimer" type="Timer" parent="." index="4"]
 
-[node name="Collision" type="Area2D" parent="." index="4"]
+[node name="Collision" type="Area2D" parent="." index="5"]
 script = ExtResource("4_8tpsk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" index="0"]
-position = Vector2(7.689e-06, 0.571068)
-rotation = 0.785397
-shape = SubResource("RectangleShape2D_wrj5k")
+position = Vector2(-3.55271e-15, -2.11758e-22)
+scale = Vector2(1.20996, 1.21184)
+shape = SubResource("CircleShape2D_8tpsk")
 
 [connection signal="area_entered" from="Collision" to="." method="_on_collision_area_entered"]

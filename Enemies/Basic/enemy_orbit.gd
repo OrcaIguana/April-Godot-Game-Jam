@@ -14,6 +14,8 @@ func _ready():
 	super._ready()
 	speed = 50
 	
+	$AnimatedSprite2D.play()
+	
 	beenTriggered = false
 	
 	orbit_timer = orbit_spawn_interval
@@ -47,7 +49,8 @@ func _on_wander_timer_timeout():
 func spawn_orbiting_bullet():
 	for i in range(5):
 		var orb = OrbitingBullet.instantiate()
-		orb.center_global = global_position
+		orb.center = global_position
+		orb.global_position = self.global_position
 		orb.angle = i * (TAU/5)
 		get_tree().current_scene.add_child(orb)
 	

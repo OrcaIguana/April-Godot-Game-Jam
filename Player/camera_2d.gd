@@ -4,7 +4,7 @@ var target
 var last_position : Vector2
 
 func _ready():
-	self.position = self.position + Vector2(-960, -540)
+	self.position = self.position + Vector2(-970, -540)
 	last_position = self.position
 	target = self.position
 

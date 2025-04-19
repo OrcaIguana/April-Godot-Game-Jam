@@ -11,6 +11,9 @@ var enemy_orbit = preload("res://Enemies/Basic/enemy_orbit.tscn")
 var enemy_charger = preload("res://Enemies/Basic/enemy_charger.tscn")
 var enemy_random = preload("res://Enemies/Basic/enemy_random.tscn")
 
+var open_door = preload("res://Tile Sets/Wall Tiles/pathway-open.png")
+var closed_door = preload("res://Tile Sets/Wall Tiles/pathway-closed.png")
+
 var id
 
 func _ready() -> void:
@@ -41,7 +44,9 @@ func _process(delta: float) -> void:
 		unlocked = true
 
 func spawn_enemies(difficulty):
-	var spawnpoints = [$"Spawn Point", $"Spawn Point2", $"Spawn Point3", $"Spawn Point4"]
+	var spawnpoints = [$"Spawn Point", $"Spawn Point2", $"Spawn Point3", $"Spawn Point4",
+	 $"Spawn Point5", $"Spawn Point6", $"Spawn Point7", $"Spawn Point8", $"Spawn Point9",
+	 $"Spawn Point10", $"Spawn Point11"]
 	
 	var spawn_credits = difficulty * randi_range(1, id)
 	
@@ -62,7 +67,7 @@ func spawn_enemies(difficulty):
 			spawn_credits -= 1
 			
 	for enemy in new_enemies:
-		enemy.spawn_location = spawnpoints[randi_range(0, 3)].global_position
+		enemy.spawn_location = spawnpoints[randi_range(0, len(spawnpoints)-1)].global_position
 		call_deferred("add_child", enemy)
 	
 func lock():
@@ -71,12 +76,14 @@ func lock():
 		if door.visible:
 			door.old_type = door.type
 			door.type = "locked"
+			door.get_node("Sprite2D").texture = closed_door
 		
 func unlock():
 	var doors = [$Door, $Door2, $Door3, $Door4]
 	for door in doors:
 		if door.visible:
 			door.type = door.old_type
+			door.get_node("Sprite2D").texture = open_door
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.type == "friendly":

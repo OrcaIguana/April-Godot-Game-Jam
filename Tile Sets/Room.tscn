@@ -1,6 +1,5 @@
 [gd_scene load_steps=25 format=4 uid="uid://bdwbuwwgt3roq"]
 
-[ext_resource type="Texture2D" uid="uid://d1f0huq3f5bo8" path="res://Tile Sets/Wall Tiles/pathway-north.png" id="1_8i7r8"]
 [ext_resource type="Script" uid="uid://bqftpxoqa4jyw" path="res://Tile Sets/door_up.gd" id="1_rsif5"]
 [ext_resource type="Script" uid="uid://b4m11xfodh330" path="res://Tile Sets/room.gd" id="1_vofp0"]
 [ext_resource type="Texture2D" uid="uid://c8a6fqmt8i5en" path="res://Tile Sets/Wall Tiles/corner.png" id="2_krgyq"]
@@ -9,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bj13t360b2gdg" path="res://Tile Sets/door_down.gd" id="4_rwvu7"]
 [ext_resource type="Script" uid="uid://c85jnuqfghhnj" path="res://Tile Sets/door_left.gd" id="5_c4jah"]
 [ext_resource type="Texture2D" uid="uid://dqxfdmf7gbitl" path="res://Tile Sets/Wall Tiles/color-square.png" id="8_kktd7"]
+[ext_resource type="Texture2D" uid="uid://djuy5hsix780g" path="res://Tile Sets/Wall Tiles/pathway-open.png" id="10_udaa2"]
 [ext_resource type="Texture2D" uid="uid://bw5tkylrrwwm8" path="res://Tile Sets/Floor Tilemap/FloorTile.png" id="12_udaa2"]
 [ext_resource type="Texture2D" uid="uid://bduhj5jhgx4n6" path="res://Tile Sets/Floor Tilemap/WallTile.png" id="13_fc7gd"]
 [ext_resource type="Script" uid="uid://e8iednlnedbg" path="res://Tile Sets/collision_shape_2d.gd" id="13_tyvmf"]
@@ -118,12 +118,14 @@ tile_set = SubResource("TileSet_jn4is")
 
 [node name="Door" type="Area2D" parent="."]
 visible = false
-position = Vector2(960, 6)
+position = Vector2(959, -2)
 monitorable = false
 script = ExtResource("1_rsif5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door"]
-texture = ExtResource("1_8i7r8")
+position = Vector2(-1.96695e-06, -5)
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("10_udaa2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(0, 1)
@@ -131,13 +133,15 @@ shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door2" type="Area2D" parent="."]
 visible = false
-position = Vector2(1914, 540)
+position = Vector2(1911, 540)
 monitorable = false
 script = ExtResource("3_mkwg8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door2"]
+position = Vector2(6, 0)
 rotation = 1.5708
-texture = ExtResource("1_8i7r8")
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("10_udaa2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2"]
 position = Vector2(-1, 0)
@@ -152,7 +156,8 @@ script = ExtResource("4_rwvu7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door3"]
 rotation = 3.14159
-texture = ExtResource("1_8i7r8")
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("10_udaa2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door3"]
 position = Vector2(0, -1)
@@ -161,19 +166,22 @@ shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door4" type="Area2D" parent="."]
 visible = false
-position = Vector2(6, 540)
+position = Vector2(-1, 541)
 rotation = -1.5708
 monitorable = false
 script = ExtResource("5_c4jah")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door4"]
-texture = ExtResource("1_8i7r8")
+position = Vector2(2.17199e-05, -6)
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("10_udaa2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door4"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 script = ExtResource("13_tyvmf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -194,6 +202,34 @@ rotation = 0.00023583
 
 [node name="Spawn Point4" type="Marker2D" parent="."]
 position = Vector2(1671, 896)
+rotation = 0.00023583
+
+[node name="Spawn Point5" type="Marker2D" parent="."]
+position = Vector2(501, 540)
+rotation = 0.00023583
+
+[node name="Spawn Point6" type="Marker2D" parent="."]
+position = Vector2(1405, 542)
+rotation = 0.00023583
+
+[node name="Spawn Point7" type="Marker2D" parent="."]
+position = Vector2(956, 547)
+rotation = 0.00023583
+
+[node name="Spawn Point8" type="Marker2D" parent="."]
+position = Vector2(44.0001, 1033)
+rotation = 0.00023583
+
+[node name="Spawn Point9" type="Marker2D" parent="."]
+position = Vector2(1859, 41.0001)
+rotation = 0.00023583
+
+[node name="Spawn Point10" type="Marker2D" parent="."]
+position = Vector2(1853, 1023)
+rotation = 0.00023583
+
+[node name="Spawn Point11" type="Marker2D" parent="."]
+position = Vector2(54, 53.0001)
 rotation = 0.00023583
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

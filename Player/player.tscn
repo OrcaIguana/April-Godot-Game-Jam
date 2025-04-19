@@ -22,11 +22,11 @@
 [ext_resource type="Script" uid="uid://b3io1qnl3jcux" path="res://Player/level_up.gd" id="20_7emwf"]
 [ext_resource type="Script" uid="uid://c1h1n5pdp7cg0" path="res://Player/level_up_screen.gd" id="20_hshwv"]
 [ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
-[ext_resource type="Script" path="res://Player/Wand_Selection.gd" id="22_gpjlu"]
+[ext_resource type="Script" uid="uid://c0sr75yjeent" path="res://Player/Wand_Selection.gd" id="22_gpjlu"]
 [ext_resource type="Script" uid="uid://d1qbmy7l4orml" path="res://Player/new_spell.gd" id="22_sm0op"]
-[ext_resource type="Script" path="res://Player/button_2.gd" id="23_8mwp6"]
-[ext_resource type="Script" path="res://Player/button_3.gd" id="24_qemgg"]
-[ext_resource type="Script" path="res://Player/button_4.gd" id="25_8viyr"]
+[ext_resource type="Script" uid="uid://cx5cjsur7qylr" path="res://Player/button_2.gd" id="23_8mwp6"]
+[ext_resource type="Script" uid="uid://2t0g3421q1mi" path="res://Player/button_3.gd" id="24_qemgg"]
+[ext_resource type="Script" uid="uid://gu8r162guqgv" path="res://Player/button_4.gd" id="25_8viyr"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -321,6 +321,7 @@ offset_top = 549.0
 offset_right = 1033.0
 offset_bottom = 581.0
 text = "YOU ARE DEAD"
+fit_content = true
 
 [node name="Level Up Screen" type="ColorRect" parent="PlayerUI"]
 process_mode = 2
@@ -335,34 +336,44 @@ script = ExtResource("20_hshwv")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Level Up Screen"]
 layout_mode = 0
-offset_left = 882.0
-offset_top = 354.0
-offset_right = 1105.0
-offset_bottom = 386.0
+offset_left = 790.0
+offset_top = 372.0
+offset_right = 1208.0
+offset_bottom = 404.0
 text = "Level Up! Choose a reward"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="PlayerUI/Level Up Screen"]
 layout_mode = 0
-offset_left = 767.0
-offset_top = 433.0
-offset_right = 905.0
-offset_bottom = 673.0
+offset_left = 738.0
+offset_top = 435.0
+offset_right = 887.0
+offset_bottom = 675.0
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("20_7emwf")
 
 [node name="Button2" type="Button" parent="PlayerUI/Level Up Screen"]
 layout_mode = 0
-offset_left = 926.0
+offset_left = 920.0
 offset_top = 433.0
-offset_right = 1064.0
+offset_right = 1074.0
 offset_bottom = 673.0
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("20_7emwf")
 
 [node name="Button3" type="Button" parent="PlayerUI/Level Up Screen"]
 layout_mode = 0
-offset_left = 1084.0
-offset_top = 433.0
-offset_right = 1222.0
-offset_bottom = 673.0
+offset_left = 1101.0
+offset_top = 432.0
+offset_right = 1252.0
+offset_bottom = 672.0
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("20_7emwf")
 
 [node name="Select slot" type="ColorRect" parent="PlayerUI"]
@@ -390,6 +401,9 @@ offset_left = 699.0
 offset_top = 433.0
 offset_right = 837.0
 offset_bottom = 673.0
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("22_gpjlu")
 
 [node name="Button2" type="Button" parent="PlayerUI/Select slot"]
@@ -398,6 +412,9 @@ offset_left = 861.0
 offset_top = 433.0
 offset_right = 999.0
 offset_bottom = 673.0
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("23_8mwp6")
 
 [node name="Button3" type="Button" parent="PlayerUI/Select slot"]
@@ -406,6 +423,9 @@ offset_left = 1022.0
 offset_top = 433.0
 offset_right = 1160.0
 offset_bottom = 673.0
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("24_qemgg")
 
 [node name="Button4" type="Button" parent="PlayerUI/Select slot"]
@@ -414,6 +434,9 @@ offset_left = 1186.0
 offset_top = 433.0
 offset_right = 1324.0
 offset_bottom = 673.0
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 script = ExtResource("25_8viyr")
 
 [node name="Camera2D" type="Camera2D" parent="."]

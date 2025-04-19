@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bodxo6hcrdyp5"]
+
+[ext_resource type="Script" uid="uid://b6jyoa5dh8apj" path="res://Enemies/Boss/splinter_spawns/charger.gd" id="1_wn72l"]
+[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_h1h7q"]
+
+[node name="Charger" type="CharacterBody2D"]
+script = ExtResource("1_wn72l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1h7q")

@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var activiation = 0.5
+var direction
 
 func _ready() -> void:
 	$"Time Till Death".wait_time = activiation

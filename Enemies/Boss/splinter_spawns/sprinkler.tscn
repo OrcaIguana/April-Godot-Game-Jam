@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d187muuylw1v4"]
+
+[ext_resource type="Script" uid="uid://b2k5pliw5kobn" path="res://Enemies/Boss/splinter_spawns/sprinkler.gd" id="1_487hp"]
+[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_s70aq"]
+
+[node name="Sprinkler" type="CharacterBody2D"]
+script = ExtResource("1_487hp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_s70aq")

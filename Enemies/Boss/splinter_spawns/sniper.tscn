@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5wnmsjcw0g6n"]
+
+[ext_resource type="Script" uid="uid://dsg4txyniy5n1" path="res://Enemies/Boss/splinter_spawns/sniper.gd" id="1_xeogd"]
+[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_6ibkn"]
+
+[node name="sniper" type="CharacterBody2D"]
+script = ExtResource("1_xeogd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ibkn")

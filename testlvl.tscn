@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ge05btpxwfat"]
 
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="1_o24vn"]
-[ext_resource type="PackedScene" uid="uid://cmb8dps4hpd0k" path="res://Enemies/Boss/laser.tscn" id="2_jt5j1"]
+[ext_resource type="PackedScene" uid="uid://c5wnmsjcw0g6n" path="res://Enemies/Boss/splinter_spawns/sniper.tscn" id="2_jt5j1"]
 
 [node name="testlvl" type="Node2D"]
 
-[node name="Laser" parent="." instance=ExtResource("2_jt5j1")]
-
 [node name="Player" parent="." instance=ExtResource("1_o24vn")]
+
+[node name="sniper" parent="." instance=ExtResource("2_jt5j1")]

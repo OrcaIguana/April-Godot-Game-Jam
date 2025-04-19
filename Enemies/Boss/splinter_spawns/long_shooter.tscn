@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://chhw2a57xpjru"]
+
+[ext_resource type="Script" uid="uid://dpwxaryhtn3yy" path="res://Enemies/Boss/splinter_spawns/long_shooter.gd" id="1_4dhi1"]
+[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_5gl3s"]
+
+[node name="LongShooter" type="CharacterBody2D"]
+script = ExtResource("1_4dhi1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5gl3s")

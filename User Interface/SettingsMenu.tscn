@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvmraqamialh5"]
+[gd_scene load_steps=3 format=3 uid="uid://dvmraqamialh5"]
 
 [ext_resource type="Script" uid="uid://diqvmofklo5xx" path="res://User Interface/settings_menu.gd" id="1_m1a07"]
+[ext_resource type="Texture2D" uid="uid://bnkn2joqpxbl0" path="res://User Interface/Main Menu/main_menu_background.png" id="2_28hm1"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +11,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m1a07")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_28hm1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 200)

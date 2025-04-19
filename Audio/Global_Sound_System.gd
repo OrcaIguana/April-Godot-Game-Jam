@@ -26,20 +26,28 @@ var location: String
 
 var music_volume: float = .75
 var sfx_volume: float = .75
+
+var music_volume_multiplier: float = 1
+var sfx_volume_multiplier: float = 1
+
+
 func _on_ready():
 	update_music_volume(.75)
 	update_sfx_volume(.75)
+	
+func _process(_delta : float):
+	pass
 
 func set_sound_system(system : Node):
 	sound_system = system
 	
-func update_music_volume(value : float):
+func update_music_volume(value : float = music_volume):
 	music_volume = value
-	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(music_volume))
+	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(music_volume*music_volume_multiplier))
 
-func update_sfx_volume(value : float):
+func update_sfx_volume(value : float = sfx_volume):
 	sfx_volume = value
-	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(sfx_volume))
+	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(sfx_volume*sfx_volume_multiplier))
 
 func play_sound(sound : AudioStream, pitch_min : float = .9, pitch_max : float = 1.1):
 	var found_sound = false

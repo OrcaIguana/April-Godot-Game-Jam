@@ -1,26 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0wfrodl76x8o"]
+[gd_scene load_steps=3 format=3 uid="uid://b0wfrodl76x8o"]
 
 [ext_resource type="Script" uid="uid://o45cy730qwek" path="res://User Interface/Main Menu/main_menu.gd" id="1_ewoh7"]
-
-[sub_resource type="Gradient" id="Gradient_ewoh7"]
-offsets = PackedFloat32Array(0, 0.303103, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.18359, 0.183591, 0.18359, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_mr325"]
-frequency = 0.0061
-fractal_type = 2
-fractal_octaves = 2
-fractal_gain = -0.04
-domain_warp_fractal_octaves = 6
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4qsi2"]
-width = 1920
-height = 1080
-seamless = true
-seamless_blend_skirt = 0.169
-as_normal_map = true
-color_ramp = SubResource("Gradient_ewoh7")
-noise = SubResource("FastNoiseLite_mr325")
+[ext_resource type="Texture2D" uid="uid://bnkn2joqpxbl0" path="res://User Interface/Main Menu/main_menu_background.png" id="2_mr325"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -35,7 +16,7 @@ script = ExtResource("1_ewoh7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 position = Vector2(263, 264)
-texture = SubResource("NoiseTexture2D_4qsi2")
+texture = ExtResource("2_mr325")
 offset = Vector2(697, 276)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Background"]

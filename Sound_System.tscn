@@ -16,26 +16,6 @@ clip_2/name = &"menuMusic"
 clip_2/stream = ExtResource("2_gr5ne")
 clip_2/auto_advance = 0
 initial_clip = 2
-_transitions = {
-Vector2i(0, 1): {
-"fade_beats": 1.0,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(1, -1): {
-"fade_beats": 1.0,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(2, 0): {
-"fade_beats": 1.0,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 1
-}
-}
 
 [node name="Sound_Scene" type="Node"]
 
@@ -44,6 +24,7 @@ script = ExtResource("1_gr5ne")
 music_player = NodePath("Music_Player")
 
 [node name="Music_Player" type="AudioStreamPlayer" parent="Sound_System"]
+process_mode = 3
 stream = SubResource("AudioStreamInteractive_gr5ne")
 volume_db = -17.777
 autoplay = true

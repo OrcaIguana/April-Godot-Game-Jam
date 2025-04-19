@@ -19,7 +19,6 @@ size = Vector2(64, 30)
 size = Vector2(1913, 1071.5)
 
 [node name="Room" type="Node2D"]
-position = Vector2(-960, -540)
 script = ExtResource("1_is4xm")
 
 [node name="Floor" type="Sprite2D" parent="."]

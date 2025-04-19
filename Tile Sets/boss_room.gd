@@ -2,6 +2,9 @@ extends "res://Tile Sets/room.gd"
 
 var boss = preload("res://Enemies/Boss/boss_phase.tscn")
 
+func _ready() -> void:
+	super._ready()
+
 func spawn_enemies(difficulty):
 	var spawnpoint = $"Spawn Point"
 	

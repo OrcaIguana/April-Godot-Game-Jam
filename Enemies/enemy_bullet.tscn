@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp31mdnavs6e2"]
 
 [ext_resource type="Script" uid="uid://kmxihykhoih4" path="res://Enemies/enemy_bullet.gd" id="1_daspg"]
-[ext_resource type="Texture2D" uid="uid://bp0qj3m4i83ur" path="res://Player/Sprites/wand-triangle.png" id="2_uh1pw"]
+[ext_resource type="Texture2D" uid="uid://l272yy1sw46t" path="res://Sprites/enemy-bullet-default.png" id="2_uh1pw"]
 [ext_resource type="Script" uid="uid://dq6g3mscjxaq8" path="res://Enemies/enemy_bullet_collision.gd" id="3_uh1pw"]
 
 [node name="enemy_bullet" type="CharacterBody2D"]

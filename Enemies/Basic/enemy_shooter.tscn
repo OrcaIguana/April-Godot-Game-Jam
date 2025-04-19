@@ -65,6 +65,7 @@ animations = [{
 size = Vector2(74.5185, 28.0815)
 
 [node name="enemy_shooter" instance=ExtResource("1_bhtk8")]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("2_e2pi8")
 shoot_interval_range = Vector2(1.5, 3)
 

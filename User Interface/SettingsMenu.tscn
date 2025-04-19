@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvmraqamialh5"]
+
+[ext_resource type="Script" uid="uid://diqvmofklo5xx" path="res://User Interface/settings_menu.gd" id="1_m1a07"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1a07")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "        Controls:
+
+
+WASD        (Movement)
+
+Spacebar    (Dash)
+
+Left Click  (Shoot)
+
+Right Click (Cycle Wands)
+
+1, 2, 3, 4  (Switch Wand)
+ 
+Escape      (Menu)
+ 
+ 
+ "
+fit_content = true
+scroll_active = false
+
+[node name="TextEdit2" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+fit_content = true
+scroll_active = false
+
+[node name="MusicVolume" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="TextEdit3" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sfx Volume"
+fit_content = true
+scroll_active = false
+
+[node name="SfxVolume" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="TextEdit4" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = " "
+fit_content = true
+scroll_active = false
+
+[node name="QuitToMainMenu" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit to Main Menu"
+
+[node name="TextEdit5" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+text = " "
+fit_content = true
+scroll_active = false
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[connection signal="focus_exited" from="VBoxContainer/MusicVolume" to="." method="_on_hover"]
+[connection signal="mouse_entered" from="VBoxContainer/MusicVolume" to="." method="_on_hover"]
+[connection signal="value_changed" from="VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="focus_exited" from="VBoxContainer/SfxVolume" to="." method="_on_hover"]
+[connection signal="mouse_entered" from="VBoxContainer/SfxVolume" to="." method="_on_hover"]
+[connection signal="value_changed" from="VBoxContainer/SfxVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="focus_exited" from="VBoxContainer/QuitToMainMenu" to="." method="_on_hover"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitToMainMenu" to="." method="_on_hover"]
+[connection signal="pressed" from="VBoxContainer/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
+[connection signal="focus_exited" from="VBoxContainer/QuitButton" to="." method="_on_hover"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_hover"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

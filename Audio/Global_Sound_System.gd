@@ -1,6 +1,8 @@
 extends Node
 
-@export var sound_system = Node
+var sound_system = Node
+@export var music_bus_index = AudioServer.get_bus_index("Music")
+@export var sfx_bus_index = AudioServer.get_bus_index("SFX")
 
 var sfx_players = Array()
 
@@ -22,13 +24,24 @@ var sfx_players = Array()
 var is_looping: bool
 var location: String
 
-var music_volume: float
-var sfx_volume: float
+var music_volume: float = .75
+var sfx_volume: float = .75
+func _on_ready():
+	update_music_volume(.75)
+	update_sfx_volume(.75)
 
 func set_sound_system(system : Node):
 	sound_system = system
+	
+func update_music_volume(value : float):
+	music_volume = value
+	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(music_volume))
 
-func play_sound(sound : AudioStream):
+func update_sfx_volume(value : float):
+	sfx_volume = value
+	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(sfx_volume))
+
+func play_sound(sound : AudioStream, pitch_min : float = .9, pitch_max : float = 1.1):
 	var found_sound = false
 	var target_player : AudioStreamPlayer
 	for player in sfx_players:
@@ -46,6 +59,5 @@ func play_sound(sound : AudioStream):
 		sound_system.add_child(new_player)
 		target_player = new_player
 		target_player.set_stream(sound)
-	randomize()
-	target_player.pitch_scale = randf_range(0.9,1.1)
+	target_player.pitch_scale = randf_range(pitch_min, pitch_max)
 	target_player.play()

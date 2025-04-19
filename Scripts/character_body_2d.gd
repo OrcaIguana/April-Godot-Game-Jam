@@ -108,6 +108,13 @@ func get_input():
 func _process(delta: float) -> void:
 	if is_dead:
 		return
+		
+	if Input.is_action_just_pressed("menu"):
+		pass
+		#get_tree().current_scene.add_child(SettingsMenu)
+		#get_tree().paused = true
+		
+		
 	if Input.is_action_just_released("shoot"):
 		if active_wand.cooldown <= 0 && active_wand.charge >= active_wand.charge_time:
 			active_wand.shoot(self.global_position)
@@ -155,6 +162,7 @@ func _process(delta: float) -> void:
 			speed = 500
 			is_dashing = false
 			get_node("Dash/Ghost Particles").set_emitting(false)
+	
 	
 func _physics_process(_delta):
 	if is_dead:

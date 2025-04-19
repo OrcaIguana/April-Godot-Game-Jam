@@ -7,9 +7,6 @@ extends CharacterBody2D
 var chasing = true
 var timer = 0.0
 
-func _ready():
-	add_to_group("enemy")
-
 func _physics_process(delta):
 	timer -= delta
 

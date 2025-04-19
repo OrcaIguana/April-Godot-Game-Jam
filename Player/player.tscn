@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cvnhcrcuvg482"]
+[gd_scene load_steps=33 format=3 uid="uid://cvnhcrcuvg482"]
 
 [ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
@@ -22,11 +22,12 @@
 [ext_resource type="Script" uid="uid://b3io1qnl3jcux" path="res://Player/level_up.gd" id="20_7emwf"]
 [ext_resource type="Script" uid="uid://c1h1n5pdp7cg0" path="res://Player/level_up_screen.gd" id="20_hshwv"]
 [ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
-[ext_resource type="Script" uid="uid://c0sr75yjeent" path="res://Player/Wand_Selection.gd" id="22_gpjlu"]
+[ext_resource type="Script" path="res://Player/Wand_Selection.gd" id="22_gpjlu"]
 [ext_resource type="Script" uid="uid://d1qbmy7l4orml" path="res://Player/new_spell.gd" id="22_sm0op"]
-[ext_resource type="Script" uid="uid://cx5cjsur7qylr" path="res://Player/button_2.gd" id="23_8mwp6"]
-[ext_resource type="Script" uid="uid://2t0g3421q1mi" path="res://Player/button_3.gd" id="24_qemgg"]
-[ext_resource type="Script" uid="uid://gu8r162guqgv" path="res://Player/button_4.gd" id="25_8viyr"]
+[ext_resource type="Script" path="res://Player/button_2.gd" id="23_8mwp6"]
+[ext_resource type="Script" path="res://Player/button_3.gd" id="24_qemgg"]
+[ext_resource type="Script" path="res://Player/button_4.gd" id="25_8viyr"]
+[ext_resource type="Script" uid="uid://jfjjwi32upl2" path="res://Player/settings.gd" id="27_76lrf"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -100,6 +101,7 @@ shape = SubResource("CircleShape2D_dl81w")
 shape = SubResource("CircleShape2D_dl81w")
 
 [node name="PlayerUI" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -316,12 +318,35 @@ color = Color(0.247059, 0.247059, 0.247059, 0.854902)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Dead Screen"]
 layout_mode = 0
-offset_left = 905.0
-offset_top = 549.0
-offset_right = 1033.0
-offset_bottom = 581.0
-text = "YOU ARE DEAD"
+offset_left = 860.0
+offset_top = 508.0
+offset_right = 1060.0
+offset_bottom = 540.0
+text = "GAME OVER"
 fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PlayerUI/Dead Screen"]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 560.0
+offset_right = 1110.0
+offset_bottom = 592.0
+text = "Click to Continue"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PlayerUI/Dead Screen"]
+modulate = Color(1, 1, 1, 0.121569)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="PlayerUI/Dead Screen"]
 
 [node name="Level Up Screen" type="ColorRect" parent="PlayerUI"]
 process_mode = 2
@@ -439,6 +464,100 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("25_8viyr")
 
+[node name="Settings" type="ColorRect" parent="PlayerUI"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 530.0
+offset_top = -720.0
+offset_right = 980.0
+offset_bottom = -160.0
+color = Color(0, 0, 0, 0.741176)
+script = ExtResource("27_76lrf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Settings"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="RichTextLabel" parent="PlayerUI/Settings/VBoxContainer"]
+layout_mode = 2
+text = "        Controls:
+
+
+WASD        (Movement)
+
+Spacebar    (Dash)
+
+Left Click  (Shoot)
+
+Right Click (Cycle Wands)
+
+1, 2, 3, 4  (Switch Wand)
+ 
+Escape      (Menu)
+ 
+ 
+ "
+fit_content = true
+scroll_active = false
+
+[node name="TextEdit2" type="RichTextLabel" parent="PlayerUI/Settings/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+fit_content = true
+scroll_active = false
+
+[node name="MusicVolume" type="HSlider" parent="PlayerUI/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="TextEdit3" type="RichTextLabel" parent="PlayerUI/Settings/VBoxContainer"]
+layout_mode = 2
+text = "Sfx Volume"
+fit_content = true
+scroll_active = false
+
+[node name="SfxVolume" type="HSlider" parent="PlayerUI/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="TextEdit4" type="RichTextLabel" parent="PlayerUI/Settings/VBoxContainer"]
+layout_mode = 2
+text = " "
+fit_content = true
+scroll_active = false
+
+[node name="BackButton" type="Button" parent="PlayerUI/Settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back"
+
+[node name="TextEdit5" type="RichTextLabel" parent="PlayerUI/Settings/VBoxContainer"]
+layout_mode = 2
+text = " "
+fit_content = true
+scroll_active = false
+
+[node name="QuitButton" type="Button" parent="PlayerUI/Settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit to Main Menu"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 script = ExtResource("21_7emwf")
@@ -447,6 +566,7 @@ script = ExtResource("21_7emwf")
 [connection signal="health_change" from="Player" to="PlayerUI/HBoxContainer/Health" method="_on_health_change"]
 [connection signal="health_change" from="Player" to="Camera2D" method="_on_player_health_change"]
 [connection signal="level_up_signal" from="Player" to="PlayerUI" method="_on_player_level_up_signal"]
+[connection signal="menu_button_signal" from="Player" to="PlayerUI" method="_on_menu_button_pressed"]
 [connection signal="room_change" from="Player" to="PlayerUI" method="_on_player_room_change"]
 [connection signal="room_change" from="Player" to="Camera2D" method="_on_player_room_change"]
 [connection signal="wand_change" from="Player" to="PlayerUI/HBoxContainer/Slot 1" method="_on_wand_swap"]
@@ -458,6 +578,7 @@ script = ExtResource("21_7emwf")
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 3/ProgressBar3" method="_update"]
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 4/ProgressBar4" method="_update"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]
+[connection signal="pressed" from="PlayerUI/Dead Screen/Button" to="PlayerUI" method="_on_restart_button_pressed"]
 [connection signal="chosen" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
 [connection signal="on_press" from="PlayerUI/Level Up Screen/Button" to="Player" method="wand_get"]
 [connection signal="pressed" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen/Button" method="_on_pressed"]
@@ -498,3 +619,15 @@ script = ExtResource("21_7emwf")
 [connection signal="pressed" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot/Button4" method="_on_pressed"]
 [connection signal="visibility_changed" from="PlayerUI/Select slot/Button4" to="PlayerUI/Select slot/Button4" method="_on_visibility_changed"]
 [connection signal="wand_selection" from="PlayerUI/Select slot/Button4" to="Player" method="spell_add"]
+[connection signal="focus_exited" from="PlayerUI/Settings/VBoxContainer/MusicVolume" to="PlayerUI/Settings" method="_on_hover"]
+[connection signal="mouse_entered" from="PlayerUI/Settings/VBoxContainer/MusicVolume" to="PlayerUI/Settings" method="_on_hover"]
+[connection signal="value_changed" from="PlayerUI/Settings/VBoxContainer/MusicVolume" to="PlayerUI/Settings" method="_on_music_volume_value_changed"]
+[connection signal="focus_exited" from="PlayerUI/Settings/VBoxContainer/SfxVolume" to="PlayerUI/Settings" method="_on_sfx_volume_focus_exited"]
+[connection signal="mouse_entered" from="PlayerUI/Settings/VBoxContainer/SfxVolume" to="PlayerUI/Settings" method="_on_hover"]
+[connection signal="value_changed" from="PlayerUI/Settings/VBoxContainer/SfxVolume" to="PlayerUI/Settings" method="_on_sfx_volume_value_changed"]
+[connection signal="focus_exited" from="PlayerUI/Settings/VBoxContainer/BackButton" to="PlayerUI/Settings" method="_on_hover"]
+[connection signal="mouse_entered" from="PlayerUI/Settings/VBoxContainer/BackButton" to="PlayerUI/Settings" method="_on_hover"]
+[connection signal="pressed" from="PlayerUI/Settings/VBoxContainer/BackButton" to="PlayerUI/Settings" method="_on_back_button_pressed"]
+[connection signal="focus_exited" from="PlayerUI/Settings/VBoxContainer/QuitButton" to="PlayerUI/Settings" method="_on_hover"]
+[connection signal="mouse_entered" from="PlayerUI/Settings/VBoxContainer/QuitButton" to="PlayerUI/Settings" method="_on_hover"]
+[connection signal="pressed" from="PlayerUI/Settings/VBoxContainer/QuitButton" to="PlayerUI/Settings" method="_on_quit_to_main_menu_pressed"]

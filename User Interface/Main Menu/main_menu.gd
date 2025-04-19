@@ -1,27 +1,33 @@
 extends Control
 
-var is_fading = false
+var is_fading_out = false
 var fade_timer = 0.5
+var fade_in = 0
 @onready var modulator = get_node("Background/CanvasModulate")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	fade_in = .5
 	$VBoxContainer/StartButton.grab_focus()
 	Global_Sound_System.location = "menu"
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(is_fading):
+	if(fade_in > 0):
+		modulator.color = Color(1-(fade_in*2), 1-(fade_in*2), 1-(fade_in*2), 1)
+		fade_in -= delta
+	elif(is_fading_out):
 		if (fade_timer > 0):
 			modulator.color = Color(fade_timer*2, fade_timer*2, fade_timer*2, 1)
 			fade_timer-= delta
 		else:
-			is_fading = false
+			is_fading_out = false
 			get_tree().change_scene_to_file("res://lvl.tscn")
 
 func _on_start_button_pressed() -> void:
 	Global_Sound_System.play_sound(Global_Sound_System.select_sound)
-	is_fading = true
+	is_fading_out = true
 	
 func _on_settings_button_pressed() -> void:
 	Global_Sound_System.play_sound(Global_Sound_System.select_sound)

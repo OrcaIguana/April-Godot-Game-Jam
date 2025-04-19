@@ -33,6 +33,7 @@ signal wand_progress_bar(id, max_cooldown, current_cooldown)
 signal room_change(direction)
 signal dead
 signal level_up_signal
+signal menu_button_signal
 
 func health_changed(new_health):
 	health_change.emit(new_health)
@@ -110,7 +111,9 @@ func _process(delta: float) -> void:
 		return
 		
 	if Input.is_action_just_pressed("menu"):
-		pass
+		print("Menu pressed")
+		menu_button_signal.emit()
+		get_tree().paused = true
 		#get_tree().current_scene.add_child(SettingsMenu)
 		#get_tree().paused = true
 		

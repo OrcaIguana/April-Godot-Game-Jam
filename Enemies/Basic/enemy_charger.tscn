@@ -1,31 +1,135 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8j41map5g4r4"]
+[gd_scene load_steps=24 format=3 uid="uid://b8j41map5g4r4"]
 
 [ext_resource type="PackedScene" uid="uid://bnasqq4ma8u6m" path="res://Enemies/enemy.tscn" id="1_53d6n"]
 [ext_resource type="Script" uid="uid://cboe5eh1eh83k" path="res://Enemies/Basic/enemy_charger.gd" id="2_21h8r"]
+[ext_resource type="Texture2D" uid="uid://dnad76ymn8qwt" path="res://Enemies/Sprites/Kamikaze/Frame 1.png" id="3_1oy01"]
+[ext_resource type="Texture2D" uid="uid://ccjt42c4i4fyw" path="res://Enemies/Sprites/Kamikaze/Explode 1.png" id="3_b2dk0"]
 [ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="3_wow55"]
 [ext_resource type="Script" uid="uid://0r2oblalpu82" path="res://Scripts/basic_collision.gd" id="4_65r4h"]
+[ext_resource type="Texture2D" uid="uid://cv1u5w14lvf1l" path="res://Enemies/Sprites/Kamikaze/Frame 2.png" id="4_kepgu"]
+[ext_resource type="Texture2D" uid="uid://ce4ihhym7l5hf" path="res://Enemies/Sprites/Kamikaze/Explode 2.png" id="4_vs72q"]
+[ext_resource type="Texture2D" uid="uid://b1fu81wo8f65m" path="res://Enemies/Sprites/Kamikaze/Explode 3.png" id="5_b6srh"]
+[ext_resource type="Texture2D" uid="uid://cjd5teuhxynih" path="res://Enemies/Sprites/Kamikaze/Frame 3.png" id="5_qkh8b"]
+[ext_resource type="Texture2D" uid="uid://d08tl2rvwkked" path="res://Enemies/Sprites/Kamikaze/Frame 4.png" id="6_1vimr"]
+[ext_resource type="Texture2D" uid="uid://dho313g5l8kio" path="res://Enemies/Sprites/Kamikaze/Explode 4.png" id="6_o58b6"]
+[ext_resource type="Texture2D" uid="uid://cbkw45fkmp7oy" path="res://Enemies/Sprites/Kamikaze/Frame 5.png" id="7_bsm11"]
+[ext_resource type="Texture2D" uid="uid://ymev7vv4vunv" path="res://Enemies/Sprites/Kamikaze/Explode 5.png" id="7_d3tcq"]
+[ext_resource type="Texture2D" uid="uid://7s3kggkvntiy" path="res://Enemies/Sprites/Kamikaze/Frame 6.png" id="8_b2dk0"]
+[ext_resource type="Texture2D" uid="uid://ciwvnmd6aud8c" path="res://Enemies/Sprites/Kamikaze/Moving.png" id="9_vs72q"]
+[ext_resource type="Texture2D" uid="uid://biv5va4jol1n" path="res://Enemies/Sprites/Kamikaze/Getting Ready.png" id="10_b6srh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o58b6"]
+atlas = ExtResource("9_vs72q")
+region = Rect2(0, 0, 313, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3tcq"]
+atlas = ExtResource("9_vs72q")
+region = Rect2(313, 0, 313, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u47be"]
+atlas = ExtResource("9_vs72q")
+region = Rect2(626, 0, 313, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rto5"]
+atlas = ExtResource("10_b6srh")
+region = Rect2(0, 0, 231, 148)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65r4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b2dk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vs72q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b6srh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o58b6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d3tcq")
+}],
+"loop": true,
+"name": &"Explode",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1oy01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kepgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qkh8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1vimr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bsm11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b2dk0")
+}],
+"loop": true,
+"name": &"Getting Ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o58b6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3tcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u47be")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rto5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wow55"]
-size = Vector2(19.1924, 19.1924)
+size = Vector2(133.565, 737.367)
 
 [node name="enemy_charger" instance=ExtResource("1_53d6n")]
+scale = Vector2(0.36, 0.36)
 script = ExtResource("2_21h8r")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_65r4h")
+animation = &"Getting Ready"
+frame_progress = 0.690319
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
 texture = ExtResource("3_wow55")
 
-[node name="WanderTimer" type="Timer" parent="." index="1"]
+[node name="WanderTimer" type="Timer" parent="." index="2"]
 
-[node name="ChargeTimer" type="Timer" parent="." index="2"]
+[node name="ChargeTimer" type="Timer" parent="." index="3"]
 
-[node name="BulletSpawnpoint" type="Marker2D" parent="." index="3"]
+[node name="BulletSpawnpoint" type="Marker2D" parent="." index="4"]
 
-[node name="Collision" type="Area2D" parent="." index="4"]
+[node name="Collision" type="Area2D" parent="." index="5"]
 script = ExtResource("4_65r4h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" index="0"]
-position = Vector2(7.689e-06, 0.571068)
-rotation = 0.785397
+position = Vector2(12.5, 2.77778)
+scale = Vector2(1.42223, -0.150686)
 shape = SubResource("RectangleShape2D_wow55")
 
 [connection signal="area_entered" from="Collision" to="." method="_on_collision_area_entered"]

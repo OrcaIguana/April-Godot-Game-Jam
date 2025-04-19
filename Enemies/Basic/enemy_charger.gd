@@ -24,9 +24,13 @@ func _ready():
 func _physics_process(delta):
 	if is_player_in_range():
 		beenTriggered = true
+		$AnimatedSprite2D.play("Getting Ready")
+		$AnimatedSprite2D.rotation_degrees = get_direction_to_player().angle()
 
 	if beenTriggered && !resting:
+		$AnimatedSprite2D.play("Moving")
 		velocity += get_direction_to_player() * acceleration
+		$AnimatedSprite2D.rotation_degrees = get_direction_to_player().angle()
 	
 	move_and_slide()
 
@@ -51,6 +55,7 @@ func _reset_charge_timer():
 	$ChargeTimer.start(1)
 	
 func spawn_bullet_burst():
+	$AnimatedSprite2D.play("Explode")
 	Global_Sound_System.play_sound(Global_Sound_System.charger_explosion_sound)
 	for i in range(12):
 		var shot = bullet.instantiate()

@@ -156,6 +156,7 @@ func check_split():
 					await get_tree().create_timer(bullet.burst_speed).timeout
 					waiting_to_split = false
 		#signal here to wand for splitting
+		
 		queue_free()
 
 

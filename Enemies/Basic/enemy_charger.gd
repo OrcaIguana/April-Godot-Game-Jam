@@ -12,6 +12,8 @@ func _ready():
 	
 	speed = 200
 	
+	health = 1
+	
 	follow_distance = 250
 
 	beenTriggered = false

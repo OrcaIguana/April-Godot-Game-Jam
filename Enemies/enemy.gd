@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed: float = 100.0;
-var follow_distance = 900.0;
+var follow_distance = 10000.0;
 var is_dead : bool = false
 
 var player: Node2D
@@ -30,8 +30,15 @@ func _on_death():
 	queue_free()
 
 func hurt(amount):
+	modulate.b = 255
+	modulate.r = 255
+	modulate.g = 255
 	health -= amount
 	if health <= 0:
 		is_dead = true
 	if is_dead:
 		_on_death()
+	await get_tree().create_timer(.1).timeout
+	modulate.b = 1
+	modulate.r = 1
+	modulate.g = 1

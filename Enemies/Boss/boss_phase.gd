@@ -22,6 +22,12 @@ func _ready():
 	health = max_health
 	_reset_shoot_timer()
 
+func _on_death():
+	var YOU_WIN = load("res://Player/Win_Screen.tscn").instantiate()
+	YOU_WIN.spawn_position = self.global_position
+	get_tree().current_scene.add_child(YOU_WIN)
+	queue_free()
+
 func _physics_process(delta):
 	check_phase_transition()
 	handle_phase_behavior(delta)

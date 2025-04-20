@@ -40,6 +40,12 @@ func _ready():
 func _physics_process(delta):
 	pass
 
+func _on_death():
+	var YOU_WIN = load("res://Player/Win_Screen.tscn").instantiate()
+	YOU_WIN.spawn_position = self.global_position
+	get_tree().current_scene.add_child(YOU_WIN)
+	queue_free()
+
 func _on_shoot_timer_timeout():
 	$AnimatedSprite2D.play("angry")
 	shoot_laser()

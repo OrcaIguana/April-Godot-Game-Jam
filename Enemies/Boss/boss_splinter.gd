@@ -19,15 +19,18 @@ var enemies = [charger, orbit, random, square, shooter]
 @export var spawn_timer_interval = 3.0
 @export var min_spawn_count = 1
 @export var max_spawn_count = 1
-@export var max_health = 100
+@export var max_health = 200
 
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	super._ready()
+	health = max_health
 	speed = 0
 	rng.randomize()
-
+	
+	$AnimatedSprite2D.play("angry")
+	
 	$ShootTimer.timeout.connect(_on_shoot_timer_timeout)
 	$ShootTimer.start(laser_interval)
 
@@ -38,13 +41,15 @@ func _physics_process(delta):
 	pass
 
 func _on_shoot_timer_timeout():
+	$AnimatedSprite2D.play("angry")
 	shoot_laser()
 	$ShootTimer.start(laser_interval)
 
 func shoot_laser():
 	var laser = laser_scene.instantiate()
-	laser.global_position = global_position
-	laser.direction = Vector2.DOWN
+	laser.global_position = Vector2(global_position.x+rng.randi_range(-500, 500), global_position.y+rng.randi_range(-500, 500))
+	rng.randomize()
+	laser.rotation = rng.randf_range(0, 2*PI)
 	get_tree().current_scene.add_child(laser)
 
 func _on_spawn_timer_timeout():
@@ -52,6 +57,7 @@ func _on_spawn_timer_timeout():
 	var spawn_count = lerp(max_spawn_count, min_spawn_count, hp_ratio)
 	spawn_count = int(clamp(spawn_count, min_spawn_count, max_spawn_count))
 
+	$AnimatedSprite2D.play("wink")
 	for i in range(spawn_count):
 		var index = rng.randi_range(1, 9)
 		trigger_spawn(index)
@@ -110,3 +116,6 @@ func spawn_thing_8(pos):
 	get_tree().current_scene.add_child(spawn)
 func spawn_thing_9(pos): 
 	pass
+
+func _on_animated_finished() -> void:
+	$AnimatedSprite2D.play("default")

@@ -8,3 +8,4 @@
 [node name="Player" parent="." instance=ExtResource("1_o24vn")]
 
 [node name="boss_splinter" parent="." instance=ExtResource("2_jt5j1")]
+max_health = 200

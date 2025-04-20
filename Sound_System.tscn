@@ -7,14 +7,14 @@
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_gr5ne"]
 clip_count = 3
-clip_0/name = &"dungeonMusic"
-clip_0/stream = ExtResource("2_jcukf")
+clip_0/name = &"menuMusic"
+clip_0/stream = ExtResource("2_gr5ne")
 clip_0/auto_advance = 0
-clip_1/name = &"bossMusic"
-clip_1/stream = ExtResource("3_gr5ne")
+clip_1/name = &"dungeonMusic"
+clip_1/stream = ExtResource("2_jcukf")
 clip_1/auto_advance = 0
-clip_2/name = &"menuMusic"
-clip_2/stream = ExtResource("2_gr5ne")
+clip_2/name = &"bossMusic"
+clip_2/stream = ExtResource("3_gr5ne")
 clip_2/auto_advance = 0
 
 [node name="Sound_Scene" type="Node"]

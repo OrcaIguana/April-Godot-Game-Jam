@@ -5,7 +5,7 @@ const bullet = preload("res://Enemies/enemy_bullet.tscn")
 enum Phase { TRIANGLE, RECTANGLE, CIRCLE }
 enum Looking { LEFT, RIGHT }
 
-@export var shoot_interval_range = Vector2(.5, 1)
+@export var shoot_interval_range = Vector2(1, 1.5)
 
 var phase = Phase.TRIANGLE
 var max_health = 100
@@ -23,9 +23,7 @@ func _ready():
 	_reset_shoot_timer()
 
 func _on_death():
-	var YOU_WIN = load("res://Player/Win_Screen.tscn").instantiate()
-	YOU_WIN.spawn_position = self.global_position
-	get_tree().current_scene.add_child(YOU_WIN)
+	get_tree().change_scene_to_file("res://Player/Win_Screen.tscn")
 	queue_free()
 
 func _physics_process(delta):
@@ -147,7 +145,7 @@ func shoot_beam():
 		var shot_speed = 750
 		rng.randomize()
 		
-		new_direction = Vector2(get_direction_to_player().x+rng.randf_range(-.75, .75), get_direction_to_player().y+rng.randf_range(-.75, .75))
+		new_direction = Vector2(get_direction_to_player().x+rng.randf_range(-.1, .1), get_direction_to_player().y+rng.randf_range(-.1, .1))
 		for i in range(10):
 			var shot = bullet.instantiate()
 			shot.spawn_position = $BulletSpawnpoint.global_position

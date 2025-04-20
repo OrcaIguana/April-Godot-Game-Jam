@@ -1,18 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://d25yfgmuu134e"]
+[gd_scene load_steps=3 format=3 uid="uid://dwdx4rn4bupk5"]
 
 [ext_resource type="Texture2D" uid="uid://iat38ov4ju1k" path="res://Sprites/win_screen.png" id="1_d5ja3"]
+[ext_resource type="Script" uid="uid://brm1csow8h7e3" path="res://Player/win_screen.gd" id="1_juem1"]
 
 [node name="WinScreen" type="Node2D"]
+script = ExtResource("1_juem1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
 texture = ExtResource("1_d5ja3")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(200, 0)
-offset_left = -86.0
-offset_top = -374.0
-offset_right = 114.0
-offset_bottom = -334.0
+offset_left = 806.0
+offset_top = 154.0
+offset_right = 1006.0
+offset_bottom = 194.0
 scale = Vector2(2.72, 2.72)
 text = "You Win!"
 fit_content = true
+metadata/_edit_use_anchors_ = true

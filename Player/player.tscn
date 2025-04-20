@@ -562,7 +562,7 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Quit to Main Menu"
+text = "Return to Main Menu"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

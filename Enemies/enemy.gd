@@ -38,7 +38,8 @@ func hurt(amount):
 		is_dead = true
 	if is_dead:
 		_on_death()
-	await get_tree().create_timer(.1).timeout
+	if(is_inside_tree()):
+		await get_tree().create_timer(.1).timeout
 	modulate.b = 1
 	modulate.r = 1
 	modulate.g = 1

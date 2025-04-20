@@ -49,7 +49,7 @@ func hurt(amount):
 			is_dead = true
 			dead.emit()
 		invulnerable = true
-		await get_tree().create_timer(.3).timeout
+		await get_tree().create_timer(.4).timeout
 		modulate.r = 1
 		invulnerable = false
 	else:

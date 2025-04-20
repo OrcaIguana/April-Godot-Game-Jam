@@ -62,6 +62,7 @@ func _choose_slot():
 	if is_spell:
 		self.icon = spell_icons[randi_range(0, len(spell_icons)-1)]
 		self.text = current_selection.get_modifier_name()
+		
 		self.currently_spell = true
 	else:
 		self.icon = current_selection.get_node("Wand").texture

@@ -13,12 +13,14 @@ config_version=5
 config/name="April Godot Game Jam"
 run/main_scene="uid://b0wfrodl76x8o"
 config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
 
 [autoload]
 
 DungeonGen="*res://Dungeon Generation/dungeon_gen.gd"
 Global_Sound_System="*res://Audio/Global_Sound_System.gd"
 SoundSystem="*res://Sound_System.tscn"
+StaticTracker="*res://Static_Tracker.tscn"
 
 [display]
 

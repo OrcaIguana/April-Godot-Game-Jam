@@ -10,6 +10,8 @@ func _ready():
 	super._ready()
 	speed = 50
 
+	health = 2
+	
 	beenTriggered = false
 	
 	$WanderTimer.timeout.connect(_on_wander_timer_timeout)

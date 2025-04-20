@@ -14,6 +14,8 @@ func _ready():
 	super._ready()
 	speed = 50
 	
+	health = 2
+	
 	$AnimatedSprite2D.play()
 	
 	beenTriggered = false

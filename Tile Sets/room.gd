@@ -51,7 +51,7 @@ func spawn_enemies(difficulty):
 	if(id == 1):
 		spawnpoints.remove_at(6)
 	
-	var spawn_credits = difficulty + randi_range(1, id)
+	var spawn_credits = difficulty + randi_range(0, id)
 	
 	var new_enemies = []
 	

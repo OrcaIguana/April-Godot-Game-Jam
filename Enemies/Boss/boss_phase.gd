@@ -3,6 +3,7 @@ extends "res://Enemies/enemy.gd"
 const bullet = preload("res://Enemies/enemy_bullet.tscn")
 
 enum Phase { TRIANGLE, RECTANGLE, CIRCLE }
+enum Looking { LEFT, RIGHT }
 
 @export var shoot_interval_range = Vector2(1.5, 3.0)
 
@@ -11,6 +12,9 @@ var max_health = 100
 var attack_cooldown = 1.0
 var shoot_cooldown = 1.0
 var current_pulse_rotation = randi_range(0,360)
+var looking_direction = Looking.LEFT
+var animation_finished = true
+var animation_looped = true
 
 func _ready():
 	super._ready()
@@ -21,7 +25,14 @@ func _ready():
 func _physics_process(delta):
 	check_phase_transition()
 	handle_phase_behavior(delta)
-
+	
+	look_at_player()
+	if phase != Phase.RECTANGLE:
+		$AnimatedSprite2D.play("walk")
+	else:
+		if animation_looped:
+			$AnimatedSprite2D.play("Laser Charge")
+			animation_finished = false
 	move_and_slide()
 
 func _on_collision_area_entered(area: Area2D) -> void:
@@ -29,6 +40,17 @@ func _on_collision_area_entered(area: Area2D) -> void:
 		area.kill_self()
 		super.hurt(area.damage)
 		check_phase_transition()
+
+func look_at_player():
+	var new_looking_direction
+	var player_direction = get_direction_to_player()
+	if player_direction.x > 0:
+		new_looking_direction = Looking.RIGHT
+	else:
+		new_looking_direction = Looking.LEFT
+	if new_looking_direction != self.looking_direction:
+		$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h
+		looking_direction = new_looking_direction
 
 func check_phase_transition():
 	if phase == Phase.TRIANGLE and health <= max_health * 0.66:
@@ -124,6 +146,8 @@ func shoot_beam():
 		await get_tree().create_timer(.5).timeout
 
 func rectangle_stripe_attack():
+	$AnimatedSprite2D.play("Laser Attack")
+	animation_looped = false
 	var is_horizontal = randi() % 2 == 0
 	var num_stripes = 6
 	var safe_index = randi() % num_stripes
@@ -168,3 +192,15 @@ func rectangle_stripe_attack():
 			bullet_instance.direction = dir
 
 			get_tree().current_scene.add_child(bullet_instance)
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	animation_finished = true
+
+var looped = 0
+func _on_animated_sprite_2d_animation_looped() -> void:
+	if looped > 1:
+		animation_looped = true
+		looped = 0
+	else:
+		looped += 1

@@ -119,3 +119,9 @@ func spawn_thing_9(pos):
 
 func _on_animated_finished() -> void:
 	$AnimatedSprite2D.play("default")
+
+
+func _on_collision_area_entered(area: Area2D) -> void:
+	if area.type == "friendly_bullet":
+		area.kill_self()
+		super.hurt(area.damage)

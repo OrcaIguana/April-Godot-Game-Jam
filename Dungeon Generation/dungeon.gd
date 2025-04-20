@@ -5,7 +5,7 @@ var boss_room = preload("res://Tile Sets/Boss_Room.tscn")
 # Create Array for dungeon
 @export var _dimensions : Vector2i = Vector2i(6,6)
 @export var _start : Vector2i = Vector2i(-1,-1)
-@export var _boss_path_length : int = 4
+@export var _boss_path_length : int = 9
 
 @export var dungeon : Array
 
@@ -29,7 +29,7 @@ func _place_entrance() -> void:
 		_start.x = randi_range(0 , _dimensions.x - 1)
 	if _start.y < 0 or _start.y >= _dimensions.y:
 		_start.y = randi_range(0 , _dimensions.y - 1)
-	dungeon[_start.x][_start.y] = "S" #Spawn room
+	dungeon[_start.x][_start.y] = str(_boss_path_length + 1) #Spawn room
 
 func _generate_boss_path(from : Vector2i, length : int) -> bool:
 	if length == 0:
@@ -107,22 +107,15 @@ func _spawn_dungeon(dungeon_array):
 	var previous_direction
 	var direction
 	var counter = 1
+	var new_room
 	while true:
 		for y in _dimensions.y:
 			for x in _dimensions.x:
-				if str(dungeon_array[x][y]) == "S" and counter == _boss_path_length:
-					var new_room = boss_room.instantiate()
-					print("Boss Room Made")
-					placed_dungeon.append(new_room)
-					new_room.x = x
-					new_room.y = y
-					new_room.add_doors([previous_direction])
-					previous_direction = opposite(direction)
-					new_room.id = counter
-					counter += 1
-					add_child(new_room)
-				elif int(dungeon_array[x][y]) == counter:
-					var new_room = room.instantiate()
+				if int(dungeon_array[x][y]) == counter:
+					if counter == _boss_path_length + 1:
+						new_room = boss_room.instantiate()
+					else:
+						new_room = room.instantiate()
 					placed_dungeon.append(new_room)
 					print("Placed room")
 					new_room.x = x
@@ -134,16 +127,13 @@ func _spawn_dungeon(dungeon_array):
 						new_room.id = counter
 						counter += 1
 					else:
-						if counter == _boss_path_length:
-							direction = find_next_room("S", [x, y])
-						else:
-							direction = find_next_room(counter, [x, y])
+						direction = find_next_room(counter, [x, y])
 						new_room.add_doors([direction, previous_direction])
 						previous_direction = opposite(direction)
 						new_room.id = counter
 						counter += 1
 					add_child(new_room)
-		if counter > _boss_path_length:
+		if counter > _boss_path_length + 1:
 			break
 				
 func _get_start():

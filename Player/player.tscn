@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://cx5cjsur7qylr" path="res://Player/button_2.gd" id="23_8mwp6"]
 [ext_resource type="Script" uid="uid://2t0g3421q1mi" path="res://Player/button_3.gd" id="24_qemgg"]
 [ext_resource type="Script" uid="uid://gu8r162guqgv" path="res://Player/button_4.gd" id="25_8viyr"]
-[ext_resource type="Script" uid="uid://jfjjwi32upl2" path="res://Player/settings.gd" id="27_76lrf"]
+[ext_resource type="Script" path="res://Player/settings.gd" id="27_76lrf"]
 [ext_resource type="Texture2D" uid="uid://ddp0nqwa0w6f8" path="res://User Interface/Sprites/pause.png" id="27_efx54"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]

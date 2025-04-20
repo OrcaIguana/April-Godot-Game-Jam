@@ -25,12 +25,12 @@ func _physics_process(delta):
 	if is_player_in_range():
 		beenTriggered = true
 		$AnimatedSprite2D.play("Getting Ready")
-		$AnimatedSprite2D.rotation_degrees = get_direction_to_player().angle()
+		$AnimatedSprite2D.rotation = deg_to_rad(get_direction_to_player().angle())
 
 	if beenTriggered && !resting:
 		$AnimatedSprite2D.play("Moving")
 		velocity += get_direction_to_player() * acceleration
-		$AnimatedSprite2D.rotation_degrees = get_direction_to_player().angle()
+		$AnimatedSprite2D.rotation = deg_to_rad(get_direction_to_player().angle())
 	
 	move_and_slide()
 

@@ -40,6 +40,7 @@ func health_changed(new_health):
 
 func hurt(amount):
 	if !invulnerable:
+		modulate.r = 255
 		Global_Sound_System.play_sound(Global_Sound_System.player_hit_sound)
 		var new_health = health - amount
 		health_change.emit(new_health)
@@ -49,6 +50,7 @@ func hurt(amount):
 			dead.emit()
 		invulnerable = true
 		await get_tree().create_timer(.3).timeout
+		modulate.r = 1
 		invulnerable = false
 	else:
 		pass # Some dodge sfx or smth

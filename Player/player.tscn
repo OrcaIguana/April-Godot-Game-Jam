@@ -92,6 +92,7 @@ process_material = SubResource("ParticleProcessMaterial_fhl08")
 script = ExtResource("7_vtle1")
 
 [node name="Area2D" type="Area2D" parent="Player"]
+visible = false
 scale = Vector2(51.0926, 50)
 script = ExtResource("8_n471f")
 

@@ -189,27 +189,27 @@ position = Vector2(957, 536.75)
 shape = SubResource("RectangleShape2D_vofp0")
 
 [node name="Spawn Point" type="Marker2D" parent="."]
-position = Vector2(231, 219)
+position = Vector2(693, 428)
 rotation = 0.00023583
 
 [node name="Spawn Point2" type="Marker2D" parent="."]
-position = Vector2(1664, 226)
+position = Vector2(1199, 431)
 rotation = 0.00023583
 
 [node name="Spawn Point3" type="Marker2D" parent="."]
-position = Vector2(218, 893)
+position = Vector2(696, 666)
 rotation = 0.00023583
 
 [node name="Spawn Point4" type="Marker2D" parent="."]
-position = Vector2(1671, 896)
+position = Vector2(1202, 656)
 rotation = 0.00023583
 
 [node name="Spawn Point5" type="Marker2D" parent="."]
-position = Vector2(501, 540)
+position = Vector2(805, 545)
 rotation = 0.00023583
 
 [node name="Spawn Point6" type="Marker2D" parent="."]
-position = Vector2(1405, 542)
+position = Vector2(1076, 546)
 rotation = 0.00023583
 
 [node name="Spawn Point7" type="Marker2D" parent="."]

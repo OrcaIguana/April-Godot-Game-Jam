@@ -49,7 +49,7 @@ func hurt(amount):
 			is_dead = true
 			dead.emit()
 		invulnerable = true
-		await get_tree().create_timer(.4).timeout
+		await get_tree().create_timer(.5).timeout
 		modulate.r = 1
 		invulnerable = false
 	else:
@@ -99,7 +99,7 @@ func _ready():
 	active_wand = wand_inventory[0]
 	change_wand_index(0)
 	invulnerable = true
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	invulnerable = false
 	
 func get_input():
@@ -165,7 +165,8 @@ func _process(delta: float) -> void:
 		if(locked_direction == Vector2(0,0)): 
 			locked_direction = Vector2(.8,0).rotated(round((get_local_mouse_position().angle()*(4/3.14)))*(3.14/4))
 	elif (dash_duration <= 0.05):
-		invulnerable = false
+		if(is_dashing):
+			invulnerable = false
 		if (dash_duration <= 0):
 			speed = 500
 			is_dashing = false
@@ -201,7 +202,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		self.position = self.position + Vector2(-250, 0)
 		room_change.emit(Vector2(-2000, 0))
 		invulnerable = true
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(.5).timeout
 		invulnerable = false
 	if area.type == "door_up":
 		self.position = self.position + Vector2(0, -250)

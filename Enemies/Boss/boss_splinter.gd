@@ -19,7 +19,7 @@ var enemies = [charger, orbit, random, square, shooter]
 @export var spawn_timer_interval = 3.0
 @export var min_spawn_count = 1
 @export var max_spawn_count = 1
-@export var max_health = 350
+@export var max_health = 400
 
 var rng = RandomNumberGenerator.new()
 
@@ -36,6 +36,10 @@ func _ready():
 
 	$SpawnTimer.timeout.connect(_on_spawn_timer_timeout)
 	$SpawnTimer.start(spawn_timer_interval)
+
+func _process(delta):
+	if(health < max_health/2):
+		$AnimatedSprite2D.modulate = Color(1, .5, .5, 1)
 
 func _physics_process(delta):
 	pass

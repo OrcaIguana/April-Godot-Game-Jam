@@ -8,7 +8,7 @@ enum Looking { LEFT, RIGHT }
 @export var shoot_interval_range = Vector2(1, 1.5)
 
 var phase = Phase.TRIANGLE
-var max_health = 200
+var max_health = 400
 var attack_cooldown = 1.0
 var shoot_cooldown = 1.0
 var current_pulse_rotation = randi_range(0,360)
@@ -101,8 +101,8 @@ func handle_phase_behavior(delta):
 			velocity = Vector2.ZERO
 			attack_cooldown -= delta
 			if attack_cooldown <= 0:
-				rectangle_stripe_attack()
-				attack_cooldown = 3.0
+				attack_cooldown = rectangle_stripe_attack()
+				
 
 		Phase.CIRCLE:
 			var dir = get_direction_to_player().normalized()
@@ -157,24 +157,25 @@ func shoot_beam():
 		await get_tree().create_timer(.1).timeout
 	rng.is_queued_for_deletion()
 
-func rectangle_stripe_attack():
+func rectangle_stripe_attack() -> float:
 	$AnimatedSprite2D.play("Laser Attack")
 	animation_looped = false
 	var is_horizontal = randi() % 2 == 0
-	var num_stripes = 6
-	var safe_index = randi() % num_stripes
+	var num_stripes = 10
+	var safe_index = randi_range(1, num_stripes-2)
 	var screen_rect = get_viewport().get_visible_rect()
 	var screen_size = screen_rect.size
 	var start_pos = get_viewport().get_camera_2d().get_screen_center_position() - screen_size / 2.0
 
 	# Ensure bullets spawn at the edges
-	var edge_offset = 10 # You can adjust this to control how close to the edge the bullets appear.
+	var rand_offset = randi_range(-40,40)
+	var edge_offset = 2000 # You can adjust this to control how close to the edge the bullets appear.
 
 	for i in range(num_stripes):
 		if i == safe_index:
 			continue
 
-		for j in range(6): # number of bullets per stripe
+		for j in range(10): # number of bullets per stripe
 			var bullet_instance = bullet.instantiate()
 			var pos := Vector2.ZERO
 			var dir := Vector2.ZERO
@@ -182,28 +183,37 @@ func rectangle_stripe_attack():
 			if is_horizontal:
 				# Spawn horizontally along the top or bottom edge
 				pos = Vector2(
-					start_pos.x + (j * screen_size.x / 6),  # Spread across the screen width
+					start_pos.x + (j * screen_size.x / 10),  # Spread across the screen width
 					start_pos.y + (i + 0.5) * screen_size.y / num_stripes
 				)
 
 				# Add the offset to either the left or right edge
-				if j < 3:
-					pos.x -= edge_offset  # Spawn on the left edge
-				else:
-					pos.x += edge_offset
+				#if j < 3:
+					#pos.x -= edge_offset  # Spawn on the left edge
+				#else:
+					#pos.x += edge_offset
+				pos.x -= edge_offset  # Spawn on the left edge
+				pos.y += rand_offset
 
 				dir = Vector2.RIGHT
 			else:
 				pos = Vector2(
 					start_pos.x + (i + 0.5) * screen_size.x / num_stripes,
-					start_pos.y + j * screen_size.y / 6
+					start_pos.y + j * screen_size.y / 10
 				)
 				dir = Vector2.DOWN
+				
+				pos.y -= edge_offset/2
+				pos.x += rand_offset
 				
 			bullet_instance.spawn_position = pos
 			bullet_instance.direction = dir
 
 			get_tree().current_scene.add_child(bullet_instance)
+	if(is_horizontal):
+		return 5.0
+	else:
+		return 3.0
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

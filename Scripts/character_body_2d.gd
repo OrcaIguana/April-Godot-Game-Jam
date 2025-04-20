@@ -47,6 +47,9 @@ func hurt(amount):
 		if health == 0:
 			is_dead = true
 			dead.emit()
+		invulnerable = true
+		await get_tree().create_timer(.3).timeout
+		invulnerable = false
 	else:
 		pass # Some dodge sfx or smth
 
@@ -92,10 +95,10 @@ func _ready():
 		wand_inventory.append(null)
 	wand_inventory[0] = load_wand(blaster)
 	active_wand = wand_inventory[0]
-	invulnerable = true
-	await get_tree().create_timer(10).timeout
-	invulnerable = false
 	change_wand_index(0)
+	invulnerable = true
+	await get_tree().create_timer(2).timeout
+	invulnerable = false
 	
 func get_input():
 	var input
@@ -195,15 +198,27 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.type == "door_left":
 		self.position = self.position + Vector2(-250, 0)
 		room_change.emit(Vector2(-2000, 0))
+		invulnerable = true
+		await get_tree().create_timer(1).timeout
+		invulnerable = false
 	if area.type == "door_up":
 		self.position = self.position + Vector2(0, -250)
 		room_change.emit(Vector2(0, -1200))
+		invulnerable = true
+		await get_tree().create_timer(1).timeout
+		invulnerable = false
 	if area.type == "door_right":
 		self.position = self.position + Vector2(250, 0)
 		room_change.emit(Vector2(2000, 0))
+		invulnerable = true
+		await get_tree().create_timer(1).timeout
+		invulnerable = false
 	if area.type == "door_down":
 		self.position = self.position + Vector2(0, 250)
 		room_change.emit(Vector2(0, 1200))
+		invulnerable = true
+		await get_tree().create_timer(1).timeout
+		invulnerable = false
 	if area.type == "XP":
 		Global_Sound_System.play_sound(Global_Sound_System.xp_pickup_sound)
 		current_xp += 1

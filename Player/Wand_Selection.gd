@@ -6,6 +6,7 @@ signal chosen
 var current_selection
 
 func _ready() -> void:
+	self.visible = true
 	_choose_slot()
 
 func _choose_slot():
@@ -14,6 +15,8 @@ func _choose_slot():
 	if selected_wand != null:
 		self.text = selected_wand.name
 		self.icon = selected_wand.get_node("Wand").texture
+	else:
+		self.visible = false
 
 func _on_pressed() -> void:
 	get_tree().paused = false

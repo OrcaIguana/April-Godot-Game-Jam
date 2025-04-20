@@ -48,6 +48,9 @@ func spawn_enemies(difficulty):
 	 $"Spawn Point5", $"Spawn Point6", $"Spawn Point7", $"Spawn Point8", $"Spawn Point9",
 	 $"Spawn Point10", $"Spawn Point11"]
 	
+	if(id == 1):
+		spawnpoints.remove_at(6)
+	
 	var spawn_credits = difficulty * randi_range(1, id)
 	
 	var new_enemies = []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cvnhcrcuvg482"]
+[gd_scene load_steps=34 format=3 uid="uid://cvnhcrcuvg482"]
 
 [ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://2t0g3421q1mi" path="res://Player/button_3.gd" id="24_qemgg"]
 [ext_resource type="Script" uid="uid://gu8r162guqgv" path="res://Player/button_4.gd" id="25_8viyr"]
 [ext_resource type="Script" uid="uid://jfjjwi32upl2" path="res://Player/settings.gd" id="27_76lrf"]
+[ext_resource type="Texture2D" uid="uid://ddp0nqwa0w6f8" path="res://User Interface/Sprites/pause.png" id="27_efx54"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -102,6 +103,7 @@ shape = SubResource("CircleShape2D_dl81w")
 
 [node name="PlayerUI" type="Control" parent="."]
 process_mode = 3
+z_index = 1
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -464,15 +466,15 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("25_8viyr")
 
-[node name="Settings" type="ColorRect" parent="PlayerUI"]
+[node name="Settings" type="TextureRect" parent="PlayerUI"]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 530.0
-offset_top = -720.0
-offset_right = 980.0
-offset_bottom = -160.0
-color = Color(0, 0, 0, 0.741176)
+offset_left = 420.0
+offset_top = -843.0
+offset_right = 1057.0
+offset_bottom = -47.0
+texture = ExtResource("27_efx54")
 script = ExtResource("27_76lrf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Settings"]

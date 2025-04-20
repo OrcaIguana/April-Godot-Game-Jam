@@ -217,6 +217,8 @@ func find_seeking_target(distance: int) -> bool:
 				closest_distance = distance_to_enemy
 				seeking_target = enemy
 			distance_to_enemy = 0
+		if(seeking_target == null):
+			find_seeking_target(distance)
 		if(self.global_position.distance_to(seeking_target.global_position) < distance):
 			return true
 		else:

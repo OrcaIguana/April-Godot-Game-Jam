@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://ge05btpxwfat"]
 
 [ext_resource type="PackedScene" uid="uid://cvnhcrcuvg482" path="res://Player/player.tscn" id="1_o24vn"]
+
 [ext_resource type="PackedScene" uid="uid://okc0s87l6pp6" path="res://Enemies/Boss/boss_splinter.tscn" id="2_jt5j1"]
+
 
 [node name="testlvl" type="Node2D"]
 

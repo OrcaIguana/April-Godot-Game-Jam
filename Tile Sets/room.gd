@@ -51,24 +51,25 @@ func spawn_enemies(difficulty):
 	if(id == 1):
 		spawnpoints.remove_at(6)
 	
-	var spawn_credits = difficulty * randi_range(1, id)
+	var spawn_credits = difficulty + randi_range(1, id)
 	
 	var new_enemies = []
 	
 	while spawn_credits > 0:
-		if spawn_credits > 50:
-			new_enemies.append(enemy_random.instantiate())
-			spawn_credits -= 50
-		elif spawn_credits > 15:
-			new_enemies.append(enemy_charger.instantiate())
-			spawn_credits -= 1
-		elif spawn_credits > 10:
-			new_enemies.append(enemy_orbit.instantiate())
-			spawn_credits -= 10
-		else:
-			new_enemies.append(enemy_shooter.instantiate())
-			spawn_credits -= 1
-			
+		match randi_range(0,3):
+			0:
+				new_enemies.append(enemy_random.instantiate())
+				spawn_credits -= 1
+			1:
+				new_enemies.append(enemy_charger.instantiate())
+				spawn_credits -= 1
+			2:
+				new_enemies.append(enemy_orbit.instantiate())
+				spawn_credits -= 1
+			3:
+				new_enemies.append(enemy_shooter.instantiate())
+				spawn_credits -= 1
+				
 	for enemy in new_enemies:
 		enemy.spawn_location = spawnpoints[randi_range(0, len(spawnpoints)-1)].global_position
 		call_deferred("add_child", enemy)

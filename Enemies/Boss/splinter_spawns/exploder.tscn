@@ -1,16 +1,104 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba6p0ox4fcvtm"]
+[gd_scene load_steps=17 format=3 uid="uid://ba6p0ox4fcvtm"]
 
 [ext_resource type="Script" uid="uid://diujdf4wxn6qe" path="res://Enemies/Boss/splinter_spawns/exploder.gd" id="1_xio7r"]
-[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="3_0q0vt"]
+[ext_resource type="Texture2D" uid="uid://ccjt42c4i4fyw" path="res://Enemies/Sprites/Kamikaze/Explode 1.png" id="2_ljtat"]
+[ext_resource type="Texture2D" uid="uid://ce4ihhym7l5hf" path="res://Enemies/Sprites/Kamikaze/Explode 2.png" id="3_st8jj"]
+[ext_resource type="Texture2D" uid="uid://dnad76ymn8qwt" path="res://Enemies/Sprites/Kamikaze/Frame 1.png" id="4_suq8e"]
+[ext_resource type="Texture2D" uid="uid://cv1u5w14lvf1l" path="res://Enemies/Sprites/Kamikaze/Frame 2.png" id="5_g3j4b"]
+[ext_resource type="Texture2D" uid="uid://cjd5teuhxynih" path="res://Enemies/Sprites/Kamikaze/Frame 3.png" id="6_h8ra4"]
+[ext_resource type="Texture2D" uid="uid://d08tl2rvwkked" path="res://Enemies/Sprites/Kamikaze/Frame 4.png" id="7_a143j"]
+[ext_resource type="Texture2D" uid="uid://cbkw45fkmp7oy" path="res://Enemies/Sprites/Kamikaze/Frame 5.png" id="8_308vn"]
+[ext_resource type="Texture2D" uid="uid://7s3kggkvntiy" path="res://Enemies/Sprites/Kamikaze/Frame 6.png" id="9_mi238"]
+[ext_resource type="Texture2D" uid="uid://ciwvnmd6aud8c" path="res://Enemies/Sprites/Kamikaze/Moving.png" id="10_ptgpy"]
+[ext_resource type="Texture2D" uid="uid://biv5va4jol1n" path="res://Enemies/Sprites/Kamikaze/Getting Ready.png" id="11_7nedu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o58b6"]
+atlas = ExtResource("10_ptgpy")
+region = Rect2(0, 0, 313, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3tcq"]
+atlas = ExtResource("10_ptgpy")
+region = Rect2(313, 0, 313, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u47be"]
+atlas = ExtResource("10_ptgpy")
+region = Rect2(626, 0, 313, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rto5"]
+atlas = ExtResource("11_7nedu")
+region = Rect2(0, 0, 231, 148)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b7xx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ljtat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_st8jj")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_suq8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g3j4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_h8ra4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a143j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_308vn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mi238")
+}],
+"loop": false,
+"name": &"Getting Ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o58b6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3tcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u47be")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rto5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Exploder" type="CharacterBody2D"]
 script = ExtResource("1_xio7r")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_0q0vt")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.366667, 0, 1, 1)
+scale = Vector2(0.256757, 0.256757)
+sprite_frames = SubResource("SpriteFrames_7b7xx")
 
 [node name="WanderTimer" type="Timer" parent="."]
 
 [node name="ChargeTimer" type="Timer" parent="."]
 
 [node name="ShootTimer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

@@ -1,7 +1,7 @@
 extends Button
 
 # Determines whether it is a wand or a spell. < 50 is more likely to be a wand. > 50 is more likely to be a spell
-var bias = 50 
+var bias = 35
 
 var current_selection
 
@@ -51,7 +51,8 @@ func _ready() -> void:
 	_choose_slot()
 
 func _choose_slot():
-	var is_spell = randi_range(0, 100) > bias
+	var is_spell = true
+	is_spell = randi_range(0, 100) > bias
 	
 	if is_spell:
 		current_selection = current_spells[randi_range(0, len(current_spells)-1)]
@@ -74,9 +75,9 @@ func _on_pressed() -> void:
 	if currently_spell:
 		chosen.emit()
 		spell.emit(current_selection)
-		_choose_slot()
+		#_choose_slot()
 	else:
 		get_tree().paused = false
 		chosen.emit()
 		on_press.emit(current_selection)
-		_choose_slot()
+		#_choose_slot()

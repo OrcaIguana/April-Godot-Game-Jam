@@ -41,9 +41,8 @@ func _physics_process(delta):
 	pass
 
 func _on_death():
-	var YOU_WIN = load("res://Player/Win_Screen.tscn").instantiate()
-	YOU_WIN.spawn_position = self.global_position
-	get_tree().current_scene.add_child(YOU_WIN)
+	Global_Sound_System.location = "menu"
+	get_tree().change_scene_to_file("res://Player/Win_Screen.tscn")
 	queue_free()
 
 func _on_shoot_timer_timeout():
@@ -90,15 +89,19 @@ func trigger_spawn(index):
 
 func spawn_thing_1(pos):
 	var spawn = charger_spawn.instantiate()
+	spawn.global_position = pos
 	get_tree().current_scene.add_child(spawn)
 func spawn_thing_2(pos):
 	var spawn = long_shooter_spawn.instantiate()
+	spawn.global_position = pos
 	get_tree().current_scene.add_child(spawn)
 func spawn_thing_3(pos):
 	var spawn = sprinkler_spawn.instantiate()
+	spawn.global_position = pos
 	get_tree().current_scene.add_child(spawn)
 func spawn_thing_4(pos):
 	var spawn = summoner_spawn.instantiate()
+	spawn.global_position = pos
 	get_tree().current_scene.add_child(spawn)
 func spawn_thing_5(pos, pos2):
 	var enemy = enemies.pick_random().instantiate()
@@ -116,9 +119,11 @@ func spawn_thing_6(pos, pos2):
 	get_tree().current_scene.add_child(enemy)
 func spawn_thing_7(pos):
 	var spawn = exploder_spawn.instantiate()
+	spawn.global_position = pos
 	get_tree().current_scene.add_child(spawn)
 func spawn_thing_8(pos):
 	var spawn = sniper_spawn.instantiate()
+	spawn.global_position = pos
 	get_tree().current_scene.add_child(spawn)
 func spawn_thing_9(pos): 
 	pass

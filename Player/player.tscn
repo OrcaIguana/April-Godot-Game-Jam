@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://cx5cjsur7qylr" path="res://Player/button_2.gd" id="23_8mwp6"]
 [ext_resource type="Script" uid="uid://2t0g3421q1mi" path="res://Player/button_3.gd" id="24_qemgg"]
 [ext_resource type="Script" uid="uid://gu8r162guqgv" path="res://Player/button_4.gd" id="25_8viyr"]
-[ext_resource type="Script" path="res://Player/settings.gd" id="27_76lrf"]
+[ext_resource type="Script" uid="uid://jfjjwi32upl2" path="res://Player/settings.gd" id="27_76lrf"]
 [ext_resource type="Texture2D" uid="uid://ddp0nqwa0w6f8" path="res://User Interface/Sprites/pause.png" id="27_efx54"]
 
 [sub_resource type="Curve" id="Curve_fhl08"]
@@ -585,6 +585,7 @@ script = ExtResource("21_7emwf")
 [connection signal="wand_progress_bar" from="Player" to="PlayerUI/HBoxContainer/Slot 4/ProgressBar4" method="_update"]
 [connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]
 [connection signal="pressed" from="PlayerUI/Dead Screen/Button" to="PlayerUI" method="_on_restart_button_pressed"]
+[connection signal="visibility_changed" from="PlayerUI/Level Up Screen" to="PlayerUI/Level Up Screen" method="_on_visibility_changed"]
 [connection signal="chosen" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen" method="_on_button_chosen"]
 [connection signal="on_press" from="PlayerUI/Level Up Screen/Button" to="Player" method="wand_get"]
 [connection signal="pressed" from="PlayerUI/Level Up Screen/Button" to="PlayerUI/Level Up Screen/Button" method="_on_pressed"]

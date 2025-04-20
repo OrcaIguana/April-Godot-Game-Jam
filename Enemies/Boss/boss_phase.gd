@@ -23,6 +23,7 @@ func _ready():
 	_reset_shoot_timer()
 
 func _on_death():
+	Global_Sound_System.location = "menu"
 	get_tree().change_scene_to_file("res://Player/Win_Screen.tscn")
 	queue_free()
 

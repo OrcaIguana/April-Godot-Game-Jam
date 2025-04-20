@@ -32,7 +32,7 @@ func _physics_process(delta):
 	if beenTriggered && !resting:
 		$AnimatedSprite2D.play("Moving")
 		velocity += get_direction_to_player() * acceleration
-		$AnimatedSprite2D.rotation = deg_to_rad(get_direction_to_player().angle())
+		$AnimatedSprite2D.rotation = get_direction_to_player().angle() - PI
 	
 	move_and_slide()
 

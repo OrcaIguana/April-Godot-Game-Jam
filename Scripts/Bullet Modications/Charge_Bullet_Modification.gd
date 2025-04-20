@@ -8,7 +8,8 @@ func initialize(val: bool):
 
 func apply_modification(bullet : Bullet):
 	bullet.is_charge = is_charge
-	bullet.damage *= 2
+	bullet.damage *= 1.5
+	bullet.speed *= 1.3
 
 func get_modifier_name() -> String:
 	return "Charge"

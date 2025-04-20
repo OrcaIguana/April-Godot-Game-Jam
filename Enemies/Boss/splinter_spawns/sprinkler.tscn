@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_s70aq"]
 
 [node name="Sprinkler" type="CharacterBody2D"]
+modulate = Color(0.55, 0, 1, 1)
 script = ExtResource("1_487hp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -3,12 +3,17 @@ extends Control
 var is_fading_out = false
 var fade_timer = 0.5
 var fade_in = 0
+
 @onready var modulator = get_node("Background/CanvasModulate")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
 	fade_in = .5
 	$VBoxContainer/StartButton.grab_focus()
+	if(StaticTracker.is_first_launch):
+		get_tree().change_scene_to_file("res://User Interface/SettingsMenu.tscn")
+		StaticTracker.is_first_launch = false
 	Global_Sound_System.location = "menu"
 
 

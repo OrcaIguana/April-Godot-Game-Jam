@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlmyopfti8h3s"]
+[gd_scene load_steps=6 format=3 uid="uid://dlmyopfti8h3s"]
 
 [ext_resource type="Script" uid="uid://b7or6uckxhbub" path="res://Audio/sound_system.gd" id="1_gr5ne"]
 [ext_resource type="AudioStream" uid="uid://bp7bf0ewq8e80" path="res://Audio/Audio_Assets/Tracks/Menu Music Full.wav" id="2_gr5ne"]
 [ext_resource type="AudioStream" uid="uid://ddi4vfn4a2kf" path="res://Audio/Audio_Assets/Tracks/test_track.mp3" id="2_jcukf"]
+[ext_resource type="AudioStream" uid="uid://3ba5f1giondc" path="res://Audio/Audio_Assets/Tracks/Boss Music Full.wav" id="3_gr5ne"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_gr5ne"]
 clip_count = 3
@@ -10,12 +11,11 @@ clip_0/name = &"dungeonMusic"
 clip_0/stream = ExtResource("2_jcukf")
 clip_0/auto_advance = 0
 clip_1/name = &"bossMusic"
-clip_1/stream = ExtResource("2_jcukf")
+clip_1/stream = ExtResource("3_gr5ne")
 clip_1/auto_advance = 0
 clip_2/name = &"menuMusic"
 clip_2/stream = ExtResource("2_gr5ne")
 clip_2/auto_advance = 0
-initial_clip = 2
 
 [node name="Sound_Scene" type="Node"]
 

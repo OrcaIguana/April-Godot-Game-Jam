@@ -6,6 +6,7 @@ func _ready() -> void:
 	super._ready()
 
 func spawn_enemies(difficulty):
+	Global_Sound_System.location = "boss"
 	var spawnpoint = $"Spawn Point"
 	
 	var spawned_boss = boss.instantiate()

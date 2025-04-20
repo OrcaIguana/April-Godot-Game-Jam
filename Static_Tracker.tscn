@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc732a6sbh0nm"]
+
+[ext_resource type="Script" uid="uid://bkivyx75x8lr6" path="res://static_tracker.gd" id="1_6caul"]
+
+[node name="StaticTracker" type="Node"]
+script = ExtResource("1_6caul")

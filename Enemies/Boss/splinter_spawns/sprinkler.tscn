@@ -1,11 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://d187muuylw1v4"]
 
 [ext_resource type="Script" uid="uid://b2k5pliw5kobn" path="res://Enemies/Boss/splinter_spawns/sprinkler.gd" id="1_487hp"]
-[ext_resource type="Texture2D" uid="uid://bcrvfe23newq" path="res://Player/Sprites/fucked-up-diamond.png" id="2_s70aq"]
+[ext_resource type="Texture2D" uid="uid://dh3ri4ct0focc" path="res://Enemies/Boss/splinter_sprites/Sprinkler Sprite.png" id="2_s70aq"]
 
 [node name="Sprinkler" type="CharacterBody2D"]
 modulate = Color(0.55, 0, 1, 1)
 script = ExtResource("1_487hp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(39.1111, -22)
+scale = Vector2(1.24444, 1.24444)
 texture = ExtResource("2_s70aq")

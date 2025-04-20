@@ -5,6 +5,7 @@
 
 [node name="testlvl" type="Node2D"]
 
-[node name="boss_phase" parent="." instance=ExtResource("2_jt5j1")]
-
 [node name="Player" parent="." instance=ExtResource("1_o24vn")]
+
+[node name="boss_phase" parent="." instance=ExtResource("2_jt5j1")]
+shoot_interval_range = Vector2(0.5, 1)

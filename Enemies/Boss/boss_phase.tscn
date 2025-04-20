@@ -111,7 +111,7 @@ size = Vector2(119, 261)
 
 [node name="boss_phase" instance=ExtResource("1_o6k1y")]
 script = ExtResource("2_2fl70")
-shoot_interval_range = Vector2(1.5, 3)
+shoot_interval_range = Vector2(0.5, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_2fl70")

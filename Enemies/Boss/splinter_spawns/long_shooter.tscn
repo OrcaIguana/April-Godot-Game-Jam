@@ -39,6 +39,7 @@ animations = [{
 }]
 
 [node name="LongShooter" type="CharacterBody2D"]
+modulate = Color(0.472, 0.00999999, 1, 1)
 script = ExtResource("1_4dhi1")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

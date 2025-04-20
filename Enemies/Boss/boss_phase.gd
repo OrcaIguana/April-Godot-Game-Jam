@@ -5,7 +5,7 @@ const bullet = preload("res://Enemies/enemy_bullet.tscn")
 enum Phase { TRIANGLE, RECTANGLE, CIRCLE }
 enum Looking { LEFT, RIGHT }
 
-@export var shoot_interval_range = Vector2(1.5, 3.0)
+@export var shoot_interval_range = Vector2(.5, 1)
 
 var phase = Phase.TRIANGLE
 var max_health = 100
@@ -135,15 +135,21 @@ func shoot_fragmenting_spray():
 		get_tree().current_scene.add_child(shot)
 		
 func shoot_beam():
-	for a in range(3):
+	var new_direction : Vector2
+	var rng = RandomNumberGenerator.new()
+	for a in range(4):
 		var shot_speed = 750
+		rng.randomize()
+		
+		new_direction = Vector2(get_direction_to_player().x+rng.randf_range(-.75, .75), get_direction_to_player().y+rng.randf_range(-.75, .75))
 		for i in range(10):
 			var shot = bullet.instantiate()
 			shot.spawn_position = $BulletSpawnpoint.global_position
-			shot.direction = get_direction_to_player()
+			shot.direction = Vector2(0,0).direction_to(new_direction)
 			shot.speed = shot_speed - 60*i
 			get_tree().current_scene.add_child(shot)
-		await get_tree().create_timer(.5).timeout
+		await get_tree().create_timer(.1).timeout
+	rng.is_queued_for_deletion()
 
 func rectangle_stripe_attack():
 	$AnimatedSprite2D.play("Laser Attack")

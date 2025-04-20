@@ -12,6 +12,9 @@ var enemies = [charger, orbit, random, square, shooter]
 
 var shoot_timer := 0.0
 
+func _on_ready():
+	$Sprite2d.play("default")
+
 func _physics_process(delta):
 	shoot_timer -= delta
 

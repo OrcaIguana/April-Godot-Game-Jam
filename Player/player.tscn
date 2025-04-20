@@ -317,7 +317,7 @@ offset_left = -232.0
 offset_top = -997.0
 offset_right = 1883.0
 offset_bottom = 123.0
-color = Color(0.247059, 0.247059, 0.247059, 0.854902)
+color = Color(0.425701, 0.132248, 0.134421, 0.854902)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Dead Screen"]
 layout_mode = 0
@@ -359,7 +359,7 @@ offset_left = -232.0
 offset_top = -997.0
 offset_right = 1883.0
 offset_bottom = 123.0
-color = Color(0.247059, 0.247059, 0.247059, 0.854902)
+color = Color(0.125864, 0.289527, 0.140588, 0.854902)
 script = ExtResource("20_hshwv")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Level Up Screen"]

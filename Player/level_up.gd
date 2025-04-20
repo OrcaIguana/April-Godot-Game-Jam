@@ -73,7 +73,9 @@ func _on_pressed() -> void:
 	if currently_spell:
 		chosen.emit()
 		spell.emit(current_selection)
+		_choose_slot()
 	else:
 		get_tree().paused = false
 		chosen.emit()
 		on_press.emit(current_selection)
+		_choose_slot()

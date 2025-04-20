@@ -74,6 +74,15 @@ func _print_dungeon() -> void:
 func find_next_room(room_id, room_coords):
 	for y in range(_dimensions.y - 1 , -1 , -1):
 		for x in _dimensions.x:
+			if str(room_id) == "S" && str(dungeon[x][y]) == str(room_id):
+				if x > room_coords[0]:
+					return "RIGHT"
+				if x < room_coords[0]:
+					return "LEFT"
+				if y > room_coords[1]:
+					return "DOWN"
+				if y < room_coords[1]:
+					return "UP"
 			if int(dungeon[x][y]) == int(room_id) + 1:
 				if x > room_coords[0]:
 					return "RIGHT"
@@ -101,9 +110,21 @@ func _spawn_dungeon(dungeon_array):
 	while true:
 		for y in _dimensions.y:
 			for x in _dimensions.x:
-				if int(dungeon_array[x][y]) == counter:
+				if str(dungeon_array[x][y]) == "S" && counter > _boss_path_length:
+					var new_room = boss_room.instantiate()
+					print("Boss Room Made")
+					placed_dungeon.append(new_room)
+					new_room.x = x
+					new_room.y = y
+					new_room.add_doors([previous_direction])
+					previous_direction = opposite(direction)
+					new_room.id = counter
+					counter += 1
+					add_child(new_room)
+				elif int(dungeon_array[x][y]) == counter:
 					var new_room = room.instantiate()
 					placed_dungeon.append(new_room)
+					print("Placed room")
 					new_room.x = x
 					new_room.y = y
 					if previous_direction == null:
@@ -113,7 +134,10 @@ func _spawn_dungeon(dungeon_array):
 						new_room.id = counter
 						counter += 1
 					else:
-						direction = find_next_room(counter, [x, y])
+						if counter == _boss_path_length:
+							direction = find_next_room("S", [x, y])
+						else:
+							direction = find_next_room(counter, [x, y])
 						new_room.add_doors([direction, previous_direction])
 						previous_direction = opposite(direction)
 						new_room.id = counter

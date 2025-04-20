@@ -5,7 +5,7 @@ var boss_room = preload("res://Tile Sets/Boss_Room.tscn")
 # Create Array for dungeon
 @export var _dimensions : Vector2i = Vector2i(6,6)
 @export var _start : Vector2i = Vector2i(-1,-1)
-@export var _boss_path_length : int = 9
+@export var _boss_path_length : int = 4
 
 @export var dungeon : Array
 
@@ -110,7 +110,7 @@ func _spawn_dungeon(dungeon_array):
 	while true:
 		for y in _dimensions.y:
 			for x in _dimensions.x:
-				if str(dungeon_array[x][y]) == "S" && counter > _boss_path_length:
+				if str(dungeon_array[x][y]) == "S" and counter == _boss_path_length:
 					var new_room = boss_room.instantiate()
 					print("Boss Room Made")
 					placed_dungeon.append(new_room)

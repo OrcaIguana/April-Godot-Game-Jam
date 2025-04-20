@@ -8,7 +8,7 @@ enum Looking { LEFT, RIGHT }
 @export var shoot_interval_range = Vector2(1, 1.5)
 
 var phase = Phase.TRIANGLE
-var max_health = 100
+var max_health = 200
 var attack_cooldown = 1.0
 var shoot_cooldown = 1.0
 var current_pulse_rotation = randi_range(0,360)
@@ -24,6 +24,7 @@ func _ready():
 
 func _on_death():
 	Global_Sound_System.location = "menu"
+	Global_Sound_System.play_sound(Global_Sound_System.level_up_sound)
 	get_tree().change_scene_to_file("res://Player/Win_Screen.tscn")
 	queue_free()
 

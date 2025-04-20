@@ -19,7 +19,7 @@ var enemies = [charger, orbit, random, square, shooter]
 @export var spawn_timer_interval = 3.0
 @export var min_spawn_count = 1
 @export var max_spawn_count = 1
-@export var max_health = 200
+@export var max_health = 350
 
 var rng = RandomNumberGenerator.new()
 
@@ -42,6 +42,7 @@ func _physics_process(delta):
 
 func _on_death():
 	Global_Sound_System.location = "menu"
+	Global_Sound_System.play_sound(Global_Sound_System.level_up_sound)
 	get_tree().change_scene_to_file("res://Player/Win_Screen.tscn")
 	queue_free()
 

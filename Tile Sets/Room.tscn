@@ -97,7 +97,7 @@ sources/1 = SubResource("TileSetAtlasSource_727xo")
 sources/2 = SubResource("TileSetAtlasSource_udaa2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jn4is"]
-size = Vector2(64, 30)
+size = Vector2(64, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vofp0"]
 size = Vector2(1913, 1071.5)
@@ -118,6 +118,7 @@ tile_set = SubResource("TileSet_jn4is")
 
 [node name="Door" type="Area2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(959, -2)
 monitorable = false
 script = ExtResource("1_rsif5")
@@ -133,23 +134,25 @@ shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door2" type="Area2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(1911, 540)
 monitorable = false
 script = ExtResource("3_mkwg8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door2"]
-position = Vector2(6, 0)
+position = Vector2(-0.999999, 0)
 rotation = 1.5708
 scale = Vector2(0.68, 0.68)
 texture = ExtResource("10_udaa2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2"]
-position = Vector2(-1, 0)
+position = Vector2(-3.5, 0)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door3" type="Area2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(960, 1083)
 monitorable = false
 script = ExtResource("4_rwvu7")
@@ -166,6 +169,7 @@ shape = SubResource("RectangleShape2D_jn4is")
 
 [node name="Door4" type="Area2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(-1, 541)
 rotation = -1.5708
 monitorable = false

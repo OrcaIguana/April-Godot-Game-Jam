@@ -83,6 +83,7 @@ func lock():
 			door.get_node("Sprite2D").texture = closed_door
 		
 func unlock():
+	Global_Sound_System.play_sound(Global_Sound_System.door_sound, 2, 2)
 	var doors = [$Door, $Door2, $Door3, $Door4]
 	for door in doors:
 		if door.visible:

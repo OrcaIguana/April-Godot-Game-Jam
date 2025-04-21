@@ -1,6 +1,11 @@
 extends "res://Enemies/enemy.gd"
 
 const bullet = preload("res://Enemies/enemy_bullet.tscn")
+const texture1 = preload("res://Sprites/Prism Bullets/prism-bullet-one.png")
+const texture2 = preload("res://Sprites/Prism Bullets/prism-bullet-two.png")
+const texture3 = preload("res://Sprites/Prism Bullets/prism-bullet-three.png")
+
+var current_bullet_texture : Texture2D = texture1
 
 enum Phase { TRIANGLE, RECTANGLE, CIRCLE }
 enum Looking { LEFT, RIGHT }
@@ -61,9 +66,11 @@ func look_at_player():
 func check_phase_transition():
 	if phase == Phase.TRIANGLE and health <= max_health * 0.66:
 		phase = Phase.RECTANGLE
+		current_bullet_texture = texture2
 		on_rectangle_phase_start()
 	elif phase == Phase.RECTANGLE and health <= max_health * 0.33:
 		phase = Phase.CIRCLE
+		current_bullet_texture = texture3
 		on_circle_phase_start()
 
 func on_rectangle_phase_start():
@@ -117,14 +124,17 @@ func _reset_shoot_timer():
 
 func pulse_attack():
 		var shot = bullet.instantiate()
+		shot.update_texture(current_bullet_texture)
 		shot.spawn_position = $BulletSpawnpoint.global_position
 		shot.direction = Vector2.LEFT.rotated(deg_to_rad(current_pulse_rotation))
 		get_tree().current_scene.add_child(shot)
 		shot.speed = 200
 		
 		shot = bullet.instantiate()
+		shot.update_texture(current_bullet_texture)
 		shot.spawn_position = $BulletSpawnpoint.global_position
 		shot.direction = Vector2.LEFT.rotated(deg_to_rad(current_pulse_rotation+180))
+		shot.rotation = shot.direction.angle() -(PI/3)
 		get_tree().current_scene.add_child(shot)
 		shot.speed = 200
 		
@@ -135,8 +145,10 @@ func shoot_fragmenting_spray():
 	for i in range(5):
 		var angle = deg_to_rad(-30 + i * 15)
 		var shot = bullet.instantiate()
+		shot.update_texture(current_bullet_texture)
 		shot.spawn_position = $BulletSpawnpoint.global_position
 		shot.direction = get_direction_to_player().rotated(angle)
+		shot.rotation = shot.direction.angle() -(PI/3)
 		shot.speed = 600
 		get_tree().current_scene.add_child(shot)
 		
@@ -150,8 +162,10 @@ func shoot_beam():
 		new_direction = Vector2(get_direction_to_player().x+rng.randf_range(-.1, .1), get_direction_to_player().y+rng.randf_range(-.1, .1))
 		for i in range(10):
 			var shot = bullet.instantiate()
+			shot.update_texture(current_bullet_texture)
 			shot.spawn_position = $BulletSpawnpoint.global_position
 			shot.direction = Vector2(0,0).direction_to(new_direction)
+			shot.rotation = shot.direction.angle() -(PI/3)
 			shot.speed = shot_speed - 60*i
 			get_tree().current_scene.add_child(shot)
 		await get_tree().create_timer(.1).timeout
@@ -177,6 +191,7 @@ func rectangle_stripe_attack() -> float:
 
 		for j in range(10): # number of bullets per stripe
 			var bullet_instance = bullet.instantiate()
+			bullet_instance.update_texture(current_bullet_texture)
 			var pos := Vector2.ZERO
 			var dir := Vector2.ZERO
 
@@ -208,6 +223,7 @@ func rectangle_stripe_attack() -> float:
 				
 			bullet_instance.spawn_position = pos
 			bullet_instance.direction = dir
+			bullet_instance.rotation = bullet_instance.direction.angle() -(PI/3)
 
 			get_tree().current_scene.add_child(bullet_instance)
 	if(is_horizontal):

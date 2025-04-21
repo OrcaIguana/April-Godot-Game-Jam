@@ -12,7 +12,6 @@ signal chosen
 
 var current_wands = [
 	preload("res://Player/Wands/focus.tscn"),
-	preload("res://Player/Wands/blaster.tscn"),
 	preload("res://Player/Wands/fan.tscn"),
 	preload("res://Player/Wands/ring.tscn"),
 	preload("res://Player/Wands/voley.tscn"),

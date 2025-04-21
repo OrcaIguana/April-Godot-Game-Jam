@@ -17,3 +17,6 @@ func _physics_process(delta: float) -> void:
 
 func update_can_move(val: bool):
 	can_move = val
+	
+func update_texture(new_texture: Texture2D):
+	$Sprite2D.texture = new_texture

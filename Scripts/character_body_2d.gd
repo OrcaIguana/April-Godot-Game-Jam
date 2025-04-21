@@ -136,6 +136,8 @@ func _process(delta: float) -> void:
 	
 	if (Input.is_action_pressed("shoot") && (active_wand.cooldown <= 0 && active_wand.charge_time>0)):
 		active_wand.charge+=delta*2
+		if(active_wand.charge > active_wand.charge_time && active_wand.charge <= active_wand.charge_time + delta*2):
+			Global_Sound_System.play_sound(Global_Sound_System.player_shoot_sound, 4, 5)
 	else:
 		active_wand.charge = min(max(active_wand.charge - (delta*10), 0), active_wand.charge_time)
 	

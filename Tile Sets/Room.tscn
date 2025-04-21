@@ -237,3 +237,4 @@ position = Vector2(54, 53.0001)
 rotation = 0.00023583
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

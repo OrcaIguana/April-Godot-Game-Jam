@@ -30,6 +30,7 @@ func _on_death():
 	queue_free()
 
 func hurt(amount):
+	Global_Sound_System.play_sound(Global_Sound_System.enemy_hit_sound)
 	modulate.b = 255
 	modulate.r = 255
 	modulate.g = 255

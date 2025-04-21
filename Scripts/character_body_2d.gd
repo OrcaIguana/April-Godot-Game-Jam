@@ -197,7 +197,7 @@ func change_wand_index(index):
 			wand_inventory[i].visible = false
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.type == "enemy":
+	if area.type == "enemy" || area.type == "enemy_bullet":
 		hurt(1)
 		area.kill_self()
 	if area.type == "door_left":

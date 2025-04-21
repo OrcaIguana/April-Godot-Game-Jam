@@ -96,3 +96,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			lock()
 			spawn_enemies(id)
 			disable = true
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if(area.type != null):
+		if(area.type == "enemy_bullet" || area.type == "friendly_bullet"):
+			area.kill_self()

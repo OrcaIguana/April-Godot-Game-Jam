@@ -15,3 +15,6 @@ script = ExtResource("3_uh1pw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bullet Collision"]
 polygon = PackedVector2Array(-10, 0, 0, -10, 10, 0, 0, 10)
+
+[connection signal="area_exited" from="Bullet Collision" to="." method="_on_bullet_collision_area_exited"]
+[connection signal="kill" from="Bullet Collision" to="." method="_on_bullet_collision_kill"]

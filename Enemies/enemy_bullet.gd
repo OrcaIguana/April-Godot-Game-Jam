@@ -20,3 +20,7 @@ func update_can_move(val: bool):
 	
 func update_texture(new_texture: Texture2D):
 	$Sprite2D.texture = new_texture
+
+func _on_bullet_collision_kill() -> void:
+	remove_from_group("enemy_bullets")
+	queue_free()

@@ -161,7 +161,6 @@ func check_split():
 
 
 func _on_bullet_collision_kill() -> void:
-	Global_Sound_System.play_sound(Global_Sound_System.enemy_hit_sound)
 	if(!is_piercing):
 		if(sucking != 0):
 			for enemy_bullet in get_nearby_enemy_bullets(200):

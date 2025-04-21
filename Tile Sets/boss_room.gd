@@ -17,3 +17,9 @@ func spawn_enemies(difficulty):
 		spawned_boss = boss2.instantiate()
 	spawned_boss.spawn_location = spawnpoint.global_position
 	call_deferred("add_child", spawned_boss)
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if(area.type != null):
+		if(area.type == "enemy_bullet" || area.type == "friendly_bullet"):
+			area.kill_self()

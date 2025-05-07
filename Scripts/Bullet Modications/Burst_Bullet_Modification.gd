@@ -13,3 +13,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Burst"
+
+func get_item_tooltip() -> String:
+	return "Shoot a spread of projectiles."

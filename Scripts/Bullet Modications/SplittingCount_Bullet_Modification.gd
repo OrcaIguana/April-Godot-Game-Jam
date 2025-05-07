@@ -16,3 +16,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Shard"
+
+func get_item_tooltip() -> String:
+	return "Splits after a time, or on impact."

@@ -29,6 +29,13 @@ func _process(delta: float) -> void:
 		else:
 			is_fading_out = false
 			get_tree().change_scene_to_file("res://lvl.tscn")
+			
+	if Input.is_action_just_pressed("fullscreen"):
+		if(DisplayServer.window_get_mode() == 3):
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_position(DisplayServer.window_get_position()+Vector2i(0,20))
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _on_start_button_pressed() -> void:
 	Global_Sound_System.play_sound(Global_Sound_System.select_sound)

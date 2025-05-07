@@ -47,26 +47,43 @@ var spell_icons = [
 signal on_press(current_selection)
 
 func _ready() -> void:
+	$Tooltip.visible = true
 	_choose_slot()
 
 func _choose_slot():
 	var is_spell = true
+	var selected_upgrades : Array = $"..".get_selected_upgrades()
 	is_spell = randi_range(0, 100) > bias
 	
+	while(true):
+		if is_spell:
+			current_selection = current_spells[randi_range(0, len(current_spells)-1)]
+			if(!selected_upgrades.has(current_selection.get_modifier_name())):
+				$"..".selected_upgrades.append(current_selection.get_modifier_name());
+				bias -= 10
+				break;
+		else:
+			current_selection = current_wands[randi_range(0, len(current_wands)-1)].instantiate()
+			if(!selected_upgrades.has(current_selection.get_name())):
+				$"..".selected_upgrades.append(current_selection.get_name());
+				bias += 10
+				break;
+	bias = max(min(bias, 80),20)
 	if is_spell:
-		current_selection = current_spells[randi_range(0, len(current_spells)-1)]
-		bias -= 10
-	else:
-		current_selection = current_wands[randi_range(0, len(current_wands)-1)].instantiate()
-		bias += 10
-	if is_spell:
-		self.icon = spell_icons[randi_range(0, len(spell_icons)-1)]
-		self.text = current_selection.get_modifier_name()
+		$MarginContainer/TextureRect.texture = spell_icons[randi_range(0, len(spell_icons)-1)]
+		$MarginContainer.scale = Vector2(0.75,0.75)
+		self.text = str(current_selection.get_modifier_name(), "\nSpell\n\n\n\n\n\n\n\n\n")
+		$Tooltip.text = current_selection.get_item_tooltip()
+		$MarginContainer.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		
 		self.currently_spell = true
 	else:
-		self.icon = current_selection.get_node("Wand").texture
-		self.text = current_selection.name
+		$MarginContainer/TextureRect.texture = current_selection.get_node("Wand").texture
+		$MarginContainer.scale = Vector2(1.75,1.75)
+		self.text = str(current_selection.name, "\nWand\n\n\n\n\n\n\n\n\n")
+		$Tooltip.text = current_selection.get_item_tooltip()
+		$MarginContainer.texture_filter = CanvasItem.TEXTURE_FILTER_PARENT_NODE
+		
 		self.currently_spell = false
 
 

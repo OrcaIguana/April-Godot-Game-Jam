@@ -13,3 +13,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Charge"
+
+func get_item_tooltip() -> String:
+	return "Charge to fire a powerful shot."

@@ -26,6 +26,8 @@ StaticTracker="*res://Static_Tracker.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [editor]
 
@@ -34,6 +36,7 @@ version_control/autoload_on_startup=true
 
 [gui]
 
+timers/tooltip_delay_sec=0.15
 theme/custom_font="uid://dhnm5qnts0vwy"
 
 [input]
@@ -135,6 +138,11 @@ swap_wand={
 menu={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+fullscreen={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194342,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 

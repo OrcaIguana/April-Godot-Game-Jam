@@ -12,6 +12,8 @@ var enemy_bullets = []
 var nearby_enemy_bullets = []
 var viewport
 var viewport_position
+var vx = 1920 # screen scale
+var vy = 1080
 
 # Basic attributes
 var direction
@@ -76,7 +78,7 @@ func _ready():
 			var mouse_pos = get_global_mouse_position()
 			self.global_position += self.spawn_position.direction_to(mouse_pos) * 50
 			screen_position = self.global_position + viewport_position
-			if((abs(self.screen_position.x) > (Vector2(viewport.get_size()).x - 64) / 2) || (abs(self.screen_position.y) > (Vector2(viewport.get_size()).y - 64) / 2)):
+			if((abs(self.screen_position.x) > (vx - 64) / 2) || (abs(self.screen_position.y) > (vy - 64) / 2)):
 				global_position = self.global_position.move_toward(-viewport_position, 125)
 	self.rotate(direction.angle())
 	velocity = direction * speed
@@ -162,9 +164,6 @@ func check_split():
 
 func _on_bullet_collision_kill() -> void:
 	if(!is_piercing):
-		if(sucking != 0):
-			for enemy_bullet in get_nearby_enemy_bullets(200):
-				enemy_bullet.update_can_move(true)
 		queue_free()
 
 func get_nearby_enemy_bullets(suck_distance: int) -> Array:
@@ -176,7 +175,7 @@ func get_nearby_enemy_bullets(suck_distance: int) -> Array:
 			enemy_bullet.update_can_move(false)
 		else:
 			pass
-			enemy_bullet.update_can_move(true)
+			#enemy_bullet.update_can_move(true)
 	return nearby_enemy_bullets
 	
 func suck():
@@ -187,13 +186,16 @@ func suck():
 		can_suck = true
 	for enemy_bullet in nearby_enemy_bullets:
 		if(is_instance_valid(enemy_bullet)):
-			enemy_bullet.global_position = enemy_bullet.global_position.move_toward(self.global_position, sucking*2)
+			if(sucking>0):
+				enemy_bullet.direction = enemy_bullet.direction.lerp(enemy_bullet.global_position.direction_to(self.global_position), sucking/20.0)
+			elif(sucking < 0):
+				enemy_bullet.direction = enemy_bullet.direction.lerp((enemy_bullet.global_position.direction_to(self.global_position))*-1.0, abs(sucking)/20.0)
 
 func fix_suck():
 	nearby_enemy_bullets = get_nearby_enemy_bullets(200)
 	for enemy_bullet in nearby_enemy_bullets:
 		if(is_instance_valid(enemy_bullet)):
-			enemy_bullet.can_move = true
+			pass#enemy_bullet.can_move = true
 
 func update_seeking_target(distance: int):
 	if(can_seek):
@@ -230,7 +232,7 @@ func find_seeking_target(distance: int) -> bool:
 func bounce() -> bool:
 	if(is_bouncing):
 		screen_position = self.global_position + viewport_position
-		if(abs(self.screen_position.x) > (Vector2(viewport.get_size()).x - 64) / 2):
+		if(abs(self.screen_position.x) > (vx - 64) / 2):
 			if(velocity.x > 0):
 				velocity.x = -abs(velocity.x)
 				clockwise *= -1
@@ -238,9 +240,9 @@ func bounce() -> bool:
 				velocity.x = abs(velocity.x)
 				clockwise *= -1
 				return true
-			global_position.x = min(max(global_position.x, -viewport_position.x - (viewport.get_size()).x / 2 + 35), -viewport_position.x + (viewport.get_size()).x / 2 - 35)
-			global_position.y = min(max(global_position.y, -viewport_position.y - (viewport.get_size()).y / 2 + 35), -viewport_position.y + (viewport.get_size()).y / 2 - 35)
-		if(abs(self.screen_position.y) > (Vector2(viewport.get_size()).y - 64) / 2):
+			global_position.x = min(max(global_position.x, -viewport_position.x - vx / 2 + 35), -viewport_position.x + vx / 2 - 35)
+			global_position.y = min(max(global_position.y, -viewport_position.y - vy / 2 + 35), -viewport_position.y + vy / 2 - 35)
+		if(abs(self.screen_position.y) > (vy - 64) / 2):
 			if(velocity.y > 0):
 				velocity.y = -abs(velocity.y)
 				clockwise *= -1
@@ -248,6 +250,6 @@ func bounce() -> bool:
 				velocity.y = abs(velocity.y)
 				clockwise *= -1
 				return true
-			global_position.x = min(max(global_position.x, -viewport_position.x - (viewport.get_size()).x / 2 + 35), -viewport_position.x + (viewport.get_size()).x / 2 - 35)
-			global_position.y = min(max(global_position.y, -viewport_position.y - (viewport.get_size()).y / 2 + 35), -viewport_position.y + (viewport.get_size()).y / 2 - 35)
+			global_position.x = min(max(global_position.x, -viewport_position.x - vx / 2 + 35), -viewport_position.x + vx / 2 - 35)
+			global_position.y = min(max(global_position.y, -viewport_position.y - vy / 2 + 35), -viewport_position.y + vy / 2 - 35)
 	return false

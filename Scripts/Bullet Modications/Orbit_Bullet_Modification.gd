@@ -15,3 +15,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Orbit"
+
+func get_item_tooltip() -> String:
+	return "A little gravity wouldn't hurt."

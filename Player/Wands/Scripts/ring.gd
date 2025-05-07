@@ -16,3 +16,6 @@ func _ready():
 	wand_modifiers.append(Lifespan_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(0)
 	super.set_wand_modifiers(wand_modifiers)
+
+func get_item_tooltip() -> String:
+	return "Surrounds yourself in projectiles."

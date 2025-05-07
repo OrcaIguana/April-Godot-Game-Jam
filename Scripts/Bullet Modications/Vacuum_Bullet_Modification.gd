@@ -11,3 +11,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Vacuum"
+
+func get_item_tooltip() -> String:
+	return "It's like a little roomba."

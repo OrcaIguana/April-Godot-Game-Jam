@@ -3,6 +3,7 @@ extends Control
 @onready var music_volume_slider = get_node("VBoxContainer/MusicVolume")
 @onready var sfx_volume_slider = get_node("VBoxContainer/SfxVolume")
 
+var can_access_settings = true
 var ready_for_input = .1
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +20,9 @@ func _process(delta: float) -> void:
 	ready_for_input -= delta
 	if(ready_for_input < 0):
 		if(Input.is_action_just_pressed("menu")):
-			_on_back_button_pressed()
+			if(can_access_settings):
+				_on_back_button_pressed()
+	
 
 func _on_back_button_pressed() -> void:
 	Global_Sound_System.play_sound(Global_Sound_System.select_sound, 1, 1)
@@ -49,3 +52,6 @@ func _on_quit_to_main_menu_pressed() -> void:
 
 func _on_sfx_volume_focus_exited() -> void:
 	pass
+
+func set_accessibility(can : bool):
+	can_access_settings = can;

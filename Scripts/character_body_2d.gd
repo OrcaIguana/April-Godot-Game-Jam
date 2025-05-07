@@ -40,6 +40,7 @@ func health_changed(new_health):
 
 func hurt(amount):
 	if !invulnerable:
+		print("Called hurt function with hurt amount: ", amount);
 		modulate.r = 255
 		Global_Sound_System.play_sound(Global_Sound_System.player_hit_sound)
 		var new_health = health - amount
@@ -58,8 +59,11 @@ func hurt(amount):
 func level_up():
 	Global_Sound_System.play_sound(Global_Sound_System.level_up_sound)
 	level_up_signal.emit()
+	$"../PlayerUI/Settings".set_accessibility(false)
 	get_tree().paused = true
 	level_up_signal.emit()
+	health = min(health+1, 6)
+	health_changed(health)
 
 	
 func wand_get(wand):
@@ -71,6 +75,7 @@ func wand_get(wand):
 	
 	
 func spell_add(spell, slot):
+	$"../PlayerUI/Settings".set_accessibility(true)
 	wand_inventory[slot].set_spell_modifiers(spell)
 
 func load_wand(wand):
@@ -116,12 +121,17 @@ func _process(delta: float) -> void:
 		return
 		
 	if Input.is_action_just_pressed("menu"):
-		print("Menu pressed")
-		menu_button_signal.emit()
-		get_tree().paused = true
+		if($"../PlayerUI/Settings".can_access_settings):
+			menu_button_signal.emit()
+			get_tree().paused = true
 		#get_tree().current_scene.add_child(SettingsMenu)
 		#get_tree().paused = true
-		
+	if Input.is_action_just_pressed("fullscreen"):
+		if(DisplayServer.window_get_mode() == 3):
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_position(DisplayServer.window_get_position()+Vector2i(0,20))
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		
 	if Input.is_action_just_released("shoot"):
 		if active_wand.cooldown <= 0 && active_wand.charge >= active_wand.charge_time:

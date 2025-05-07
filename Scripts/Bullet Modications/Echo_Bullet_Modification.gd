@@ -12,3 +12,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Echo"
+
+func get_item_tooltip() -> String:
+	return "Why not have another?"

@@ -58,7 +58,7 @@ func play_sound(sound : AudioStream, pitch_min : float = .9, pitch_max : float =
 			found_sound = true
 			break
 	if(!found_sound):
-		print("Making new audio player for: ", sound)
+		print("Making new audio player for: ", var_to_str(sound))
 		var new_player = AudioStreamPlayer.new()
 		new_player.bus = "SFX"
 		new_player.volume_db=-20

@@ -13,3 +13,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Bouncing"
+	
+func get_item_tooltip() -> String:
+	return "Bouncy Projectiles."

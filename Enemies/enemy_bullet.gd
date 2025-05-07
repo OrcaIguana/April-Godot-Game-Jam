@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var direction
+var direction : Vector2 = Vector2(0,0)
 
 var speed = 750
 var spawn_position
@@ -12,8 +12,8 @@ func _ready():
 	add_to_group("enemy_bullets")
 
 func _physics_process(delta: float) -> void:
-	if(can_move):
-		move_and_slide()
+	velocity = direction * speed
+	move_and_slide()
 
 func update_can_move(val: bool):
 	can_move = val

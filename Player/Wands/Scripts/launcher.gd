@@ -12,3 +12,6 @@ func _ready() -> void:
 	wand_modifiers.append(Weaken_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(.5)
 	super.set_wand_modifiers(wand_modifiers)
+
+func get_item_tooltip() -> String:
+	return "You know what we need? More explosions."

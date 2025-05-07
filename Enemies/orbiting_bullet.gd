@@ -1,7 +1,6 @@
-extends Node2D
+extends "res://Enemies/enemy_bullet.gd"
 
-# For vacuum and repelling spells
-var can_move = true
+var last_position;
 
 var orbit_radius = 40
 var orbit_speed = 2 * PI
@@ -15,6 +14,7 @@ var angle = 0.0
 var parent : Node2D
 
 func _ready():
+	last_position = global_position
 	center_global = global_position
 	add_to_group("enemy_bullets")
 	
@@ -26,10 +26,16 @@ func _process(delta):
 		orbit_radius = orbit_radius + radius_growth_rate * delta
 		angle += effective_speed * delta
 		global_position = lerp(global_position, center + Vector2(cos(angle), sin(angle)) * orbit_radius, .01)
-	
+		direction = (global_position-last_position).normalized()
+		last_position = global_position;
+
 func update_can_move(val: bool):
 	self.can_move = val
 
+func _physics_process(delta: float) -> void:
+	if(!can_move):
+		velocity = base_linear_speed * direction
+		move_and_slide()
 
 func _on_bullet_collision_kill() -> void:
 	remove_from_group("enemy_bullets")

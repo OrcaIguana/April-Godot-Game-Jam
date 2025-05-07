@@ -11,3 +11,6 @@ func _ready() -> void:
 	wand_modifiers[wand_modifiers.size()-1].initialize(1.5)
 	wand_modifiers.append(Charge_Bullet_Modification.new())
 	super.set_wand_modifiers(wand_modifiers)
+
+func get_item_tooltip() -> String:
+	return "Charge it up and see what happens."

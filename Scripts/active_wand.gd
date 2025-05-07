@@ -25,6 +25,7 @@ func get_internal_name():
 func set_wand_modifiers(new_wand_modifiers: Array[Default_Bullet_Modification]):
 	for mod in new_wand_modifiers:
 		wand_modifiers.append(mod)
+	
 	apply_modifiers()
 	
 # Called when spells on a wand are changes
@@ -33,6 +34,7 @@ func set_spell_modifiers(new_spell_modifiers: Array):
 	
 	for modifier in new_spell_modifiers:
 		spell_modifiers.append(modifier)
+		
 	apply_modifiers()
 	
 #Applies modifiers to the dummy bullet.

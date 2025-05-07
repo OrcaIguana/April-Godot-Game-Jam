@@ -16,3 +16,6 @@ func _ready() -> void:
 	wand_modifiers.append(Slow_Bullet_Modification.new())
 	wand_modifiers[wand_modifiers.size()-1].initialize(0.5) 
 	super.set_wand_modifiers(wand_modifiers)
+
+func get_item_tooltip() -> String:
+	return "Spread shot. Nice and simple."

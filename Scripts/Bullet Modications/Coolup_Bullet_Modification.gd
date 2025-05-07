@@ -10,4 +10,7 @@ func apply_modification(bullet : Bullet):
 	bullet.cooldown *= coolup_multiplier
 
 func get_modifier_name() -> String:
-	return "Reduce Cooldown"
+	return "Quicken"
+
+func get_item_tooltip() -> String:
+	return "Reduce fire time."

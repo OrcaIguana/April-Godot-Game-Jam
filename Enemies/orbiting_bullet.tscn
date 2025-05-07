@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbsmq"]
 size = Vector2(8.88886, 8.88892)
 
-[node name="OrbitingBullet" type="Node2D"]
+[node name="OrbitingBullet" type="CharacterBody2D"]
 script = ExtResource("1_wvxkb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

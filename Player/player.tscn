@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cvnhcrcuvg482"]
+[gd_scene load_steps=35 format=3 uid="uid://cvnhcrcuvg482"]
 
 [ext_resource type="Script" uid="uid://dco0a1i841qnp" path="res://Scripts/character_body_2d.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://d34brp7ucwgv" path="res://Player/Sprites/player-base.png" id="5_fhl08"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://b3io1qnl3jcux" path="res://Player/level_up.gd" id="20_7emwf"]
 [ext_resource type="Script" uid="uid://c1h1n5pdp7cg0" path="res://Player/level_up_screen.gd" id="20_hshwv"]
 [ext_resource type="Script" uid="uid://cmrlpiegbgxxx" path="res://Player/camera_2d.gd" id="21_7emwf"]
+[ext_resource type="Texture2D" uid="uid://bsrhodhgfxsj0" path="res://Sprites/item-icon-blue.png" id="22_755ss"]
 [ext_resource type="Script" uid="uid://c0sr75yjeent" path="res://Player/Wand_Selection.gd" id="22_gpjlu"]
 [ext_resource type="Script" uid="uid://d1qbmy7l4orml" path="res://Player/new_spell.gd" id="22_sm0op"]
 [ext_resource type="Script" uid="uid://cx5cjsur7qylr" path="res://Player/button_2.gd" id="23_8mwp6"]
@@ -383,6 +384,34 @@ vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("20_7emwf")
 
+[node name="MarginContainer" type="MarginContainer" parent="PlayerUI/Level Up Screen/Button"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 104.0
+offset_right = 127.0
+offset_bottom = 176.0
+pivot_offset = Vector2(36, 36)
+
+[node name="TextureRect" type="TextureRect" parent="PlayerUI/Level Up Screen/Button/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("22_755ss")
+
+[node name="Tooltip" type="RichTextLabel" parent="PlayerUI/Level Up Screen/Button"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 198.0
+offset_right = 174.0
+offset_bottom = 238.0
+theme_override_constants/line_separation = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "testing
+testing
+testing"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Button2" type="Button" parent="PlayerUI/Level Up Screen"]
 layout_mode = 0
 offset_left = 910.0
@@ -395,17 +424,73 @@ vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("20_7emwf")
 
+[node name="MarginContainer" type="MarginContainer" parent="PlayerUI/Level Up Screen/Button2"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 104.0
+offset_right = 127.0
+offset_bottom = 176.0
+pivot_offset = Vector2(36, 36)
+
+[node name="TextureRect" type="TextureRect" parent="PlayerUI/Level Up Screen/Button2/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("22_755ss")
+
+[node name="Tooltip" type="RichTextLabel" parent="PlayerUI/Level Up Screen/Button2"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 198.0
+offset_right = 174.0
+offset_bottom = 238.0
+theme_override_constants/line_separation = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "testing
+testing
+testing"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Button3" type="Button" parent="PlayerUI/Level Up Screen"]
 layout_mode = 0
 offset_left = 1092.0
 offset_top = 432.0
-offset_right = 1261.0
+offset_right = 1276.0
 offset_bottom = 672.0
 autowrap_mode = 3
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("20_7emwf")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerUI/Level Up Screen/Button3"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 104.0
+offset_right = 127.0
+offset_bottom = 176.0
+pivot_offset = Vector2(36, 36)
+
+[node name="TextureRect" type="TextureRect" parent="PlayerUI/Level Up Screen/Button3/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("22_755ss")
+
+[node name="Tooltip" type="RichTextLabel" parent="PlayerUI/Level Up Screen/Button3"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 199.0
+offset_right = 174.0
+offset_bottom = 238.0
+theme_override_constants/line_separation = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "testing
+testing
+testing"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Select slot" type="ColorRect" parent="PlayerUI"]
 process_mode = 2

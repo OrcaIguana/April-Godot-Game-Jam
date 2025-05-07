@@ -11,3 +11,6 @@ func apply_modification(bullet : Bullet):
 
 func get_modifier_name() -> String:
 	return "Repulsion"
+
+func get_item_tooltip() -> String:
+	return "Pushes things away."

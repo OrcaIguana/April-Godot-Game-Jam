@@ -38,7 +38,7 @@ func add_doors(add):
 			$Door4.monitorable = true
 			$Door4.monitoring = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if get_tree().get_node_count_in_group("enemy") == 0 and disable == true and unlocked == false:
 		unlock()
 		unlocked = true

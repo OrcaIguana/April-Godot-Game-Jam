@@ -13,14 +13,18 @@ config_version=5
 config/name="April Godot Game Jam"
 run/main_scene="uid://b0wfrodl76x8o"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
 
 [autoload]
 
-DungeonGen="*res://Dungeon Generation/dungeon_gen.gd"
+StaticTracker="*res://Static_Tracker.tscn"
 Global_Sound_System="*res://Audio/Global_Sound_System.gd"
 SoundSystem="*res://Sound_System.tscn"
-StaticTracker="*res://Static_Tracker.tscn"
+
+[debug]
+
+gdscript/warnings/shadowed_variable=0
+gdscript/warnings/integer_division=0
 
 [display]
 
@@ -31,7 +35,6 @@ window/stretch/mode="viewport"
 
 [editor]
 
-version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
 [gui]
@@ -149,3 +152,4 @@ fullscreen={
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+quality/driver/driver_name="GLES2"

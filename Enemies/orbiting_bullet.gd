@@ -34,6 +34,9 @@ func update_can_move(val: bool):
 
 func _physics_process(delta: float) -> void:
 	if(!can_move):
+		lifespan -= delta
+		if(lifespan < 0):
+			_on_bullet_collision_kill()
 		velocity = base_linear_speed * direction
 		move_and_slide()
 

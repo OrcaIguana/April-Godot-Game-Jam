@@ -3,6 +3,7 @@ extends CharacterBody2D
 var speed: float = 100.0;
 var follow_distance = 10000.0;
 var is_dead : bool = false
+var xp = preload("res://Enemies/XP.tscn")
 
 var player: Node2D
 
@@ -24,7 +25,7 @@ func get_direction_to_player() -> Vector2:
 	return Vector2.ZERO
 
 func _on_death():
-	var XP = load("res://Enemies/XP.tscn").instantiate()
+	var XP = xp.instantiate()
 	XP.spawn_position = self.global_position
 	get_tree().current_scene.add_child(XP)
 	queue_free()

@@ -53,16 +53,16 @@ func apply_modifiers():
 		charge_time = min(.5, max_cooldown)
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var mouse_pos = get_global_mouse_position()
 	self.position = Vector2(0, 0)
 	self.position = self.global_position.direction_to(mouse_pos) * (50 - min(charge, charge_time)*20)
 
-func _process(delta):
+func _process(_delta):
 	if(charge_time > 0):
 		modulate = Color((1+min(.5,charge)), (1+min(.5,charge)), (1+min(.5,charge)), 1)
 	
-func shoot(parent_pos: Vector2):	
+func shoot(_parent_pos: Vector2):	
 	Global_Sound_System.play_sound(Global_Sound_System.player_shoot_sound)
 	var counter = 0
 	var loop = 0

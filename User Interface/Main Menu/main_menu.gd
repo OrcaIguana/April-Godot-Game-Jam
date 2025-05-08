@@ -12,7 +12,7 @@ func _ready() -> void:
 	fade_in = .5
 	$VBoxContainer/StartButton.grab_focus()
 	if(StaticTracker.is_first_launch):
-		get_tree().change_scene_to_file("res://User Interface/SettingsMenu.tscn")
+		get_tree().change_scene_to_file.call_deferred("res://User Interface/SettingsMenu.tscn")
 		StaticTracker.is_first_launch = false
 	Global_Sound_System.location = "menu"
 

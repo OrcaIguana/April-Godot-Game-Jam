@@ -14,7 +14,7 @@ func _ready():
 	$ChargeTimer.timeout.connect(_on_charge_timer_timeout)
 	_reset_charge_timer()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 
 	if !resting:
 		velocity += get_direction_to_player() * acceleration

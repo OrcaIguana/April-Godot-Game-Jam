@@ -20,3 +20,5 @@ scale = Vector2(2.72, 2.72)
 text = "You Win!"
 fit_content = true
 metadata/_edit_use_anchors_ = true
+
+[node name="Fade" type="CanvasModulate" parent="."]

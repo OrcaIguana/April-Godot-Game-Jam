@@ -1,10 +1,10 @@
 class_name Default_Bullet_Modification
 extends Resource
 
-func instantiate(valf : float = 0, vali : int = 0, valb : bool = false):
+func instantiate(_valf : float = 0, _vali : int = 0, _valb : bool = false):
 	pass
 
-func apply_modification(bullet : Bullet):
+func apply_modification(_bullet : Bullet):
 	pass
 
 func get_modifier_name() -> String:

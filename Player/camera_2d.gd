@@ -8,7 +8,7 @@ func _ready():
 	last_position = self.position
 	target = self.position
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	self.position = self.position.lerp(target, 0.1)
 
 func _on_player_room_change(direction: Variant) -> void:

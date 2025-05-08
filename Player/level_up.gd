@@ -48,7 +48,7 @@ signal on_press(current_selection)
 
 func _ready() -> void:
 	$Tooltip.visible = true
-	_choose_slot()
+	#_choose_slot()
 
 func _choose_slot():
 	var is_spell = true

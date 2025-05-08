@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var texture = preload("res://Player/Sprites/player-bullet.png")
 
-signal killed_enemy
+#signal killed_enemy
 
 # Outside info
 var enemies = []

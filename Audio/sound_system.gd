@@ -11,14 +11,14 @@ func _ready():
 	location = Global_Sound_System.location
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if(location != Global_Sound_System.location):
 		location = Global_Sound_System.location
 		update_music()
 	pass
 
 func update_music():
-	print("Now Playing: ", location, "Music")
+	#print("Now Playing: ", location, "Music")
 	location_music = str(location + "Music")
 	music_player.get_stream_playback().switch_to_clip_by_name(location_music)
 	#if(location == "menu"):

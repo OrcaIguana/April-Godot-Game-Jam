@@ -69,7 +69,7 @@ func _print_dungeon() -> void:
 			else:
 				dungeon_as_string += "   "
 		dungeon_as_string += '\n'
-	print(dungeon_as_string)
+	#print(dungeon_as_string)
 	
 func find_next_room(room_id, room_coords):
 	for y in range(_dimensions.y - 1 , -1 , -1):
@@ -117,7 +117,7 @@ func _spawn_dungeon(dungeon_array):
 					else:
 						new_room = room.instantiate()
 					placed_dungeon.append(new_room)
-					print("Placed room")
+					#print("Placed room")
 					new_room.x = x
 					new_room.y = y
 					if previous_direction == null:

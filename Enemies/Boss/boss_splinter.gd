@@ -37,11 +37,11 @@ func _ready():
 	$SpawnTimer.timeout.connect(_on_spawn_timer_timeout)
 	$SpawnTimer.start(spawn_timer_interval)
 
-func _process(delta):
+func _process(_delta):
 	if(health < max_health/2):
 		$AnimatedSprite2D.modulate = Color(1, .5, .5, 1)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 func _on_death():
@@ -130,7 +130,7 @@ func spawn_thing_8(pos):
 	var spawn = sniper_spawn.instantiate()
 	spawn.global_position = pos
 	get_tree().current_scene.add_child(spawn)
-func spawn_thing_9(pos): 
+func spawn_thing_9(_pos): 
 	pass
 
 func _on_animated_finished() -> void:

@@ -23,11 +23,9 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
-3:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
-3:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ngtdn"]
 texture = ExtResource("13_fc7gd")
@@ -43,7 +41,6 @@ texture_region_size = Vector2i(64, 32)
 0:0/2/flip_v = true
 0:0/3 = 3
 0:0/3/transpose = true
-1:0/0 = 0
 0:1/next_alternative_id = 4
 0:1/0 = 0
 0:1/1 = 1

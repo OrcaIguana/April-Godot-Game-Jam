@@ -5,12 +5,14 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	music_volume_slider = get_node("VBoxContainer/MusicVolume")
+	sfx_volume_slider = get_node("VBoxContainer/SfxVolume")
 	$VBoxContainer/MusicVolume.grab_focus()
 	music_volume_slider.value = Global_Sound_System.music_volume
 	sfx_volume_slider.value = Global_Sound_System.sfx_volume
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("fullscreen"):
 		if(DisplayServer.window_get_mode() == 3):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

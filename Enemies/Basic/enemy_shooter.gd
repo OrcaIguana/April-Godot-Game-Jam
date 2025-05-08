@@ -19,7 +19,7 @@ func _ready():
 	$WanderTimer.start(randf_range(1.0,2.0))
 	_reset_shoot_timer()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_player_in_range():
 		$AnimatedSprite2D.play("Shooting")
 		beenTriggered = true
@@ -40,7 +40,7 @@ func _on_wander_timer_timeout():
 
 func _on_shoot_timer_timeout():
 	if beenTriggered:
-		var bullet = shoot_at_player()
+		var _bullet = shoot_at_player()
 	_reset_shoot_timer()
 
 func _reset_shoot_timer():

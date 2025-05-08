@@ -40,7 +40,7 @@ func health_changed(new_health):
 
 func hurt(amount):
 	if !invulnerable:
-		print("Called hurt function with hurt amount: ", amount);
+		#print("Called hurt function with hurt amount: ", amount);
 		modulate.r = 255
 		Global_Sound_System.play_sound(Global_Sound_System.player_hit_sound)
 		var new_health = health - amount
@@ -96,7 +96,6 @@ func do_cooldowns(delta):
 	get_node("Dash/Dash Cooldown Bar").adjust_dash_bar((dash_duration+(dash_cooldown))/.7)
 
 func _ready():
-	var wand
 	add_to_group("player")
 	for i in range(4):
 		wand_inventory.append(null)
@@ -133,12 +132,17 @@ func _process(delta: float) -> void:
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		
-	if Input.is_action_just_released("shoot"):
-		if active_wand.cooldown <= 0 && active_wand.charge >= active_wand.charge_time:
+	if Input.is_action_pressed("shoot"):
+		if active_wand.cooldown <= 0 && active_wand.charge_time <= 0:
 			active_wand.shoot(self.global_position)
 			active_wand.cooldown = active_wand.max_cooldown
 	do_cooldowns(delta)
 	
+	if Input.is_action_just_released("shoot"):
+		if active_wand.cooldown <= 0 && active_wand.charge >= active_wand.charge_time:
+			active_wand.shoot(self.global_position)
+			active_wand.cooldown = active_wand.max_cooldown
+		
 	if current_xp >= next_level_xp:
 		current_xp = 0
 		next_level_xp += 3

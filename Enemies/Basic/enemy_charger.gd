@@ -23,7 +23,7 @@ func _ready():
 	$WanderTimer.start(randf_range(1.0,2.0))
 	_reset_charge_timer()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_player_in_range():
 		beenTriggered = true
 		$AnimatedSprite2D.play("Getting Ready")

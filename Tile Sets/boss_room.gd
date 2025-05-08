@@ -6,7 +6,7 @@ var boss2 = preload("res://Enemies/Boss/boss_splinter.tscn")
 func _ready() -> void:
 	super._ready()
 
-func spawn_enemies(difficulty):
+func spawn_enemies(_difficulty):
 	Global_Sound_System.location = "boss"
 	var spawnpoint = $"Spawn Point"
 	var rng = RandomNumberGenerator.new()
